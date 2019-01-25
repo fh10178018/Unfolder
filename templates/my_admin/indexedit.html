@@ -1,0 +1,536 @@
+﻿<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>unfolder后端管理端</title>
+
+        <link type="text/css" href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'bootstrap/css/bootstrap-responsive.min.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'css/theme.css' %}" rel="stylesheet">
+        <link type="text/css" href="{% static 'images/icons/css/font-awesome.css' %}" rel="stylesheet">
+        <link type="text/css" href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600'
+              rel='stylesheet'>
+
+</head>
+    <body>
+        <div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+                        <i class="icon-reorder shaded"></i></a><a class="brand" href="/admin/home/">管理端 </a>
+                    <div class="nav-collapse collapse navbar-inverse-collapse">
+                        <ul class="nav pull-right">
+                            <li><a href="#">开发文档 </a></li>
+                            <li class="nav-user dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/static/{{ request.session.pic}}" class="nav-avatar" />{{  request.session.username }}
+                                <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="adminprofile.html">个人信息</a></li>
+                                    <li><a href="adminzone.html">工作日志</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/admin/logout/">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.nav-collapse -->
+                </div>
+            </div>
+            <!-- /navbar-inner -->
+        </div>
+        <!-- /navbar -->
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="span3">
+                        <div class="sidebar">
+                            <ul class="widget widget-menu unstyled">
+                                <li class="active"><a href="{% url 'home' %}"><i class="menu-icon icon-home"></i>首页
+                                </a></li>
+                                <li><a class="collapsed" data-toggle="collapse" href="#userPages"><i class="menu-icon icon-user">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>个人中心 </a>
+                                    <ul id="userPages" class="collapse unstyled">
+                                        <li><a href="{% url 'adminprofile' %}"><i class="icon-inbox"></i>个人信息</a></li>
+                                        <li><a href="{% url 'adminzone' %}"><i class="icon-inbox"></i>工作日志 <b class="label green pull-right">
+                                            1</b></a></li>
+
+                                    </ul>
+                                </li>
+                                <li><a class="collapsed" data-toggle="collapse" href="#managePages"><i class="menu-icon icon-group">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>账号管理 </a>
+                                    <ul id="managePages" class="collapse unstyled">
+                                        <li><a href="{% url 'merchantlist' %}"><i class="icon-inbox"></i>商家用户管理<b class="label green pull-right">
+                                            1</b></a></li>
+                                        <li><a href="{% url 'userlist' %}"><i class="icon-inbox"></i>用户管理 <b class="label green pull-right">
+                                            1</b></a></li>
+                                        <li><a href="{% url 'adminuserlist' %}"><i class="icon-inbox"></i>管理员账号管理</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="collapsed" data-toggle="collapse" href="#UIPages"><i class="menu-icon icon-eye-open">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>界面编辑 </a>
+                                    <ul id="UIPages" class="collapse unstyled">
+                                        <li><a href="{% url 'indexedit' %}"><i class="icon-inbox"></i>前端界面管理<b class="label green pull-right">
+                                            1</b></a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>用户界面管理 <b class="label green pull-right">
+                                            1</b></a></li>
+                                        <li><a href="#"><i class="icon-inbox"></i>手机端界面管理</a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="collapsed" data-toggle="collapse" href="#messagesPages"><i class="menu-icon icon-envelope">
+                                </i><i class="icon-chevron-down pull-right"></i><i class="icon-chevron-up pull-right">
+                                </i>消息 </a>
+                                    <ul id="messagesPages" class="collapse unstyled">
+                                        <li><a href="adminprofile.html"><i class="icon-inbox"></i>收件箱<b class="label green pull-right">
+                                            1</b></a></li>
+                                        <li><a href="other-user-listing.html"><i class="icon-inbox"></i>未读消息 </a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <!--/.widget-nav-->
+                            <ul class="widget widget-menu unstyled">
+                                <li><a href="/admin/logout/"><i class="menu-icon icon-signout"></i>Logout </a></li>
+                            </ul>
+                        </div>
+                        <!--/.sidebar-->
+                    </div>
+                <!--/.span3-->
+                    <div class="span9">
+                    <div class="content">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>主页面预览与动态内容发布</h3>
+                                {# 轮播图#}
+                                <div id="myCarousel" class="carousel slide">
+                                    <!-- 轮播（Carousel）指标 -->
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active" style="display: none"></li>
+                                        <li data-target="#myCarousel" data-slide-to="1" style="display: none">></li>
+                                    </ol>
+                                    <!-- 轮播（Carousel）项目 -->
+                                    <div class="carousel-inner">
+                                        {% for line in context %}
+                                            {% if line.demo == 1 %}
+                                                <div class="item active">
+                                                    <img src="{{ line.firstimg }}" alt="Second slide">
+                                                </div>
+                                            {% elif line.demo == 2 %}
+                                                <div class="item">
+                                                    <img src="{{ line.firstimg }}" alt="Second slide">
+                                                </div>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <!-- 轮播（Carousel）导航 -->
+                                    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+                                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                        <span class="sr-only">←</span>
+                                    </a>
+                                    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+                                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                        <span class="sr-only">→</span>
+                                    </a>
+                                </div>
+                                <table class="table table-striped">
+								  <thead>
+									<tr>
+									  <th>次序</th>
+									  <th>大标题</th>
+									  <th>小标题</th>
+									  <th>发表时间</th>
+                                      <th>浏览量</th>
+                                      <th>更换次序</th>
+                                        <th>操作</th>
+									</tr>
+								  </thead>
+								  <tbody>
+
+                                        {% for line in context %}
+                                            {% if line.demo != 0 %}
+                                                <tr>
+                                                <td>{{ line.demo }}</td>
+                                                <td><a href="/dairy/{{ line.num }}.html">{{ line.headline }}</a></td>
+                                                <td>{{ line.subtitile}}</td>
+                                                <td>{{ line.createtime}}</td>
+                                                <td class="center">{{ line.viewnum}}</td>
+                                                <td class="center"><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#publishs{{ line.num }}">更换次序</button>
+                                                  <div class="modal fade" id="publishs{{ line.num }}" style="display: none"  tabindex="-1" role="dialog" aria-labelledby="myremove"  >
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myremove">请更换次序</h4>
+                                                                </div>
+                                                                <div class="modal-body" >
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>次序</th>
+                                                                            <th>大标题</th>
+                                                                            <th>选择更换</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        {% for x in context %}
+                                                                            {% if x.demo != 0 %}
+                                                                                <tr>
+                                                                                    <td>{{ x.demo }}</td>
+                                                                                    <td>{{ x.headline }}</td>
+                                                                                    {% if x.num == line.num %}
+                                                                                          <td class="center"><button type="submit" class="btn btn-dark" disabled="disabled" style="background-color: greenyellow">已在该次序</button></td>
+                                                                                    {% else %}
+                                                                                        <td class="center"><button type="button" class="btn btn-primary" style="background-color: #96ffb6"><a href="/admin/indexeditrep/?&replacedid={{ x.num }}&replaceid={{ line.num }}&rdid={{ x.demo }}&rid={{ line.demo }}">确定</a></button></td>
+                                                                                    {% endif %}
+                                                                                </tr>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div></td>
+                                                <td class="center"><button type="submit" class="btn btn-dark"  data-toggle="modal" style="background-color: #cfd2e9" data-target="#edits{{ line.num }}">更改</button>
+                                                    <div class="modal fade"  style="display: none"  id="edits{{ line.num }}" tabindex="-1" role="dialog" aria-labelledby="myedit"  >
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myredit">请谨慎更改</h4>
+                                                                </div>
+                                                                <form method="POST" action="/admin/indexeditcon/?nid={{ line.num }}">
+                                                                     {% csrf_token %}
+                                                                <div class="modal-body" >
+
+                                                                    <label class="control-label" for="headname">标题内容</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" id="headname" name="headname" placeholder="文章表题在1—18字" class="span8" style="width: 80%" value="{{ line.headline }}" >
+                                                                    </div>
+                                                                    <label class="control-label" for="subtitle1" >标题内容</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" id="subtitle1" name="subtitle1" placeholder="文章表题在1—18字" class="span8" style="width: 80%" value="{{ line.subtitile }}" >
+                                                                    </div>
+                                                                    <label class="control-label" for="contents">标题内容</label>
+                                                                    <div class="controls">
+                                                                    <textarea class="form-control" id="contents" rows="8" style="width: 80%" name="contents">{{ line.content }}</textarea>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                    <button type="submit" class="btn btn-primary" style="background-color: #83ffc4">确定</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div></td>
+                                                </tr>
+                                            {% endif %}
+                                        {% endfor %}
+
+								  </tbody>
+								</table>
+                            </div>
+                            <div class="module-body">
+                                <ul class="profile-tab nav nav-tabs">
+                                    <li class="active"><a href="#activity" data-toggle="tab">已发表信息</a></li>
+                                    <li><a href="#dairy" data-toggle="tab">动态发表</a></li>
+                                </ul>
+                                <div class="profile-tab-content tab-content">
+                                    <div class="tab-pane fade active in" id="activity">
+                                        <div class="module-body table">
+                                            <table cellpadding="0" cellspacing="0" border="0" class="datatable-1 table table-bordered table-striped	 display" width="100%">
+                                                <thead>
+                                                <tr>
+                                                    <th>序号</th>
+                                                    <th>大标题</th>
+                                                    <th>摘要</th>
+                                                    <th>创建日期</th>
+                                                    <th>浏览量</th>
+                                                    <th>是否置顶</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for line in  context %}
+                                                    <tr class="odd gradeX">
+                                                        <td>{{ line.num }}</td>
+                                                        <td><a href="/dairy/{{ line.num }}.html">{{ line.headline }}</a></td>
+                                                        <td>{{ line.subtitile}}</td>
+                                                        <td>{{ line.createtime}}</td>
+                                                        <td class="center">{{ line.viewnum}}</td>
+                                                        {% if line.demo == 0 %}
+                                                            <td class="center"><button type="submit" class="btn btn-dark" data-toggle="modal" data-target="#publish{{ line.num }}">置顶发布</button>
+                                                                <div class="modal fade" id="publish{{ line.num }}" style="display: none" tabindex="-1" role="dialog" aria-labelledby="myremove"  >
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myremove">请更换次序</h4>
+                                                                </div>
+                                                                <div class="modal-body" >
+                                                                    <table class="table table-striped">
+                                                                        <thead>
+                                                                        <tr>
+                                                                            <th>次序</th>
+                                                                            <th>大标题</th>
+                                                                            <th>选择更换</th>
+                                                                        </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                        {% for x in context %}
+                                                                            {% if x.demo != 0 %}
+                                                                                <tr>
+                                                                                    <td>{{ x.demo }}</td>
+                                                                                    <td>{{ x.headline }}</td>
+                                                                                    <td class="center"><button type="button" class="btn btn-primary" style="background-color: #96ffb6"><a href="/admin/indexedit/?&replacedid={{ x.num }}&replaceid={{ line.num }}">确定</a></button></td>
+                                                                                </tr>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div></td>
+                                                        {% else %}
+                                                            <td class="center"><button type="submit" class="btn btn-dark" disabled="disabled" style="background-color: greenyellow">已经发布，位于{{ line.demo }}位</button></td>
+                                                        {% endif %}
+                                                        <td class="center"><button type="submit" class="btn btn-dark" style="background-color: #cfd2e9" data-toggle="modal" data-target="#edit{{ line.num }}">更改</button>
+                                                            {% if line.demo == 0 %}
+                                                            <button type="submit" class="btn btn-dark" data-toggle="modal" style="background-color: #e96e59" data-target="#remove{{ line.num }}">删除</button>
+                                                            {% endif %}
+                                                            {% if line.demo == 0 %}
+                                                            <div class="modal fade" id="remove{{ line.num }}" tabindex="-1" role="dialog" aria-labelledby="myremove" style="display: none" >
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                            <h4 class="modal-title" id="myremove">警告</h4>
+                                                                        </div>
+                                                                        <div class="modal-body" >
+                                                                            <h4 style="color: red">你确定是否删除该文章！</h4>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                            <button type="button" class="btn btn-primary" style="background-color: red"><a href="/admin/indexeditdel/?removeid={{ line.num }}">确定</a></button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            {% endif%}
+                                                            <div class="modal fade"  style="display: none"  id="edit{{ line.num }}" tabindex="-1" role="dialog" aria-labelledby="myedit"  >
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                                    <h4 class="modal-title" id="myredit">请谨慎更改</h4>
+                                                                </div>
+                                                                <form method="POST" action="/admin/indexeditcon/?nid={{ line.num }}">
+                                                                     {% csrf_token %}
+                                                                <div class="modal-body" >
+
+                                                                    <label class="control-label" for="headname">标题内容</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" id="headname" name="headname" placeholder="文章表题在1—18字" class="span8" style="width: 80%" value="{{ line.headline }}" >
+                                                                    </div>
+                                                                    <label class="control-label" for="subtitle1" >标题内容</label>
+                                                                    <div class="controls">
+                                                                        <input type="text" id="subtitle1" name="subtitle1" placeholder="文章表题在1—18字" class="span8" style="width: 80%" value="{{ line.subtitile }}" >
+                                                                    </div>
+                                                                    <label class="control-label" for="contents">标题内容</label>
+                                                                    <div class="controls">
+                                                                    <textarea class="form-control" id="contents" rows="8" style="width: 80%" name="contents">{{ line.content }}</textarea>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                                                                    <button type="submit" class="btn btn-primary" style="background-color: #83ffc4">确定</button>
+                                                                </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div></td>
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane fade" id="dairy">
+                                        <div class="control-group">
+                                            <label class="control-label" for="headlines">标题内容</label>
+                                            <div class="controls">
+                                                <input type="text" id="headlines" placeholder="文章表题在1—18字" class="span8" style="" value="" >
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label" for="smallline">摘要或小标题内容</label>
+                                            <div class="controls">
+                                                <input type="text" id="smallline" placeholder="小表题在1—100字" style="" class="span8" value="">
+                                            </div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label " for="droparea">文章首配图</label>
+                                            <div id="droparea" style="text-align:center; font:normal 14px/24px 'MicroSoft YaHei';"></div>
+                                        </div>
+                                        <div class="control-group">
+                                            <label class="control-label " for="editor">文章内容</label>
+                                            <script id="editor" type="text/plain" ></script>
+                                        </div>
+                                        <div class="control-group" style="margin-top:20px;text-align: center;">
+                                            <div class="controls">
+                                                <button type="submit" class="btn" onclick="Uploads()" >发表</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.module-body-->
+                        </div>
+                        <!--/.module-->
+                    </div>
+                    <!--/.content-->
+                </div>
+                <!--/.span9-->
+            </div>
+        </div>
+        <!--/.container-->
+    </div>
+        <div class="loading" id="loading" style="display: none">
+            <div class="asd animation-5">
+                <div class="shape shape1"></div>
+                <div class="shape shape2"></div>
+                <div class="shape shape3"></div>
+                <div class="shape shape4"></div>
+            </div>
+        </div>
+    <!--/.wrapper-->
+        <!-- 引用上传核心层插件 -->
+        <script type="text/javascript" src="{% static 'scripts/core/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'scripts/core/upload.js' %}"></script>
+            <!-- 加载编辑器的容器 -->
+        <script id="editor"  type="text/plain" >asd</script>
+        <!-- 配置文件 -->
+        <script type="text/javascript" src="{% static 'ueditor/ueditor.config.js' %}"></script>
+        <!-- 编辑器源码文件 -->
+        <script type="text/javascript" src="{% static 'ueditor/ueditor.all.min.js' %}"></script>
+        <script type="text/javascript" charset="utf-8" src="{% static 'ueditor/lang/zh-cn/zh-cn.js' %}"></script>
+        <script src="{% static 'scripts/jquery-1.9.1.min.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/jquery-ui-1.10.1.custom.min.js' %}" type="javascript"></script>
+        <script src="{% static 'scripts/flot/jquery.flot.js' %}" type="text/javascript"></script>
+        <script src="{% static 'scripts/flot/jquery.flot.resize.js' %}" type="text/javascript"></script>
+        <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" type="text/javascript"></script>
+        <script src="{%  static 'scripts/datatables/jquery.dataTables.js' %}" type="text/javascript"></script>
+        <script>
+        {#全局化定义初始#}
+        var ue;
+        var file;
+		$(document).ready(function () {
+            //js分页
+            $('.datatable-1').dataTable();
+			$('.dataTables_paginate').addClass("btn-group datatable-pagination");
+			$('.dataTables_paginate > a').wrapInner('<span />');
+			$('.dataTables_paginate > a:first-child').append('<i class="icon-chevron-left shaded"></i>');
+			$('.dataTables_paginate > a:last-child').append('<i class="icon-chevron-right shaded"></i>');
+			//获取html内容，返回: <p>hello</p>
+            ue = UE.getEditor('editor');
+            {#图片上传#}
+            var dragImgUpload = new DragImgUpload("#droparea",{
+                callback:function (files) {
+                    //回调函数，可以传递给后台等等
+                    file = files[0];
+                }
+            });
+        } );
+		function Uploads() {
+            {#图片上传#}
+            var panduan = 0;
+            var dic=new FormData();
+            if ($("#headlines").val() == ''){
+                document.getElementById('headlines').style='border: 1px solid #a94442;';
+                alert("标题不能为空!");
+                panduan++;
+            }
+            if ($("#smallline").val() == ''){
+                document.getElementById('smallline').style='border: 1px solid #a94442;';
+                alert("小标题不能为空!");
+                panduan++;
+            }
+            if (file.name==''){
+                alert("图片不能为空!");
+                panduan++;
+            }
+            if (file.type!='image/jpeg'  ){
+                alert("不是JPG格式!");
+                panduan++;
+            }
+            if (ue.getContent() == ''){
+                alert("内容不能为空!");
+                panduan++;
+            }
+            dic.append('headline', $("#headlines").val());
+            dic.append('subtitle', $("#smallline").val());
+            dic.append('file', file);
+
+            {#ueditor通过.getContent()的方式上传富文本#}
+            dic.append('content', ue.getContent());
+            dic.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+            if (panduan==0){
+                $.ajax({
+                url:"/admin/indexedit/",
+                type:'POST',
+                data: dic,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+                beforeSend:function(XMLHttpRequest){
+                        //alert('远程调用开始...'); 
+                        document.getElementById('loading').style.display='';
+                    }, 
+                success: function(data) {
+                    console.log(data);
+                    if (data == 'success'){
+                        top.location.href="/admin/indexedit/"
+                    }
+                }
+            }); // end ajax
+            }
+        }
+        function AjaxSend() {
+            var dic=new FormData();
+            dic.append('headline', $("#headlines").val());
+            dic.append('subtitle', $("#smallline").val());
+            dic.append('file', file);
+            $.ajax({
+                url:"/admin/indexedit/",
+                type:'POST',
+                data: dic,
+                processData: false,  // tell jquery not to process the data
+                contentType: false, // tell jquery not to set contentType
+                beforeSend:function(XMLHttpRequest){
+                        //alert('远程调用开始...'); 
+                        document.getElementById('loading').style.display='';
+                    }, 
+                success: function(data) {
+                    console.log(data);
+                    if (data == 'success'){
+                        top.location.href="/admin/indexedit/"
+                    }
+                }
+            }); //
+        }
+	    </script>
+</body>

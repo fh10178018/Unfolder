@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="zh-CN" >
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="img/fav.png">
+	<!-- Author Meta -->
+	<meta name="author" content="codepixer">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Unfolder</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,600|Roboto:400,400i,500" rel="stylesheet">
+	<!--
+			CSS
+			============================================= -->
+	<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'css/hexagons.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+	<!-- start header Area -->
+	<secion id="home">
+	<header id="header">
+		<div class="container main-menu">
+			<div class="row align-items-center justify-content-between d-flex">
+				<div id="logo">
+					<a href="{% url 'index' %}"><img src="{% static 'img/logo.png' %}" title="Unfolder" /></a>
+				</div>
+				<nav id="nav-menu-container">
+					<ul class="nav-menu">
+						<li class="menu-active"><a href="#home">首页</a></li>
+						<li><a href="#project">产品与服务</a></li>
+						<li><a href="#example">示列中心</a></li>
+						<li><a href="#business">商务合作</a></li>
+						<li><a href="#famliy">关于我们</a></li>
+						<!--<li class="note" style="margin-left:80px;color: black">商务端丨</li>-->
+						<!--<li><a href="#login">登陆</a></li>-->
+						<!--<li><a href="#register">注册</a></li>-->
+						<li><a href="merchantlogin"> <span class="glyphicon glyphicon-user"></span> 商家端</a></li>
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	</secion>
+	<!-- end header Area -->
+
+	<!-- 轮播图2页 -->
+    <div id="myCarousel1" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel1" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel1" data-slide-to="1"></li>
+        </ol>
+        <div class="carousel-inner">
+            {% for line in context %}
+                {% if line.demo == 1 %}
+                    <div class="item active"><a href="/dairy/{{ line.num }}.html"><img src="{{ line.firstimg }}" style="width:100%; height: 100%" alt="First slide"></a>
+                    </div>
+                {% elif line.demo == 2 %}
+                    <div class="item"> <a href="/dairy/{{ line.num }}.html"><img src="{{ line.firstimg }}" style="width:100%; height: 100%" alt="Second slide"></a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <a class="left carousel-control" href="#myCarousel1" data-slide="prev"> <img src="{% static 'img/icons/left-arrow.png' %}" onmouseover="this.src = '{%  static 'img/icons/left-arrow-hover.png' %}'" onmouseout="this.src = '{% static 'img/icons/left-arrow.png' %}'" alt="left"></a>
+        <a class="right carousel-control" href="#myCarousel1" data-slide="next"><img src="{% static 'img/icons/right-arrow.png' %}" onmouseover="this.src = '{% static 'img/icons/right-arrow-hover.png' %}'" onmouseout="this.src = '{% static 'img/icons/right-arrow.png' %}'" alt="left"></a>
+    </div>
+	<!-- END轮播图的控制 -->
+
+	<!--公告栏-->
+	<div class="announcement">
+		<div class="container">
+            <span class="announcement_icon">
+        <i class="iconfont icon-laba"></i>
+    </span>
+			<div class="row">
+                {% for line in context %}
+                    {% if line.demo == 3 or line.demo == 4 %}
+                        <div class="col-sm-4">
+                            <a href="/dairy/{{ line.num }}.html">{{ line.headline }}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                 {% for line in context %}
+                    {% if line.demo == 5 %}
+                        <div class="col-sm-4" style="border-right:0px">
+                            <a href="/dairy/{{ line.num }}.html">{{ line.headline }}</a>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+	<!--公告栏-->
+
+	<!-- 产品与服务介绍 -->
+	<section id="project" class="feature-area section-gap-top">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-lg-6">
+					<div class="section-title text-center">
+						<h2>产品与服务</h2>
+						<p>Unfolder 发现属于你的城市。
+
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4 col-md-6">
+					<div class="single-feature">
+						<a href="#" class="title">
+							<span class="lnr lnr-magnifier"></span>
+							<h3>模糊搜索</h3>
+						</a>
+						<p>
+							根据天气、心情、场景和偏好为你匹配适合你的地点，每一个元素都会带来新的遇见。
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-feature">
+						<a href="#" class="title">
+							<span class="lnr lnr-map"></span>
+							<h3>路线规划</h3>
+						</a>
+						<p>
+							将匹配的地点规划成最好玩的路线，路上的风景和感动由你去发现。
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6">
+					<div class="single-feature">
+						<a href="#" class="title">
+							<span class="lnr lnr-user"></span>
+							<h3>共走一路</h3>
+						</a>
+						<p>
+							带你找到的同样在这条街道的 TA，让你不再孤单。
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+	<!-- End 产品与服务介绍 -->
+
+	<!-- 实例中心 -->
+	<section id="example" class="about-area">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-5 home-about-left">
+					<img class="img-fluid" src="{% static 'img/iphone.png' %}" alt="">
+				</div>
+				<div class="offset-lg-1 col-lg-5 home-about-right">
+					<h1>
+						我们相信 <br>
+						你已经被<br>
+						这款精美的APP所折服
+					</h1>
+					<p>
+						Unfolder定位于“重新发现这座城市”，通过提供个性化，精准化的位点推荐，引用高德地图开放的专业路径规划API平台，完成对用户出行路线的精准规划；以对用户出行需求的深度挖掘，实现一种基于出行的社交新模式；同时打破了基本生活圈对人们出行的限制，为城市生活赋予了新的生命力。
+					</p>
+					<a class="primary-btn text-uppercase" href="#">功能在线体验</a>
+				</div>
+				<div class="col-lg-6 home-about-right home-about-right2">
+					<h1>
+						我们相信<br>
+						你已经迫不及待<br>
+						想去使用这款软件
+					</h1>
+					<p>
+						为此我们提供这款软件的下载方式
+					</p>
+					<div class="download-button d-flex flex-row justify-content-start">
+						<div class="buttons flex-row d-flex">
+							<i class="fa fa-apple" aria-hidden="true"></i>
+							<div class="desc">
+								<a href="#">
+									<p>
+										<span>Available</span> <br>
+										on App Store
+									</p>
+								</a>
+							</div>
+						</div>
+						<div class="buttons dark flex-row d-flex">
+							<i class="fa fa-android" aria-hidden="true"></i>
+							<div class="desc">
+								<a href="#">
+									<p>
+										<span>Available</span> <br>
+										on Play Store
+									</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-5 home-about-left">
+					<img class="img-fluid" src="{% static 'img/iphone.png' %}" alt="">
+				</div>
+			</div>
+		</div>
+		<section class="fact-area">
+			<div class="container">
+				<div class="fact-box">
+					<div class="row align-items-center">
+						<div class="col single-fact">
+							<h2>100K+</h2>
+							<p>总下载量</p>
+						</div>
+						<div class="col single-fact">
+							<h2>10K+</h2>
+							<p>专业用户数量</p>
+						</div>
+						<div class="col single-fact">
+							<h2>50K+</h2>
+							<p>专业商家数量《/p>
+						</div>
+						<div class="col single-fact">
+							<h2>0.02%</h2>
+							<p>卸载率</p>
+						</div>
+						<div class="col single-fact">
+							<h2>1</h2>
+							<p>陪伴天数</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</section>
+	<!-- End 实例中心-->
+
+	<!-- 商务合作 -->
+	<section id="business" class="pricing-area">
+		<div class="container">
+			<div class="row d-flex justify-content-center">
+				<div class="col-lg-6">
+					<div class="section-title text-center">
+						<h2>商务合作</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+							magna aliqua.
+						</p>
+					</div>
+				</div>
+			</div>
+
+
+					<div class="single-price">
+						<div class="top-sec d-flex justify-content-between">
+							<div class="top-left">
+								<h4>Unfolder</h4>
+								<p>为实体商户提供服务</p>
+							</div>
+							<div class="top-right">
+								<h1>O</h1>
+							</div>
+						</div>
+						<div class="end-sec">
+							<ul>
+								<li>2.5 GB Free Photos</li>
+								<li>Secure Online Transfer Indeed</li>
+								<li>Unlimited Styles for interface</li>
+								<li>Reliable Customer Service</li>
+								<li>Manual Backup Provided</li>
+							</ul>
+							<button class="primary-btn price-btn mt-20">注册</button>
+						</div>
+					</div>
+				</div>
+
+	</section>
+	<!-- End 商务合作-->
+
+	<!-- 关于我们 -->
+	<section id="famliy" class="testimonials-area section-gap-top">
+		<div class="container">
+			<div class="testi-slider owl-carousel" data-slider-id="1">
+				<div class="item">
+					<div class="testi-item">
+						<img src="{% static 'img/quote.png' %}" alt="">
+						<h4>车晓越</h4>
+                        <h5>团队负责人、法务顾问</h5>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+						</ul>
+						<div class="wow fadeIn" data-wow-duration="1s">
+							<p>
+								熟练掌握各种会计及财务知识，有一定的财务分析能力，能很好地胜任公司财务预算与分析工作。并具有开放性、批判性思维和良好的沟通能力与丰富的领导经验，且能胜任团队负责人。现为华东理工大学管理科学与工程类专业2017级本科生。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="testi-item">
+						<img src="{% static 'img/quote.png' %}" alt="">
+						<h4>米雪儿</h4>
+                        <h5>市场营销策划者</h5>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+						</ul>
+						<div class="wow fadeIn" data-wow-duration="1s">
+							<p>
+								辅修金融学，会日语，具有极强的责任心和使命感、有担当、行事果断，有较强的活动策划能力和组织能力。有较强的逻辑思维能力和良好的文案、设计及营销功力。现为华东理工大学经济学类专业2017级本科生。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="testi-item">
+						<img src="{% static 'img/quote.png' %}" alt="">
+						<h4>伍峻江</h4>
+                        <h5>Web前端开发者</h5>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+						</ul>
+						<div class="wow fadeIn" data-wow-duration="1s">
+							<p>
+								熟悉Python，C，Visual Basic，Web，可视化界面等多种开发语言，坚持开源。并具有较强的逻辑思维能力、较好的数学和建模基础。现为华东理工大学经济学类专业2017级本科生。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="testi-item">
+						<img src="{% static 'img/quote.png' %}" alt="">
+						<h4>方晗</h4>
+                        <h5>Web前端开发者</h5>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+						</ul>
+						<div class="wow fadeIn" data-wow-duration="1s">
+							<p>
+								有丰富的编程与设计经验，熟练C、C++、H5+CSS、Js和Python等计算机编程语言，从事过web前端开发、微信小程序设计、UI界面设计。现为华东理工大学自动化专业2017级本科生。
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="item">
+					<div class="testi-item">
+						<img src="{% static 'img/quote.png' %}" alt="">
+						<h4>王宪喆</h4>
+                        <h5>公司市场战略分析，技术研发者</h5>
+						<ul class="list">
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+							<li><a href="#"><i class="fa fa-star"></i></a></li>
+						</ul>
+						<div class="wow fadeIn" data-wow-duration="1s">
+							<p>
+								熟悉C， Python等多门计算机编程语言，拥有一定哲学逻辑学学科基础，拥有较强的逻辑思维能力与语言表达能力，具有一定的市场分析与把握能力，对项目有完整的认识，能够运用营销学与传播学的知识把握市场。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+				<div class="owl-thumb-item">
+					<div>
+						<img class="img-fluid" src="{% static 'img/testimonial/t5.jpg' %}" alt="">
+					</div>
+					<div class="overlay overlay-grad"></div>
+				</div>
+				<div class="owl-thumb-item">
+					<div>
+						<img class="img-fluid" src="{% static 'img/testimonial/t1.jpg' %}" alt="">
+					</div>
+					<div class="overlay overlay-grad"></div>
+				</div>
+				<div class="owl-thumb-item">
+					<div>
+						<img class="img-fluid" src="{% static 'img/testimonial/t3.jpg' %}" alt="">
+					</div>
+					<div class="overlay overlay-grad"></div>
+				</div>
+				<div class="owl-thumb-item">
+					<div>
+						<img class="img-fluid" src="{% static 'img/testimonial/t4.jpg' %}" alt="">
+					</div>
+					<div class="overlay overlay-grad"></div>
+				</div>
+				<div class="owl-thumb-item">
+					<div>
+						<img class="img-fluid" src="{% static 'img/testimonial/t2.jpg' %}" alt="">
+					</div>
+					<div class="overlay overlay-grad"></div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End 关于我们 -->
+
+<div class="cndns-right">
+    <div class="cndns-right-meau meau-sev">
+        <a href="/demo/" class="cndns-right-btn">
+            <span class="demo-icon"></span>
+            <p>
+                功能<br />
+                体验
+            </p>
+        </a>
+    </div>
+    <div class="cndns-right-meau meau-p">
+        <a href="#" class="cndns-right-btn">
+            <span class="demo-icon"></span>
+            <p>
+                服务<br />
+                反馈
+            </p>
+        </a>
+    </div>
+    <div class="cndns-right-meau meau-code">
+        <a href="javascript:" class="cndns-right-btn">
+            <span class="demo-icon"></span>
+            <p>
+                关注<br />
+                微信
+            </p>
+        </a>
+        <div class="cndns-right-box">
+            <div class="box-border">
+                <div class="sev-t">
+                    <img src="images/02index-2.jpg" />
+                    <i>关注官方微信</i>
+                </div>
+                <span class="arrow-right"></span>
+            </div>
+        </div>
+    </div>
+</div>
+	<!-- 脚注 -->
+	<footer class="footer-area section-gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>Top Products</h4>
+					<ul>
+						<li><a href="#">Managed Website</a></li>
+						<li><a href="#">Manage Reputation</a></li>
+						<li><a href="#">Power Tools</a></li>
+						<li><a href="#">Marketing Service</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>Quick Links</h4>
+					<ul>
+						<li><a href="#">Jobs</a></li>
+						<li><a href="#">Brand Assets</a></li>
+						<li><a href="#">Investor Relations</a></li>
+						<li><a href="#">Terms of Service</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>Features</h4>
+					<ul>
+						<li><a href="#">Jobs</a></li>
+						<li><a href="#">Brand Assets</a></li>
+						<li><a href="#">Investor Relations</a></li>
+						<li><a href="#">Terms of Service</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>Resources</h4>
+					<ul>
+						<li><a href="#">Guides</a></li>
+						<li><a href="#">Research</a></li>
+						<li><a href="#">Experts</a></li>
+						<li><a href="#">Agencies</a></li>
+					</ul>
+				</div>
+
+				<div class="col-lg-4 col-md-6 single-footer-widget">
+					<h4>Newsletter</h4>
+					<p>You can trust us. we only send promo offers,</p>
+					<div class="form-wrap" id="mc_embed_signup">
+						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+						 method="get" class="form-inline">
+							<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
+							 required="" type="email">
+							<button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
+							<div style="position: absolute; left: -5000px;">
+								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+							</div>
+
+							<div class="info"></div>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom row align-items-center">
+				<p class="footer-text m-0 col-lg-6 col-md-12">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> Colorlib  All rights reserved | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+</p>
+				<div class="col-lg-6 col-md-6 social-link">
+					<div class="download-button d-flex flex-row justify-content-end">
+						<div class="buttons gray flex-row d-flex">
+							<i class="fa fa-apple" aria-hidden="true"></i>
+							<div class="desc">
+								<a href="#">
+									<p>
+										<span>Available</span> <br>
+										on App Store
+									</p>
+								</a>
+							</div>
+						</div>
+						<div class="buttons gray flex-row d-flex">
+							<i class="fa fa-android" aria-hidden="true"></i>
+							<div class="desc">
+								<a href="#">
+									<p>
+										<span>Available</span> <br>
+										on Play Store
+									</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- End 脚注 -->
+
+	<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/tilt.jquery.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'js/easing.min.js' %}"></script>
+	<script src="{% static 'js/hoverIntent.js' %}"></script>
+	<script src="{% static 'js/jquery.sticky.js' %}"></script>
+	<script src="{% static 'js/superfish.min.js' %}"></script>
+	<script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+	<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+	<script src="{% static 'js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'js/owl-carousel-thumb.min.js' %}"></script>
+	<script src="{% static 'js/hexagons.min.js' %}"></script>
+	<script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+	<script src="{% static 'js/waypoints.min.js' %}"></script>
+	<script src="{% static 'js/mail-script.js' %}"></script>
+	<script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>
