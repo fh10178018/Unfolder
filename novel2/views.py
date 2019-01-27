@@ -200,9 +200,7 @@ def upload(request):
 # 用来记录登陆各网页的次数
 def webviews(x):
     data=datetime.datetime.now().strftime('%Y-%m-%d')
-    try:
-        Webviews.objects.get(time=data)
-    except:
+    if Webviews.objects.get(time=data) is False:
         Webviews.objects.create(time=data)
     if x==1:
         view = Webviews.objects.get(time=data).view + 1
