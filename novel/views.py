@@ -35,3 +35,4 @@ def webviews(x):
     else:
         demoview =Webviews.objects.get(time=data).demoview+1
         Webviews.objects.filter(time=data).update(demoview=demoview)
+
