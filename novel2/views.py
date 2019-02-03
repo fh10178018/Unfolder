@@ -5,6 +5,8 @@ from novel2.models import AdminUser
 from novel2.models import IndexContents
 from novel2.models import AdminUserContent
 from novel2.models import Webviews
+from novel2.models import Shop
+from novel2.models import ShopFood
 from novel2.models import AdminUserContentComments
 from django.shortcuts import redirect
 from django.core import serializers
@@ -92,7 +94,13 @@ def userlist(request):
     return render(request,'my_admin/user_list.html')
 
 def merchantlist(request):
-    return render(request,'my_admin/merchant_list.html')
+    shopfood=ShopFood.objects.all()[:10]
+    shop=Shop.objects.all()
+    context = {
+        'shopfood':shopfood,
+        'shop':shop,
+    }
+    return render(request,'my_admin/shopuser_list.html',context=context)
 
 def indexedit(request):
     if request.method == 'GET':
@@ -149,6 +157,11 @@ def adminuserdel(request):
     num=request.GET.get('id')
     AdminUser.objects.filter(num=num).delete()
     return redirect("/admin/adminuserlist/")
+
+def shopdel(request):
+    num=request.GET.get('id')
+    Shop.objects.filter(num=num).delete()
+    return redirect("/admin/merchantlist/")
 
 # 主页面内容删除
 def indexeditdel(request):

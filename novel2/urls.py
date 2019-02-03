@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^indexeditcon/', views.indexeditcon,name='indexeditcon'),
     url(r'^adminuserform/', views.adminuserform, name='adminuserform'),
     url(r'^adminuserdel/', views.adminuserdel,name='adminuserdel'),
+    url(r'^shopdel/', views.shopdel,name='shopdel'),
     url(r'^logout/', views.logout,name='logout')
     # url(r'^home/',views.admin_home),
 ]

@@ -49,6 +49,13 @@ class AdminUserContentComments(models.Model):
         managed = False
         db_table = 'admin_user_content_comments'
 
+class Area(models.Model):
+    area_num = models.IntegerField(primary_key=True)
+    area_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'area'
 
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
@@ -176,6 +183,30 @@ class IndexContents(models.Model):
         managed = False
         db_table = 'index_contents'
 
+class Shop(models.Model):
+    num = models.PositiveIntegerField(primary_key=True)
+    shop_name = models.CharField(max_length=255)
+    area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
+    address = models.CharField(max_length=255)
+    tel = models.CharField(max_length=255)
+    openningtime = models.CharField(max_length=255)
+    point = models.CharField(max_length=255)
+    permoney = models.CharField(max_length=255)
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'shop'
+
+
+class ShopFood(models.Model):
+    code = models.ForeignKey(Shop, models.DO_NOTHING, db_column='code')
+    food_code = models.IntegerField(primary_key=True)
+    food_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'shop_food'
 
 class ShopGoods(models.Model):
     shop_name1 = models.CharField(primary_key=True, max_length=40)
