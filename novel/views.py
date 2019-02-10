@@ -21,7 +21,9 @@ def dairy(request,id):
 # 用来记录登陆各网页的次数
 def webviews(x):
     data=datetime.datetime.now().strftime('%Y-%m-%d')
-    if Webviews.objects.get(time=data) is False:
+    try:
+        Webviews.objects.get(time=data)
+    except:
         Webviews.objects.create(time=data)
     if x==1:
         view = Webviews.objects.get(time=data).view + 1

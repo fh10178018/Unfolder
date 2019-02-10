@@ -43,7 +43,7 @@ class AdminUserContentComments(models.Model):
     comment_num = models.IntegerField(primary_key=True)
     comment = models.TextField()
     date = models.DateTimeField(blank=True, null=True)
-    editor1 = models.CharField(max_length=255, blank=True, null=True)
+    editor_num = models.IntegerField()
 
     class Meta:
         managed = False

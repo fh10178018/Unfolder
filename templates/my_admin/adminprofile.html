@@ -126,7 +126,7 @@
                                             {% for line in userlcontents %}
                                             <div class="media stream">
                                                 <a href="#" class="media-avatar medium pull-left">
-                                                    <img src="/static/{{ line.editorpic }}">
+                                                    <img src="/static/{{ line.num1.pic }}">
                                                 </a>
                                                 <div class="media-body">
                                                     <div class="stream-headline">
@@ -145,40 +145,37 @@
                                                         </div>
                                                            {% endifnotequal %}
                                                            <div class="stream-respond">
-                                                        <div class="media stream">
-                                                            <a href="#" class="media-avatar small pull-left">
-                                                                <img src="images/user.png">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <div class="stream-headline">
-                                                                    <h5 class="stream-author">
-                                                                        John Donga <small>10 July 14</small>
-                                                                    </h5>
-                                                                    <div class="stream-text">
-                                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                                               {% for x in userlcomments %}
+                                                                {% if x.content_num1.contents_num  == line.contents_num %}
+                                                                    {% for c in user %}
+                                                                        {% if c.num == x.editor_num %}
+
+                                                                <div class="media stream">
+                                                                    <a href="#" class="media-avatar small pull-left">
+                                                                        <img src="/static/{{ c.pic }}">
+                                                                    </a>
+                                                                    <div class="media-body">
+                                                                        <div class="stream-headline">
+
+                                                                            <h5 class="stream-author">
+                                                                                {{ c.username }}<small>{{ x.date }}</small>
+                                                                            </h5>
+                                                                            <div class="stream-text">
+                                                                                {{ x.comment }}
+                                                                            </div>
+                                                                        </div>
+                                                                        <!--/.stream-headline-->
                                                                     </div>
                                                                 </div>
+                                                                         {% endif %}
+                                                                    {% endfor %}
+                                                                {% endif %}
+                                                                {% endfor %}
                                                                 <!--/.stream-headline-->
                                                             </div>
                                                         </div>
                                                         <!--/.media .stream-->
-                                                        <div class="media stream">
-                                                            <a href="#" class="media-avatar small pull-left">
-                                                                <img src="images/user.png">
-                                                            </a>
-                                                            <div class="media-body">
-                                                                <div class="stream-headline">
-                                                                    <h5 class="stream-author">
-                                                                        John Donga <small>12 July 14</small>
-                                                                    </h5>
-                                                                    <div class="stream-text">
-                                                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                                                        Ipsum is simply dummy text.
-                                                                    </div>
-                                                                </div>
-                                                                <!--/.stream-headline-->
-                                                            </div>
-                                                        </div>
+
                                                         <!--/.media .stream-->
                                                     </div>
                                                     </div>

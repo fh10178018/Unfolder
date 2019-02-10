@@ -216,14 +216,14 @@
                             </div>
                                 <div id="pages" class="pagination pagination-centered">
                                     <ul class="pagination">
-                                        {% if adminuser.has_previous %}
-                                        <li><a class="active" href="?page={{ adminuser.previous_page_number }}"><i class="icon-double-angle-left"></i></a></li>
+                                        {% if shop.has_previous %}
+                                        <li><a class="active" href="?page={{ shop.previous_page_number }}"><i class="icon-double-angle-left"></i></a></li>
                                         {% endif %}
                                          <span class="current">
-                                             {{ adminuser.number }} / {{ adminuser.paginator.num_pages }}
+                                             {{ shop.number }} / {{ shop.paginator.num_pages }}
                                          </span>
-                                         {% if adminuser.has_next %}
-                                        <li><a class="active" href="?page={{ adminuser.next_page_number }}"><i class="icon-double-angle-right"></i></a></li>
+                                         {% if shop.has_next %}
+                                        <li><a class="active" href="?page={{ shop.next_page_number }}"><i class="icon-double-angle-right"></i></a></li>
                                          {% endif %}
                                     </ul>
                                 </div>

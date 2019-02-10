@@ -62,9 +62,14 @@ def home(request):
         return redirect("/admin/")
 
 def adminprofile(request):
-    userlcontents = AdminUserContent.objects.filter()[:10]
+    userlcontents = AdminUserContent.objects.all()[:10]
+    userlcomments = AdminUserContentComments.objects.filter()
+    user=AdminUser.objects.all()
+    a=AdminUserContent.objects.filter(num1=10178018)
     context = {
         'userlcontents':userlcontents,
+        'userlcomments':userlcomments,
+        'user':user,
     }
     return render(request,'my_admin/adminprofile.html',context=context)
 
@@ -96,11 +101,25 @@ def userlist(request):
 def merchantlist(request):
     shopfood=ShopFood.objects.all()[:10]
     shop=Shop.objects.all()
-    context = {
-        'shopfood':shopfood,
-        'shop':shop,
-    }
-    return render(request,'my_admin/shopuser_list.html',context=context)
+    shoppage = Paginator(shop, 10)
+    if request.method == 'GET':
+        # 获取url后的page参数，首页不现实，默认为1
+        page =request.GET.get('page')
+        try:
+            books = shoppage.page(page)
+        except PageNotAnInteger:
+            # 如果请求不是第一页，返回第一页
+            books = shoppage.page(1)
+        except InvalidPage:
+            return HttpResponse('找不到页面内容')
+        except EmptyPage:
+            books = shoppage.page(adminusercount)
+    return render(request,"my_admin/shopuser_list.html",{'shop':books})
+    # context = {
+    #     'shopfood':shopfood,
+    #     'shop':shop,
+    # }
+    # return render(request,'my_admin/shopuser_list.html',context=context)
 
 def indexedit(request):
     if request.method == 'GET':
@@ -213,7 +232,9 @@ def upload(request):
 # 用来记录登陆各网页的次数
 def webviews(x):
     data=datetime.datetime.now().strftime('%Y-%m-%d')
-    if Webviews.objects.get(time=data) is False:
+    try:
+        Webviews.objects.get(time=data)
+    except:
         Webviews.objects.create(time=data)
     if x==1:
         view = Webviews.objects.get(time=data).view + 1
