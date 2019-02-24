@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'novel.apps.NovelConfig',
     'novel2.apps.NovelConfig',
     'novel3.apps.NovelConfig',
+    'novel4.apps.NovelConfig',
 ]
 
 MIDDLEWARE = [

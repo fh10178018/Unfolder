@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^$',views.index,name='index'),
     url(r'^admin/',include('novel2.urls')),
     url(r'^demo/',include('novel3.urls')),
+    url(r'^merchant/',include('novel4.urls')),
     url(r'^dairy/(\d+).html$', views.dairy)
 
 ]
