@@ -1,0 +1,27 @@
+@charset "utf-8";
+/* CSS Document */
+.play { width: 100%;height: 306.1px;font: 12px Arial; padding: 10px;    position: absolute;background-color: white;left: 0}
+
+.big_pic { width: 100% ;height: 210px; overflow: hidden;background: #222; position: relative; }
+
+.big_pic li { width: 400px; height: 320px; overflow: hidden; position: absolute; top: 0; left: 0; z-index: 0; }
+
+.mark_left { width: 200px; height: 320px; position:absolute; left: 0; top: 0;  filter: alpha(opacity:10); opacity: 0.1; z-index:3000; }
+
+.mark_right { width: 200px; height: 320px; position: absolute; left: 200px; top: 0;  filter: alpha(opacity:10); opacity: 0.1; z-index: 3000; }
+
+.big_pic .prev { width: 60px; height: 60px; background:url(../img/btn.png) no-repeat; position: absolute; top: 80px; left: 10px; z-index: 3001; filter:alpha(opacity:0); opacity:0; cursor:pointer; }
+
+.big_pic .next { width: 60px; height:60px; background:url(../img/btn2.png) no-repeat 0;
+
+ position: absolute; top: 80px; right: 10px; z-index: 3001; filter:alpha(opacity:0); opacity:0; cursor: pointer}
+
+.big_pic .text { position:absolute; left: 10px; top:213px; z-index:3000; color: #ccc; }
+.big_pic .length { position:absolute; right: 10px; bottom: 4px; z-index:3000; color:#ccc; }
+.big_pic .bg { width:400px; height: 25px; background: #000; filter:alpha(opacity=60); opacity: 0.6; position: absolute; z-index:2999; bottom: 0; left:0; }
+.small_pic {width:100%; height:94px; position:relative; top:-20px; overflow: hidden; }
+.small_pic ul { height:94px; position:absolute; top: 0; left: 0; }
+.small_pic li { width: 120px; height: 94px; float: left;
+background: url(../img/loading.gif) no-repeat center center; cursor: pointer; filter: alpha(opacity:30); opacity:0.3; }
+.small_pic img { width: 120px; height:94px; }
+

@@ -75,14 +75,14 @@ window.tagcloud = (function(win, doc) { // ns
         self.box.style.visibility = "visible";
         self.box.style.position = "relative";
         self.box.style.minHeight = 1.2 * self.size + "px";
-
+        self.box.style.minWidth = 2.5 * self.size + "px";
         for (var j = 0, len = self.items.length; j < len; j++) {
             self.items[j].element.style.position = "absolute";
             self.items[j].element.style.zIndex = j + 1;
         }
         self.up = setInterval(function() {
             self.update(self);
-        }, 10);
+        }, 30);
     }
 
     //实例
@@ -136,7 +136,7 @@ window.tagcloud = (function(win, doc) { // ns
     };
     TagCloud._getMsSpeed = function (mspeed) {    //滚动最大速度
         var speedMap = {
-            slow: 1.5, 
+            slow: 1.5,
             normal: 3,
             fast: 5
         };
@@ -185,7 +185,7 @@ window.tagcloud = (function(win, doc) { // ns
 
             a = -(Math.min(Math.max(-self.mouseY, -self.size), self.size) / self.radius ) * self.mspeed;
             b = (Math.min(Math.max(-self.mouseX, -self.size), self.size) / self.radius ) * self.mspeed;
-            
+
             if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) { return; }
 
             self.lasta = a;
@@ -220,7 +220,7 @@ window.tagcloud = (function(win, doc) { // ns
                     self.items[j].alpha = 1.5 * per - 0.5;
                     self.items[j].element.style.zIndex = Math.ceil(per*10-5);
                 }
-                //self.items[j].element.style.fontSize = self.items[j].fontsize + "px";//字体变大小
+                self.items[j].element.style.fontSize = self.items[j].fontsize + "px";
                 self.items[j].element.style.left = self.items[j].x + (self.box.offsetWidth - self.items[j].offsetWidth) / 2 + "px";
                 self.items[j].element.style.top = self.items[j].y + (self.box.offsetHeight - self.items[j].offsetHeight) / 2 + "px";
                 self.items[j].element.style.filter = "alpha(opacity=" + 100 * self.items[j].alpha + ")";

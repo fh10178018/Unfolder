@@ -1,10 +1,3 @@
-# This is an auto-generated Django model module.
-# You'll have to do the following manually to clean this up:
-#   * Rearrange models' order
-#   * Make sure each model has one field with primary_key=True
-#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
-#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
-# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -48,6 +41,15 @@ class AdminUserContentComments(models.Model):
     class Meta:
         managed = False
         db_table = 'admin_user_content_comments'
+
+
+class Area(models.Model):
+    area_num = models.IntegerField(primary_key=True)
+    area_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'area'
 
 
 class AuthGroup(models.Model):
@@ -116,6 +118,15 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+class Categories(models.Model):
+    cat_id = models.IntegerField(primary_key=True)
+    cat_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'categories'
+
+
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
     object_id = models.TextField(blank=True, null=True)
@@ -177,9 +188,35 @@ class IndexContents(models.Model):
         db_table = 'index_contents'
 
 
+class Shop(models.Model):
+    num = models.PositiveIntegerField(primary_key=True)
+    shop_name = models.CharField(max_length=255)
+    area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
+    address = models.CharField(max_length=255)
+    tel = models.CharField(max_length=255)
+    openningtime = models.CharField(max_length=255)
+    point = models.CharField(max_length=255)
+    permoney = models.CharField(max_length=255)
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'shop'
+
+
+class ShopFood(models.Model):
+    code = models.ForeignKey(Shop, models.DO_NOTHING, db_column='code')
+    food_code = models.IntegerField(primary_key=True)
+    food_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'shop_food'
+
+
 class ShopGoods(models.Model):
     shop_name1 = models.CharField(primary_key=True, max_length=40)
-    code2 = models.IntegerField()
+    code2 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code2')
     goods = models.CharField(max_length=255)
     goods_pic = models.CharField(max_length=255)
     price = models.FloatField()
@@ -191,15 +228,36 @@ class ShopGoods(models.Model):
         db_table = 'shop_goods'
 
 
+class ShopMessage(models.Model):
+    shop_message_num = models.IntegerField(primary_key=True)
+    shop_content_user = models.IntegerField()
+    tag_libary = models.CharField(max_length=255)
+    content = models.CharField(max_length=255)
+    prade = models.IntegerField()
+    creation_time = models.DateTimeField()
+    code5 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code5')
+
+    class Meta:
+        managed = False
+        db_table = 'shop_message'
+
+
+class ShopShowPic(models.Model):
+    shop_num = models.IntegerField(primary_key=True)
+    code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
+    pic1 = models.CharField(max_length=255, blank=True, null=True)
+    pic2 = models.CharField(max_length=255, blank=True, null=True)
+    pic3 = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'shop_show_pic'
+
+
 class ShopTag(models.Model):
-    code1 = models.AutoField(primary_key=True)
-    tag1 = models.CharField(max_length=255)
-    tag2 = models.CharField(max_length=255, blank=True, null=True)
-    tag3 = models.CharField(max_length=255, blank=True, null=True)
-    tag4 = models.CharField(max_length=255, blank=True, null=True)
-    tag5 = models.CharField(max_length=255, blank=True, null=True)
-    tag6 = models.CharField(max_length=255, blank=True, null=True)
-    tag7 = models.CharField(max_length=255, blank=True, null=True)
+    tag_num = models.AutoField(primary_key=True)
+    code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
+    tag = models.CharField(max_length=255)
 
     class Meta:
         managed = False
@@ -207,21 +265,36 @@ class ShopTag(models.Model):
 
 
 class ShopUser(models.Model):
-    code = models.AutoField(primary_key=True)
-    shop_name = models.ForeignKey(ShopGoods, models.DO_NOTHING, db_column='shop_name')
-    location_long = models.CharField(max_length=255)
-    location_la = models.CharField(max_length=255)
-    business_scope = models.CharField(max_length=255)
-    shop_keeper = models.CharField(max_length=10)
-    contact = models.CharField(max_length=20)
-    funded_date = models.DateTimeField()
+    code5 = models.IntegerField(primary_key=True)
+    user = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
     pic = models.CharField(max_length=255)
-    openning_time = models.DateTimeField()
+    login_time = models.DateTimeField()
+    register_time = models.DateTimeField()
+    username = models.CharField(max_length=255)
 
     class Meta:
         managed = False
         db_table = 'shop_user'
-        unique_together = (('code', 'shop_name'),)
+
+
+class Shops(models.Model):
+    shop_num = models.IntegerField(primary_key=True)
+    code = models.ForeignKey(ShopUser, models.DO_NOTHING, db_column='code')
+    shop_name = models.CharField(max_length=40)
+    area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
+    shop_detail_address = models.CharField(max_length=255)
+    shop_address = models.CharField(max_length=255)
+    shop_tel = models.CharField(max_length=40)
+    shop_opening_hours = models.CharField(max_length=255)
+    shop_grade = models.FloatField()
+    shop_average_price = models.FloatField()
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'shops'
+
 
 class Webviews(models.Model):
     time = models.DateField(blank=True, null=True)
@@ -234,3 +307,4 @@ class Webviews(models.Model):
     class Meta:
         managed = False
         db_table = 'webviews'
+
