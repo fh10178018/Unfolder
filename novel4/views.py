@@ -10,8 +10,11 @@ from novel4.models import ShopTag
 def home(request):
     return render(request,'demo/index.html')
 
-def merchants(request):
-    return render(request,'demo/merchantindex.html')
+def shop(request,id):
+    view=Shops.objects.get(shop_num=id)
+    print(view.code.username)
+    return render(request,'demo/merchantindex.html',{'shops':view})
+
 
 
 def map(request):
