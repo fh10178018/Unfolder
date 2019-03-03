@@ -1,0 +1,650 @@
+<!doctype html>
+{% load static %}
+<html lang="zh-cn" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unfolder用户DEMO</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/htmleaf-demo.css' %}">
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+<link rel="stylesheet" href="{% static 'css/login3.css' %}">
+<link rel="stylesheet" href="{% static 'css/citySelect.css' %}">
+<link rel="stylesheet" href="{% static 'css/zzsc.css' %}">
+</head>
+<body>
+<div class="top-bar">
+	<div class="container">
+		<ul class="top-contacts">
+			<li class="top-unhover"><p><span class="fa fa-phone-square" aria-hidden="true"></span> +1 515 151515</p>
+			</li><li class="top-hover"><p><span class="fa fa-envelope" aria-hidden="true"></span> <a href="mailto:support@company.com">support@company.com</a></p>
+		</li></ul>
+		<ul class="top-links">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<header class="cd-main-header animate-search">
+	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+
+	<nav class="cd-main-nav-wrapper">
+		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
+		<ul class="cd-main-nav navbar-left">
+			<li class="dropdown" style="left: 150px">
+				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">上海
+					<span class="caret"></span>
+				</a>
+				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
+					<div class="group">
+						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
+						<div class="citya" style="padding-left: 10px;">
+							<a class="cities">上海</a>
+							<a class="cities">北京</a>
+							<a class="cities">广州</a>
+							<a class="cities">深圳</a>
+							<a class="cities">天津</a>
+							<a class="cities">杭州</a>
+							<a class="cities">南京</a>
+							<a class="cities">苏州</a>
+							<a class="cities">成都</a>
+							<a class="cities">武汉</a>
+							<a class="cities">重庆</a>
+							<a class="cities">西安</a>
+						</div>
+						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;margin-top: 5px">国外城市</h3>
+						<div class="citya" style="padding-left: 10px;">
+							<a class="cities">东京</a>
+							<a class="cities">首尔</a>
+							<a class="cities">曼谷</a>
+							<a class="cities">巴黎</a>
+						</div>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="#">更多城市 ></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="cd-main-nav">
+			<li><a href= "#">店铺</a></li>
+			<li><a href="#">目的地</a></li>
+			<li><a href="#">Blog</a></li>
+			<li style="background-color: #5c5d6a"><a data-toggle="modal" href="#login1" data-target="#login1" style="color: white">登陆</a></li>
+			<li  style="background-color: #5c5d6a"><a data-toggle="modal" href="#regist1" data-target="#regist1" style="color: white">注册</a></li>
+		</ul> <!-- .cd-main-nav -->
+	</nav> <!-- .cd-main-nav-wrapper -->
+
+	<a href="#" class="cd-nav-trigger cd-text-replace">菜单<span></span></a>
+</header>
+<main class="cd-main-content">
+</main>
+<section id="sort" style="margin-top: 20px;">
+	<div class="container">
+		<div class="row">
+			<ul class="breadcrumb">
+				<li><a href="#">上海美食</a></li>
+				<li><a href="#">湘菜</a></li>
+				<li><a href="#">奉贤区</a></li>
+				<li><a href="#">外滩</a></li>
+				<li class="active">店铺名（）</li>
+			</ul>
+			<div class="col-md-9">
+			<div class=" whitebox" style="padding: 20px;">
+				<h1 style="color:#333; font-weight: 700;font-size:22px;line-height:33px;margin-top: -7.5px;">受到煎熬i收到</h1>
+				<div class="brief-info">
+					<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+					<span class="item">1条评论</span>
+					<span class="item">人均：-</span>
+					<span>
+						<span class="item">口味：-</span>
+						<span class="item">环境：-</span>
+						<span class="item">服务：-</span>
+					</span>
+				</div>
+				<div class="brief-info">
+					<span class="item">地址：-</span>
+				</div>
+				<div class="brief-info">
+					<span class="item">电话：-</span>
+				</div>
+				<div class="brief-info">
+					<span class="item">营业时间：-</span>
+				</div>
+				<div class="brief-info">
+					<span class="item">电话：-</span>
+				</div>
+				<div class="closed-warning" id="closed-warning"> <i class="trumpet"></i> <div class="trumpet-text">门店尚未营业，如门店正常营业，请<a class="rectify-closed-status" href="">修改/报错</a> </div> </div>
+				<div class="action">
+					<a class="write left-action" href="//www.dianping.com/shop/110360015/review" target="_blank" rel="nofollow" data-click-name="写点评">
+						<i class="icon"></i>
+						<span id="dpReviewBtn" style="font-size: 15px">写点评</span>
+					</a>
+					<a class="rectify-error" href="/shop/110360015/edit?type=2" target="_blank" rel="nofollow">已开业，修改报错</a>
+					<div id="booking-wrapper" data-click-name="订座">
+				</div>
+					<span class="right-action"> <a class="share J-weixin" rel="nofollow" title="微信分享" data-click-name="微信分享"><i class="icon"></i></a>
+						<a id="fav" class="favorite J-favorite" rel="nofollow" title="收藏" data-click-name="收藏"><i class="icon"></i></a>
+						<a class="report" title="报错" href="/shop/110360015/edit" rel="nofollow" target="_blank" data-click-name="报错"><i class="icon"></i></a>
+						<a class="action-more J-action-more"><i class="icon"></i></a>  </span> </div>
+			</div>
+			</div>
+			<div class="col-md-3 " style="height: 325px;">
+					<div id="playimages" class="play">
+						<ul class="big_pic">
+							<div class="prev"></div>
+							<div class="next"></div>
+
+							<div class="text">154</div>
+							<div class="length">添加照片</div>
+
+							<a class="mark_left" href="javascript:;"></a>
+							<a class="mark_right" href="javascript:;"></a>
+							<div class="bg"></div>
+
+							<li style="z-index:1;"><img src="img/1.jpg" /></li>
+							<li><img src="img/2.jpg" /></li>
+							<li><img src="img/3.jpg" /></li>
+							<li><img src="img/4.jpg" /></li>
+							<li><img src="img/5.jpg" /></li>
+							<li><img src="img/6.jpg" /></li>
+						</ul>
+						<div id="small_pic" class="small_pic">
+							<ul style="width:400px;">
+								<li style=" filter: alpha(opacity:100); opacity:1;"><img src="img/1.jpg" /></li>
+								<li><img src="img/2.jpg" /></li>
+								<li><img src="img/3.jpg" /></li>
+								<li><img src="img/4.jpg" /></li>
+								<li><img src="img/5.jpg" /></li>
+								<li><img src="img/6.jpg" /></li>
+							</ul>
+						</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<div class=" whitebox" style="padding: 20px;margin-bottom: 20px">
+					<ul id="myTab" class="nav nav-tabs sort">
+						<li class="active"><a href="#a1" data-toggle="tab">推荐菜</a></li>
+						<li><a href="#a2" data-toggle="tab">环境</a></li>
+						<li><a href="#a3" data-toggle="tab">价目表 </a></li>
+						<li><a href="#a4" data-toggle="tab">官方相册 </a></li>
+						<li><a href="#a5" data-toggle="tab">食品安全档案 </a></li>
+					</ul>
+					<div id="myTabContent" class="tab-content">
+						<div class="tab-pane fade in active" id="a1">
+							<ul class="recommend-photo clearfix" style="height: 226px; overflow: hidden;">
+								<li class="item">
+									<img src="img/1.jpg">
+									<p class="name">
+										刺鱼
+									</p>
+									<span class="price">¥350</span>
+									<a rel="nofollow" class="block-link" href="#" target="_blank" data-click-name="推荐菜图片0" data-click-title="推荐菜图片"></a>
+								</li>
+								<li class="item">
+									<img  src="img/1.jpg">
+									<p class="name">
+										海胆
+									</p>
+									<span class="price">¥192</span>
+									<a rel="nofollow" class="block-link" href="#" target="_blank" data-click-name="推荐菜图片1" data-click-title="推荐菜图片"></a>
+								</li>
+							</ul>
+						</div>
+						<div class="tab-pane fade" id="a2">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+
+						</div>
+						<div class="tab-pane fade" id="a3">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+						</div>
+						<div class="tab-pane fade" id="a4">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+						</div>
+						<div class="tab-pane fade" id="a5">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+							<img src="img/1.jpg" style=" margin-left: 20px;margin-top:10px;width: 100px;height: 100px;">
+						</div>
+					</div>
+				</div>
+				<div class="whitebox" style="padding: 20px;margin-bottom: 20px">
+					<h1 style="font-size: 16px;color: #333; padding-bottom: 5px;font-weight: 700;">网友点评<span style="color: #999;">(26092)</span></h1>
+					<div class="comment-condition J-comment-condition Fix">
+						<div class="hd">
+							<span>大家认为</span>
+							<i class="arrow-left"></i>
+						</div>
+						<div class="content" id="myTab3">
+							<span class="good J-summary"><a href="#c1" data-toggle="tab">回头客(987)</a></span>
+
+							<span class="good J-summary"><a href="#c2" data-toggle="tab">上菜快(128)</a></span>
+
+							<span class="good J-summary"><a href="#c3" data-toggle="tab">停车方便(5)</a></span>
+
+							<span class="bad J-summary"><a href="#c4" data-toggle="tab">闺蜜聚会(438)</a></span>
+
+							<span class="bad J-summary"><a href="#c5" data-toggle="tab">朋友聚餐(204)</a></span>
+
+							<span class="bad J-summary"><a href="#c6" data-toggle="tab">请客(79)</a></span>
+
+							<span class="bad J-summary"><a href="#c7" data-toggle="tab">深夜食堂(69)</a></span>
+
+							<span class="bad J-summary"><a href="#c8" data-toggle="tab">工作餐(56)</a></span>
+
+							<span class="bad J-summary"><a href="#c9" data-toggle="tab">下午茶(53)</a></span>
+
+							<span class="bad J-summary"><a href="#c10" data-toggle="tab">24小时营业(4)</a></span>
+
+
+						</div>
+					</div>
+					<div class="comment-filter-box clearfix J-filter">
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+								全部
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+								图片
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsRadios" id="optionsRadios3" value="option2">
+								好评
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsRadios" id="optionsRadios4" value="option2">
+								中评
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input type="radio" name="optionsRadios" id="optionsRadios5" value="option2">
+								差评
+							</label>
+						</div>
+					</div>
+					<div  class="tab-content" style=" margin-top: 30px;">
+						<div class="tab-pane fade in active" id="c1">
+							<div class="media">
+								<div class="media-left media-top" style="width: 10%">
+									<img src="./img/1.jpg" class="media-object" style="border-radius: 50%;height: 60px;width: 60px;">
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">我是谁</h4>
+									<ul class="show_number" style="margin-top: 10px;display: inline-block"><li><div class="atar_Show"><p tip="2.3"></p></div></li></ul>
+									<span class="average">人均：200元</span>
+									<p class="content-text">上海美团网精选上海美食餐厅,酒店预订,电影票,旅游景点,外卖订餐,上海团购信息,您可查询商家评价店铺信息。上海生活,下载美团官方APP ,吃喝玩乐1折起。</p>
+								</div>
+								<hr>
+								<div class="media-left media-top" style="width: 10%">
+									<img src="./img/1.jpg" class="media-object" style="border-radius: 50%;height: 60px;width: 60px;">
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">我是谁</h4>
+									<ul class="show_number" style="margin-top: 10px;display: inline-block"><li><div class="atar_Show"><p tip="2.3"></p></div></li></ul>
+									<span class="average">人均：200元</span>
+									<p class="content-text">上海美团网精选上海美食餐厅,酒店预订,电影票,旅游景点,外卖订餐,上海团购信息,您可查询商家评价店铺信息。上海生活,下载美团官方APP ,吃喝玩乐1折起。</p>
+								</div>
+								<hr>
+								<div class="media-left media-top" style="width: 10%">
+									<img src="./img/1.jpg" class="media-object" style="border-radius: 50%;height: 60px;width: 60px;">
+								</div>
+								<div class="media-body">
+									<h4 class="media-heading">我是谁</h4>
+									<ul class="show_number" style="margin-top: 10px;display: inline-block"><li><div class="atar_Show"><p tip="2.3"></p></div></li></ul>
+									<span class="average">人均：200元</span>
+									<p class="content-text">上海美团网精选上海美食餐厅,酒店预订,电影票,旅游景点,外卖订餐,上海团购信息,您可查询商家评价店铺信息。上海生活,下载美团官方APP ,吃喝玩乐1折起。</p>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane fade" id="c2">
+							<p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+								TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+						</div>
+						<div class="tab-pane fade" id="c3">
+							<p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+						</div>
+						<div class="tab-pane fade" id="c4">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c5">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c6">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c7">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c8">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c9">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+						<div class="tab-pane fade" id="c10">
+							<p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-3 " style="padding: 0">
+				<div class="whitebox" style="height: 135.25px;padding: 10px; margin-bottom: 20px">
+					<div id="emap" style="width: 100%;height: 100%"></div>
+				</div>
+				<div class="whitebox" style="margin-bottom: 20px; height: 270px;padding: 10px;">
+					<h4 style="font-size: 16px;padding-bottom: 10px; font-weight: 700;">店铺标签</h4>
+					<div class="wraper">
+						<div class="tagcloud fl"  style="height: 230px;" id="myTab2">
+							<a href="#c1" data-toggle="tab">回头客（23）</a>
+							<a href="#c2" data-toggle="tab">上菜快（123）</a>
+							<a href="#c3" data-toggle="tab">停车方便（33）</a>
+							<a href="#c4" data-toggle="tab">闺蜜聚会（13）</a>
+							<a href="#c5" data-toggle="tab">朋友聚餐（32）</a>
+							<a href="#c6" data-toggle="tab">请客（13）</a>
+							<a href="#c7" data-toggle="tab">深夜食堂（13）</a>
+							<a href="#c8" data-toggle="tab">工作餐（33）</a>
+							<a href="#c9" data-toggle="tab">下午茶（33）</a>
+							<a href="#c10" data-toggle="tab">24小时营业（33）</a>
+						</div>
+					</div>
+				</div>
+				<div class="whitebox" style="margin-bottom: 20px;padding: 15px;">
+					<div class="title clearfix"><span class="tip fr">广告</span><h4>你可能会喜欢</h4></div>
+					<div class="shopshow">
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+						<div class="item">
+							<a href="#" class="img-shop"><img src="img/1.jpg" alt="焱一期一会"></a>
+							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">焱一期一会</a>
+								<a href=""  class="icon tag-tuan-s" ></a></p>
+							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="2.5"></p></div></li></ul>
+							<p class="info"><span class="fr">人均 ¥215</span><span class="region">同乐坊</span></p>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<div id="search" class="cd-main-search">
+	<form>
+		<input type="search" placeholder="搜索旅行地/酒店/景点">
+		<div class="cd-select">
+			<span>在</span>
+			<select name="select-category">
+				<option value="all-categories">所有</option>
+				<option value="category1">旅行地</option>
+				<option value="category2">店铺</option>
+				<option value="category3">景点</option>
+			</select>
+			<span class="selected-value">所有</span>
+		</div>
+	</form>
+
+	<div class="cd-search-suggestions">
+		<div class="news">
+			<h3>News</h3>
+			<ul>
+				<li>
+					<a class="image-wrapper" href="#"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h4>
+					<time datetime="2016-01-12">Feb 03, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#0">Incidunt voluptatem adipisci voluptates fugit beatae culpa eum, distinctio, assumenda est ad</a></h4>
+					<time datetime="2016-01-12">Jan 28, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, esse.</a></h4>
+					<time datetime="2016-01-12">Jan 12, 2016</time>
+				</li>
+			</ul>
+		</div> <!-- .news -->
+
+		<div class="quick-links">
+			<h3>Quick Links</h3>
+			<ul>
+				<li><a href="#0">Find a store</a></li>
+				<li><a href="#0">Accessories</a></li>
+				<li><a href="#0">Warranty info</a></li>
+				<li><a href="#0">Support</a></li>
+				<li><a href="#0">Contact us</a></li>
+			</ul>
+		</div> <!-- .quick-links -->
+	</div> <!-- .cd-search-suggestions -->
+
+	<a href="#0" class="close cd-text-replace">Close Form</a>
+</div> <!-- .cd-main-search -->
+<div class="cd-cover-layer"></div> <!-- cover main content when search form is open -->
+
+
+<!-- 会员登录  -->
+<div class="modal fade" id="login1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="width: 400px;margin-top: 5%;">
+		<div class="modal-content" style="background-color: #eeeeeead;">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close-login" style="display: none">&times;</button>
+			<div class="modal-body" style="margin: 15px;">
+				<div id="form_container1">
+					<input type="text" class="form-control" placeholder="手机号/用户名" id="login_number" value="admin" style="margin-bottom: 30px" />
+					<input type="password" class="form-control" placeholder="密码" id="login_password" />
+					<div id="rememberOrfindPwd"><span><input id="remember" type="checkbox" style="margin-bottom: -1.5px;"></span><span style="color:#000000;    margin-right: 80px;">记住密码</span><span style="color:#000000">忘记密码</span></div>
+					<div style="text-align: center;margin-top: 5px;margin-bottom: 28px;"><input type="button" value="登录" class="button" id="login_btn" /></div>
+				</div>
+				<div style="margin-top: 50px;text-align: center;"><p>还没有账号?<a id='toRegist'>立即注册</a></p></div>
+				<div class="social">
+					<p>用其它方式登陆</p>
+					<a href=""><img src="{% static 'img/icon/qq.png' %}" alt="qq"></a>
+					<a href=""><img src="{% static 'img/icon/weixin.png' %}" alt="weixin"></a>
+					<a href=""><img src="{% static 'img/icon/weibo.png' %}" alt="weibo"></a>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<div class="modal fade" id="regist1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="width: 400px;margin-top: 5%;">
+		<div class="modal-content" style="background-color: #eeeeeead;">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close-reg" style="display: none">&times;</button>
+			<div class="modal-body" style="margin: 15px;">
+				<div id="form_container2" style="padding-top: 25px;">
+					<input type="text" class="form-control" value="admin"  placeholder="用户名" id="regist_account"style="margin-bottom: 30px" />
+					<input type="password" class="form-control" placeholder="密码" id="regist_password1" style="margin-bottom: 30px"  />
+					<input type="password" class="form-control" placeholder="确认密码" id="regist_password2" style="margin-bottom: 30px"  />
+					<input type="text" class="form-control" placeholder="手机号" id="regist_phone" style="margin-bottom: 30px"  />
+					<input type="text" class="form-control" placeholder="验证码" id="regist_vcode" style="margin-bottom: 30px"  />
+					<!--<button id="getVCode" type="button" class="btn btn-success" >获取验证码</button>-->
+					<input id="getVCode" type="button" class="btn btn-success" value="点击发送验证码" onclick="sendCode(this)" style="margin-bottom: 30px"  />
+				</div>
+				<input type="button" value="注册" class="btn btn-success" id="regist_btn" style="margin-bottom: 30px"  />
+				<div style="text-align: center;"><p>已有账号?<a id='toLogin'>立即登陆</a></p></div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<!--<改成getscript?v=2.0不是api?v=2.0" >-->
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<script type="text/javascript">
+    //登录到注册
+    $(function () { $('#collapseOne').collapse('hide')});
+    $("#toRegist").on('click',function(){
+        $("#close-login").trigger("click");
+        $('#regist1').modal();
+    });
+
+    //注册到登录
+    $("#toLogin").on('click',function(){
+        $("#close-reg").trigger('click');
+        $('#login1').modal();
+    });
+    var clock = '';
+    var nums = 30;
+    var btn;
+    function sendCode(thisBtn) {
+        btn = thisBtn;
+        btn.disabled = true; //将按钮置为不可点击
+        btn.value = '重新获取（'+nums+'）';
+        clock = setInterval(doLoop, 1000); //一秒执行一次
+    }
+
+    function doLoop() {
+        nums--;
+        if (nums > 0) {
+            btn.value = '重新获取（'+nums+'）';
+        } else {
+            clearInterval(clock); //清除js定时器
+            btn.disabled = false;
+            btn.value = '点击发送验证码';
+            nums = 10; //重置时间
+        }
+    }
+
+    $(document).ready(function(){
+        $("#login_QQ").click(function(){
+            alert("暂停使用！");
+        });
+        $("#login_WB").click(function(){
+            alert("暂停使用！");
+        });
+    });
+    $(function () {
+        $('#myTab2 a:last').tab('show')
+    })
+</script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("emap");
+    var point = new BMap.Point(116.331398,39.897445);
+    map.centerAndZoom(point,12);
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    // 将地址解析结果显示在地图上,并调整地图视野
+    myGeo.getPoint("上海华东理工大学奉贤校区", function(point){
+        if (point) {
+            map.centerAndZoom(point, 16);
+            map.addOverlay(new BMap.Marker(point));
+        }else{
+            alert("您选择地址没有解析到结果!");
+        }
+    }, "北京市");
+</script>
+
+<script type="text/javascript">
+    /*3D标签云*/
+    tagcloud({
+        selector: ".tagcloud",  //元素选择器
+        fontsize: 16,       //基本字体大小, 单位px
+        radius: 55,         //滚动半径, 单位px
+        mspeed: "normal",   //滚动最大速度, 取值: slow, normal(默认), fast
+        ispeed: "slow",   //滚动初速度, 取值: slow, normal(默认), fast
+        direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+        keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+    });
+</script>
+<script>
+    //显示分数
+    $(".show_number li p").each(function(index, element) {
+        var num=$(this).attr("tip");
+        var www=num*2*8;//
+        $(this).css("width",www);
+        // $(this).parent(".atar_Show").siblings("span").text(num+"分");
+    });
+</script>
+
+<script src="{% static 'js/move.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
+<script src="{% static 'js/citySelect.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/swiper.min.js' %}" type="text/javascript"></script>
+</body>
+</html>

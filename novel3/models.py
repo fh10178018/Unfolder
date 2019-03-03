@@ -118,14 +118,25 @@ class AuthUserUserPermissions(models.Model):
         unique_together = (('user', 'permission'),)
 
 
+
 class Categories(models.Model):
     cat_id = models.IntegerField(primary_key=True)
-    cat_name = models.CharField(max_length=255)
+    cat_main_name = models.CharField(max_length=255)
+    cat_detaill_name = models.CharField(db_column='cat_detaill-name', max_length=255)  # Field renamed to remove unsuitable characters.
 
     class Meta:
         managed = False
         db_table = 'categories'
 
+
+class Cities(models.Model):
+    cityid = models.AutoField(primary_key=True)
+    city = models.CharField(max_length=255)
+    encity = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'cities'
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
@@ -187,6 +198,15 @@ class IndexContents(models.Model):
         managed = False
         db_table = 'index_contents'
 
+class MessagePic(models.Model):
+    pic_id = models.AutoField(primary_key=True)
+    shop_message = models.ForeignKey('ShopMessage', models.DO_NOTHING)
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'message_pic'
+
 
 class Shop(models.Model):
     num = models.PositiveIntegerField(primary_key=True)
@@ -204,6 +224,16 @@ class Shop(models.Model):
         db_table = 'shop'
 
 
+class ShopEnvironmentPic(models.Model):
+    shop_num = models.IntegerField(primary_key=True)
+    code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
+    pic1 = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'shop_environment_pic'
+
+
 class ShopFood(models.Model):
     code = models.ForeignKey(Shop, models.DO_NOTHING, db_column='code')
     food_code = models.IntegerField(primary_key=True)
@@ -215,12 +245,12 @@ class ShopFood(models.Model):
 
 
 class ShopGoods(models.Model):
-    shop_name1 = models.CharField(primary_key=True, max_length=40)
+    goods_id = models.AutoField(primary_key=True)
     code2 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code2')
     goods = models.CharField(max_length=255)
     goods_pic = models.CharField(max_length=255)
     price = models.FloatField()
-    introduction = models.TextField()
+    introduction = models.TextField(blank=True, null=True)
     goods_discount = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -229,7 +259,7 @@ class ShopGoods(models.Model):
 
 
 class ShopMessage(models.Model):
-    shop_message_num = models.IntegerField(primary_key=True)
+    shop_message_num = models.AutoField(primary_key=True)
     shop_content_user = models.IntegerField()
     tag_libary = models.CharField(max_length=255)
     content = models.CharField(max_length=255)
@@ -242,22 +272,19 @@ class ShopMessage(models.Model):
         db_table = 'shop_message'
 
 
-class ShopShowPic(models.Model):
+class ShopRelatedPic(models.Model):
     shop_num = models.IntegerField(primary_key=True)
     code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
     pic1 = models.CharField(max_length=255, blank=True, null=True)
-    pic2 = models.CharField(max_length=255, blank=True, null=True)
-    pic3 = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'shop_show_pic'
+        db_table = 'shop_related_pic'
 
 
 class ShopTag(models.Model):
-    tag_num = models.AutoField(primary_key=True)
+    tag_num = models.ForeignKey(Categories, models.DO_NOTHING, db_column='tag_num')
     code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
-    tag = models.CharField(max_length=255)
 
     class Meta:
         managed = False
@@ -284,17 +311,16 @@ class Shops(models.Model):
     shop_name = models.CharField(max_length=40)
     area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
     shop_detail_address = models.CharField(max_length=255)
-    shop_address = models.CharField(max_length=255)
     shop_tel = models.CharField(max_length=40)
-    shop_opening_hours = models.CharField(max_length=255)
+    shop_opening_hours = models.CharField(max_length=255, blank=True, null=True)
     shop_grade = models.FloatField()
-    shop_average_price = models.FloatField()
-    pic = models.CharField(max_length=255)
+    shop_average_price = models.FloatField(blank=True, null=True)
+    pic = models.CharField(max_length=255, blank=True, null=True)
+    cityen = models.ForeignKey(Cities, models.DO_NOTHING, db_column='cityen')
 
     class Meta:
         managed = False
         db_table = 'shops'
-
 
 class Webviews(models.Model):
     time = models.DateField(blank=True, null=True)

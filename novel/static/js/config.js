@@ -17,7 +17,7 @@ Do.add('excanvas',{path:basedir+'chart/excanvas.js'});
 Do.add('chart',{path:basedir+'chart/chart.js'});
 
 //color
-Do.add('color_css',{path:basedir+'color/style.css', type: 'css'});
+Do.add('color_css',{path:basedir+'color/base.css', type: 'css'});
 Do.add('color',{path:basedir+'color/soColorPacker.js',requires:['color_css']});
 
 //edit
@@ -32,7 +32,7 @@ Do.add('editor',{path:basedir+'editor/zh_CN.js',requires:['editor_src']});
 Do.add('flags',{path:basedir+'flags/flags.css', type: 'css'});
 
 //form
-Do.add('form_css',{path:basedir+'form/style.css', type: 'css'});
+Do.add('form_css',{path:basedir+'form/base.css', type: 'css'});
 Do.add('form_js',{path:basedir+'form/validform.js'});
 Do.add('form',{path:basedir+'form/Validform_Datatype.js',requires:['form_css','form_js']});
 
@@ -56,7 +56,7 @@ Do.add('tabpanel',{path:basedir+'tabpanel/TabPanel.js',requires:['tabpanel_js1',
 Do.add('tabs',{path:basedir+'tabs/idTabs.js'});
 
 //tip
-Do.add('tip_css',{path:basedir+'tip/style.css', type: 'css'});
+Do.add('tip_css',{path:basedir+'tip/base.css', type: 'css'});
 Do.add('tip',{path:basedir+'tip/powerFloat.js',requires:['tip_css']});
 
 //tree

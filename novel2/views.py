@@ -57,7 +57,7 @@ def home(request):
         view=Webviews.objects.filter().order_by('-time')[:9]
         district1 = {'x': 678, 'y': 867, 'z': 887, 'q': 123, 'l': 200}
         district2 = {'a': 678, 'b': 867, 'c': 887, 'd': 123, 'e': 1200, 'f': 345, 'g': 443}
-        return render(request, 'my_admin/index.html',{'views':view,'district1':district1,'district2':district2})
+        return render(request, 'my_admin/map.html',{'views':view,'district1':district1,'district2':district2})
     else:
         return redirect("/admin/")
 
