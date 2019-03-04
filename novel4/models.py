@@ -108,6 +108,7 @@ class AuthUserGroups(models.Model):
         unique_together = (('user', 'group'),)
 
 
+
 class AuthUserUserPermissions(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
@@ -116,7 +117,6 @@ class AuthUserUserPermissions(models.Model):
         managed = False
         db_table = 'auth_user_user_permissions'
         unique_together = (('user', 'permission'),)
-
 
 
 class Categories(models.Model):
@@ -137,6 +137,7 @@ class Cities(models.Model):
     class Meta:
         managed = False
         db_table = 'cities'
+
 
 class DjangoAdminLog(models.Model):
     action_time = models.DateTimeField()
@@ -198,6 +199,7 @@ class IndexContents(models.Model):
         managed = False
         db_table = 'index_contents'
 
+
 class MessagePic(models.Model):
     pic_id = models.AutoField(primary_key=True)
     shop_message = models.ForeignKey('ShopMessage', models.DO_NOTHING)
@@ -224,14 +226,14 @@ class Shop(models.Model):
         db_table = 'shop'
 
 
-class ShopEnvironmentPic(models.Model):
+class ShopEnvironmentPicCopy(models.Model):
     shop_num = models.IntegerField(primary_key=True)
     code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
     pic1 = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'shop_environment_pic'
+        db_table = 'shop_environment_pic_copy'
 
 
 class ShopFood(models.Model):
@@ -272,14 +274,14 @@ class ShopMessage(models.Model):
         db_table = 'shop_message'
 
 
-class ShopRelatedPic(models.Model):
+class ShopOfficialPic(models.Model):
     shop_num = models.IntegerField(primary_key=True)
-    code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
+    code3 = models.ForeignKey('ShopUser', models.DO_NOTHING, db_column='code3', blank=True, null=True)
     pic1 = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'shop_related_pic'
+        db_table = 'shop_official_pic'
 
 
 class ShopTag(models.Model):
@@ -315,8 +317,8 @@ class Shops(models.Model):
     shop_opening_hours = models.CharField(max_length=255, blank=True, null=True)
     shop_grade = models.FloatField()
     shop_average_price = models.FloatField(blank=True, null=True)
+    city = models.ForeignKey(Cities, models.DO_NOTHING, db_column='city')
     pic = models.CharField(max_length=255, blank=True, null=True)
-    cityen = models.ForeignKey(Cities, models.DO_NOTHING, db_column='cityen')
 
     class Meta:
         managed = False

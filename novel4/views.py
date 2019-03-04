@@ -8,8 +8,9 @@ from novel4.models import ShopTag
 
 # Create your views here.
 
-def home(request):
-    return render(request,'demo/index.html')
+def home(request,city):
+    view=Shops.objects.get(city=city)
+    return render(request,'demo/index.html',{'shops',city})
 
 def shop(request,id):
     view=Shops.objects.get(shop_num=id)
