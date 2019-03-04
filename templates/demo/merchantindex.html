@@ -87,19 +87,19 @@
 	<div class="container">
 		<div class="row">
 			<ul class="breadcrumb">
-				<li><a href="#">上海美食</a></li>
-				<li><a href="#">湘菜</a></li>
+				<li><a href="#">{{ shops.cityen.city }}</a></li>
+				<li><a href="#">美食</a></li>
 				<li><a href="#">奉贤区</a></li>
 				<li><a href="#">外滩</a></li>
-				<li class="active">店铺名（）</li>
+				<li class="active">{{ shops.shop_name }}</li>
 			</ul>
 			<div class="col-md-9">
 			<div class=" whitebox" style="padding: 20px;">
-				<h1 style="color:#333; font-weight: 700;font-size:22px;line-height:33px;margin-top: -7.5px;">受到煎熬i收到</h1>
+				<h1 style="color:#333; font-weight: 700;font-size:22px;line-height:33px;margin-top: -7.5px;">{{ shops.shop_name }}</h1>
 				<div class="brief-info">
 					<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="{{ shops.shop_grade }}"></p></div></li></ul>
 					<span class="item">1条评论</span>
-					<span class="item">人均：-</span>
+					<span class="item">人均：{{ shops.shop_average_price }}元</span>
 					<span>
 						<span class="item">口味：-</span>
 						<span class="item">环境：-</span>
@@ -107,13 +107,13 @@
 					</span>
 				</div>
 				<div class="brief-info">
-					<span class="item">地址：-</span>
+					<span class="item">地址：{{ shops.shop_detail_address }}</span>
 				</div>
 				<div class="brief-info">
-					<span class="item">电话：-</span>
+					<span class="item">电话：{{ shops.shop_tel }}</span>
 				</div>
 				<div class="brief-info">
-					<span class="item">营业时间：-</span>
+					<span class="item">营业时间：{{ shops.shop_opening_hours }}</span>
 				</div>
 				<div class="brief-info">
 					<span class="item">电话：-</span>
@@ -606,15 +606,16 @@
     // 百度地图API功能
     var map = new BMap.Map("emap");
     var point = new BMap.Point(116.331398,39.897445);
-    map.centerAndZoom(point,12);
+    // var place = {{ shops.shop_detail_address }}
+    map.centerAndZoom( point,12);
     // 创建地址解析器实例
     var myGeo = new BMap.Geocoder();
     // 将地址解析结果显示在地图上,并调整地图视野
-    myGeo.getPoint("上海华东理工大学奉贤校区", function(point){
-        if (point) {
+    myGeo.getPoint("上海华东理工大学奉贤校区", function(point) {
+        if (point){
             map.centerAndZoom(point, 16);
             map.addOverlay(new BMap.Marker(point));
-        }else{
+        } else {
             alert("您选择地址没有解析到结果!");
         }
     }, "北京市");
