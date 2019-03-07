@@ -136,18 +136,22 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="whitebox">
-					<div class="boxheader"><img src="img/icon/food.png" style=" vertical-align: middle;"><span class="boxheadertext">美食</span><a>全部 ></a></div>
+					<div class="boxheader"><img src="{% static 'img/icon/food.png' %}" style=" vertical-align: middle;"><span class="boxheadertext">美食</span><a>全部 ></a></div>
 					<div class="boxmodal">
+                        {% for line in shopsfood %}
+                            {% if line.code1.city.cityid == citynum %}
+                                {% if forloop.counter <= 6 %}
 						<div class="boxelment">
 							<div class="shops">
 								<a href="#">
-									<img src="img/shop1.jpg">
+									<img src="{{ line.pic }}">
 								</a>
 								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
+									<a href="#"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
 									<div class="star-info">
 										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
+                                        {
+										<span class="comment">{{  }}</span>
 									</div>
 									<div class="area-info">
 										<span class="region-name" style="float: right;">阜成门</span>
@@ -159,112 +163,9 @@
 								</div>
 							</div>
 						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
+                                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
 					</div>
 				</div>
 			</div>
