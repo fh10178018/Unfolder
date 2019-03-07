@@ -249,7 +249,3 @@ def webviews(x):
         demoview =Webviews.objects.get(time=data).demoview+1
         Webviews.objects.filter(time=data).update(demoview=demoview)
 
-
-def x():
-    print("方晗第一次上传")
-    print("大江第1008611次上传")
