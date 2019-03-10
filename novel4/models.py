@@ -371,3 +371,32 @@ class Webviews(models.Model):
         managed = False
         db_table = 'webviews'
 
+class Film(models.Model):
+    film_id = models.IntegerField(primary_key=True)
+    film_name = models.CharField(max_length=255)
+    film_pic = models.CharField(max_length=255, blank=True, null=True)
+    film_enname = models.CharField(max_length=255, blank=True, null=True)
+    film_grade = models.CharField(max_length=255, blank=True, null=True)
+    film_state = models.CharField(max_length=255, blank=True, null=True)
+    film_time = models.IntegerField(blank=True, null=True)
+    film_showtime = models.DateTimeField(blank=True, null=True)
+    film_like = models.IntegerField(blank=True, null=True)
+    film_cats = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'film'
+
+
+class FilmGoods(models.Model):
+    goods_id = models.AutoField(primary_key=True)
+    code6 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code6')
+    film_code = models.ForeignKey(Film, models.DO_NOTHING, db_column='film_code')
+    film_language = models.CharField(max_length=255, blank=True, null=True)
+    film_time = models.DateTimeField(blank=True, null=True)
+    film_prade = models.IntegerField(blank=True, null=True)
+    film_num_office = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'film_goods'

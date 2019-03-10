@@ -11,6 +11,8 @@ from novel4.models import Cities
 from novel4.models import ShopUser
 from novel4.models import ShopTag
 from novel4.models import ShopMessage
+from novel4.models import Film
+from novel4.models import FilmGoods
 from django.db.models import Q
 from django.shortcuts import redirect
 import urllib.request
@@ -35,12 +37,14 @@ def locationshop(request):
 
 def home(request,city):
     if city!= 'cities':
-        print (request.user)
         shopsfood=ShopTag.objects.filter(tag_num__lte=28)    # 美食类（__lte小于等于，__gte大于等于）
         shopsfilm=ShopTag.objects.filter(tag_num=29)      # 影院
-        shopssport=ShopTag.objects.exclude(Q(tag_num__lt=30)|Q(tag_num__gt=48))      # 运动健身(Q（）|Q（）相当于or)
+        shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
         shopmessage = ShopMessage.objects.filter()
-        return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city})
+        film = Film.objects.filter().order_by('-film_showtime')[:6]
+        for l in film:
+            print (l)
+        return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
     else:
         cities = Cities.objects.filter()
         newcity={}
@@ -92,9 +96,6 @@ def shop(request,id):
 
     return render(request,'demo/merchantindex.html',{'shop':shop,'map1':lng,'map2':lat,'tag':list1,'cmd':cmd,'mmm':tage})
 
-def citylist(request):
-    citist=Cities.objects.filter()
-    return render(request,'demo/citylist.html',{'city':citist})
 
 def categories(request,sousuo):
     print (sousuo)
