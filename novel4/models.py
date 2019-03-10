@@ -319,7 +319,7 @@ class ShopOfficialPic(models.Model):
 
 
 class ShopTag(models.Model):
-    tag_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     tag_num = models.ForeignKey(Categories, models.DO_NOTHING, db_column='tag_num')
     code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
 
