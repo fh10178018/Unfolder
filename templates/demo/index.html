@@ -38,25 +38,25 @@
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">上海
+				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">{{ city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
 					<div class="group">
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
 						<div class="citya" style="padding-left: 10px;">
-							<a class="cities">上海</a>
-							<a class="cities">北京</a>
-							<a class="cities">广州</a>
-							<a class="cities">深圳</a>
-							<a class="cities">天津</a>
-							<a class="cities">杭州</a>
-							<a class="cities">南京</a>
-							<a class="cities">苏州</a>
-							<a class="cities">成都</a>
-							<a class="cities">武汉</a>
-							<a class="cities">重庆</a>
-							<a class="cities">西安</a>
+							<a href="/service/上海" class="cities">上海</a>
+							<a href="/service/北京" class="cities">北京</a>
+							<a href="/service/广州" class="cities">广州</a>
+							<a href="/service/深圳" class="cities">深圳</a>
+							<a href="/service/天津" class="cities">天津</a>
+							<a href="/service/杭州" class="cities">杭州</a>
+							<a href="/service/南京" class="cities">南京</a>
+							<a href="/service/苏州" class="cities">苏州</a>
+							<a href="/service/成都" class="cities">成都</a>
+							<a href="/service/武汉" class="cities">武汉</a>
+							<a href="/service/重庆" class="cities">重庆</a>
+							<a href="/service/西安" class="cities">西安</a>
 						</div>
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;margin-top: 5px">国外城市</h3>
 						<div class="citya" style="padding-left: 10px;">
@@ -139,7 +139,7 @@
 					<div class="boxheader"><img src="{% static 'img/icon/food.png' %}" style=" vertical-align: middle;"><span class="boxheadertext">美食</span><a>全部 ></a></div>
 					<div class="boxmodal">
                         {% for line in shopsfood %}
-                            {% if line.code1.city.cityid == citynum %}
+                            {% if line.code1.city.city == city %}
                                 {% if forloop.counter <= 6 %}
 						<div class="boxelment">
 							<div class="shops">
@@ -150,15 +150,26 @@
 									<a href="#"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
 									<div class="star-info">
 										<span class="star star-50"></span>
-                                        {
-										<span class="comment">{{  }}</span>
+                                    <span class="comment">
+                                        {% for x in shopmessage %}
+                                            {% if x.code5.shop_num == line.code1.shop_num %}
+                                                {% if forloop.last %}{{ forloop.counter }}
+                                                {% endif %}
+                                            {% else %}
+                                                {% if forloop.first %}0
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    条点评</span>
 									</div>
 									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
+										<span class="region-name" style="float: right;    overflow: hidden; width: 26%;text-overflow: ellipsis;">{{ line.code1.shop_detail_address }}</span>
+										<span class="maincate-name">
+                                            {{ line.tag_num.cat_detaill_name }}
+                                        </span>
 									</div>
 									<div class="avg">
-										<span>¥99/人</span>
+										<span>{{ line.code1.shop_average_price }}元/人</span>
 									</div>
 								</div>
 							</div>
@@ -173,133 +184,45 @@
 				<div class="whitebox">
 					<div class="boxheader"><img src="img/icon/happy.png" style=" vertical-align: middle;"><span class="boxheadertext">休闲娱乐</span><a>全部 ></a></div>
 					<div class="boxmodal">
+						{% for line in shopssport %}
+                            {% if line.code1.city.city == city %}
+                                {% if forloop.counter <= 6 %}
 						<div class="boxelment">
 							<div class="shops">
 								<a href="#">
-									<img src="img/shop1.jpg">
+									<img src="{{ line.pic }}">
 								</a>
 								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
+									<a href="#"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
 									<div class="star-info">
 										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
+                                    <span class="comment">
+                                        {% for x in shopmessage %}
+                                            {% if x.code5.shop_num == line.code1.shop_num %}
+                                                {% if forloop.last %}{{ forloop.counter }}
+                                                {% endif %}
+                                            {% else %}
+                                                {% if forloop.first %}0
+                                                {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    条点评</span>
 									</div>
 									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
+										<span class="region-name" style="float: right;    overflow: hidden; width: 26%;text-overflow: ellipsis;">{{ line.code1.shop_detail_address }}</span>
+										<span class="maincate-name">
+                                            {{ line.tag_num.cat_detaill_name }}
+                                        </span>
 									</div>
 									<div class="avg">
-										<span>¥99/人</span>
+										<span>{{ line.code1.shop_average_price }}元/人</span>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="boxelment">
-							<div class="shops">
-								<a href="#">
-									<img src="img/shop1.jpg">
-								</a>
-								<div class="shops-tag">
-									<a href="#"><h3>asdasd</h3></a>
-									<div class="star-info">
-										<span class="star star-50"></span>
-										<span class="comment">19593条点评</span>
-									</div>
-									<div class="area-info">
-										<span class="region-name" style="float: right;">阜成门</span>
-										<span class="maincate-name">老北京火锅</span>
-									</div>
-									<div class="avg">
-										<span>¥99/人</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
+                                    {% endif %}
+                            {% endif %}
+                        {% endfor %}
 					</div>
 				</div>
 			</div>
@@ -454,7 +377,7 @@
         });
     });
 </script>
-
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
 
 
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->

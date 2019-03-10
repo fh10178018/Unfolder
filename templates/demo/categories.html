@@ -1,0 +1,408 @@
+<!doctype html>
+{% load static %}
+<html lang="zh-cn" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unfolder用户DEMO</title>
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/htmleaf-demo.css' %}">
+<link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+<link rel="stylesheet" href="{% static 'css/login3.css' %}">
+<link rel="stylesheet" href="{% static 'css/citySelect.css' %}">
+<link rel="stylesheet" href="{% static 'css/zzsc.css' %}">
+
+</head>
+<body data-spy="scroll"  data-target="#myScrollspy">
+<div class="top-bar">
+	<div class="container">
+		<ul class="top-contacts">
+			<li class="top-unhover"><p><span class="fa fa-phone-square" aria-hidden="true"></span> +1 515 151515</p>
+			</li><li class="top-hover"><p><span class="fa fa-envelope" aria-hidden="true"></span> <a href="mailto:support@company.com">support@company.com</a></p>
+		</li></ul>
+		<ul class="top-links">
+			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+		</ul>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<header class="cd-main-header animate-search">
+	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+
+	<nav class="cd-main-nav-wrapper">
+		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
+		<ul class="cd-main-nav navbar-left">
+			<li class="dropdown" style="left: 150px">
+				<a  href="/service/" id="dropdownMenu1" data-toggle="dropdown">{{ city }}
+					<span class="caret"></span>
+				</a>
+				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
+					<div class="group">
+						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
+						<div class="citya" style="padding-left: 10px;">
+							<a href="/service/上海" class="cities">上海</a>
+							<a href="/service/北京" class="cities">北京</a>
+							<a href="/service/广州" class="cities">广州</a>
+							<a href="/service/深圳" class="cities">深圳</a>
+							<a href="/service/天津" class="cities">天津</a>
+							<a href="/service/杭州" class="cities">杭州</a>
+							<a href="/service/南京" class="cities">南京</a>
+							<a href="/service/苏州" class="cities">苏州</a>
+							<a href="/service/成都" class="cities">成都</a>
+							<a href="/service/武汉" class="cities">武汉</a>
+							<a href="/service/重庆" class="cities">重庆</a>
+							<a href="/service/西安" class="cities">西安</a>
+						</div>
+						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;margin-top: 5px">国外城市</h3>
+						<div class="citya" style="padding-left: 10px;">
+							<a class="cities">东京</a>
+							<a class="cities">首尔</a>
+							<a class="cities">曼谷</a>
+							<a class="cities">巴黎</a>
+						</div>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities">更多城市 ></a>
+					</div>
+				</div>
+			</li>
+		</ul>
+		<ul class="cd-main-nav">
+			<li><a href= "#">店铺</a></li>
+			<li><a href="#">目的地</a></li>
+			<li><a href="#">Blog</a></li>
+			<li style="background-color: #5c5d6a"><a data-toggle="modal" href="#login1" data-target="#login1" style="color: white">登陆</a></li>
+			<li  style="background-color: #5c5d6a"><a data-toggle="modal" href="#regist1" data-target="#regist1" style="color: white">注册</a></li>
+		</ul> <!-- .cd-main-nav -->
+	</nav> <!-- .cd-main-nav-wrapper -->
+
+	<a href="#" class="cd-nav-trigger cd-text-replace">菜单<span></span></a>
+</header>
+<main class="cd-main-content">
+</main>
+<section id="sort" style="margin-top: 20px;">
+	<div class="container">
+		<div class="row">
+			<ul class="breadcrumb">
+				<li><a href="#">上海美食</a></li>
+				<li><a href="#">湘菜</a></li>
+				<li><a href="#">奉贤区</a></li>
+				<li><a href="#">外滩</a></li>
+				<li class="active">店铺名（）</li>
+			</ul>
+			<div class="col-md-12">
+			<div class=" whitebox" style="padding: 20px;margin-bottom: 20px; font-size: 15px;">
+				<div class="categories">
+					<span style="display:inline-block;width: 80px;color: #999;">频道：</span>
+					<div class="catego" style="display: inline-block">
+						<a href="//www.dianping.com/zhengzhou" class="tag-solid">全部</a>
+					</div>
+					<div class="dropdown" style="margin-left: 20px">
+						<a href="#" id="s1" data-toggle="dropdown" aria-expanded="true" class="cat">上海
+							<span class="caret"></span></a>
+						<div class="dropdown-menu categories" role="menu" aria-labelledby="s1">
+							<div class="group">
+								<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
+								<div class="catss" style="padding-left: 10px;">
+									<a class="cities">上海</a>
+									<a class="cities">北京</a>
+									<a class="cities">广州</a>
+									<a class="cities">深圳</a>
+									<a class="cities">天津</a>
+									<a class="cities">杭州</a>
+									<a class="cities">南京</a>
+									<a class="cities">苏州</a>
+									<a class="cities">成都</a>
+									<a class="cities">武汉</a>
+									<a class="cities">重庆</a>
+									<a class="cities">西安</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="dropdown" style="margin-left: 20px">
+						<a href="#" id="s2" data-toggle="dropdown" aria-expanded="true" class="cat">上海
+							<span class="caret"></span></a>
+						<div class="dropdown-menu citylist" role="menu" aria-labelledby="s2">
+							<div class="group">
+								<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
+								<div class="citya" style="padding-left: 10px;">
+									<a class="cities">上海</a>
+									<a class="cities">北京</a>
+									<a class="cities">广州</a>
+									<a class="cities">深圳</a>
+									<a class="cities">天津</a>
+									<a class="cities">杭州</a>
+									<a class="cities">南京</a>
+									<a class="cities">苏州</a>
+									<a class="cities">成都</a>
+									<a class="cities">武汉</a>
+									<a class="cities">重庆</a>
+									<a class="cities">西安</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					</div>
+				</div>
+			</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 sa visible-lg" id="myScrollspy">
+			<ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
+				<li class="whitebox" style="height: 250px;padding: 10px; margin-bottom: 20px">
+					<div id="emap" style="width: 100%;height: 100%"></div>
+				</li>
+				<li class="active"><a href="#section-1">第一部分</a></li>
+				<li><a href="#section-2">第二部分</a></li>
+				<li><a href="#section-3">第三部分</a></li>
+				<li><a href="#section-4">第四部分</a></li>
+				<li><a href="#section-5">第五部分</a></li>
+			</ul>
+		</div>
+		<div class="col-md-9">
+			<div class="whitebox" style="padding: 20px;font-size: 12px;color: #666;" id="section-1">
+				<div class="tag-group">
+				<div class="shaixuan"><a>智能排序</a><a>智能排序</a><a>智能排序</a>
+					<a>智能排序</a></div>
+				</div>
+				<hr style="margin-top: 10px">
+				<div class="media">
+					<div class="media-left xc" style="width: 3500px;">
+						<a href="#"><span>1</span><img src="./img/1.jpg" class="media-object" style="height: 125px;width: 220px;    border-radius: 4px;" >
+						</a>
+					</div>
+					<div class="media-body" style="">
+						<a href="#" style="color: black;text-decoration: none;font-weight: 500;font-size: 16px;">dsadasdas</a>
+						<div style="line-height: 30px;"><div class="atar_Show" style="margin-top: 10px;"><p tip="2.5" style="width: 40px;"></p></div>
+							<span style="margin-right: 10px;margin-left: 10px;">4.6<!-- -->分</span><span class="highlight" style="margin-right: 10px;color: #F90;">28<!-- -->人评论</span>
+						</div>
+						<div class="address-info clearfix"><span class="cate-info ellipsis"><span title="其他酒店">其他酒店</span><span title="迪士尼">|<!-- -->迪士尼</span></span><span title="浦东新区川沙新镇唐黄路180号" class="address ellipsis">浦东新区川沙新镇唐黄路180号</span></div>
+						<div class="item-bottom-info clearfix"><div class="item-price-info"><span class="price-symbol">¥</span><span class="price">169</span><span class="price-type">起</span></div></div>
+					</div>
+				</div>
+				<hr>
+			<h2 id="section-2">第二部分</h2>
+			<p>Nullam hendrerit justo non leo aliquet imperdiet. Etiam in sagittis lectus. Suspendisse ultrices placerat accumsan. Mauris quis dapibus orci. In dapibus velit blandit pharetra tincidunt. Quisque non sapien nec lacus condimentum facilisis ut iaculis enim. Sed viverra interdum bibendum. Donec ac sollicitudin dolor. Sed fringilla vitae lacus at rutrum. Phasellus congue vestibulum ligula sed consequat.</p>
+			<p>Vestibulum consectetur scelerisque lacus, ac fermentum lorem convallis sed. Nam odio tortor, dictum quis malesuada at, pellentesque vitae orci. Vivamus elementum, felis eu auctor lobortis, diam velit egestas lacus, quis fermentum metus ante quis urna. Sed at facilisis libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vestibulum bibendum blandit dolor. Nunc orci dolor, molestie nec nibh in, hendrerit tincidunt ante. Vivamus sem augue, hendrerit non sapien in, mollis ornare augue.</p>
+			<hr>
+			<h2 id="section-3">第三部分</h2>
+			<p>Integer pulvinar leo id risus pellentesque vestibulum. Sed diam libero, sodales eget sapien vel, porttitor bibendum enim. Donec sed nibh vitae lorem porttitor blandit in nec ante. Pellentesque vitae metus ipsum. Phasellus sed nunc ac sem malesuada condimentum. Etiam in aliquam lectus. Nam vel sapien diam. Donec pharetra id arcu eget blandit. Proin imperdiet mattis augue in porttitor. Quisque tempus enim id lobortis feugiat. Suspendisse tincidunt risus quis dolor fringilla blandit. Ut sed sapien at purus lacinia porttitor. Nullam iaculis, felis a pretium ornare, dolor nisl semper tortor, vel sagittis lacus est consequat eros. Sed id pretium nisl. Curabitur dolor nisl, laoreet vitae aliquam id, tincidunt sit amet mauris.</p>
+			<p>Phasellus vitae suscipit justo. Mauris pharetra feugiat ante id lacinia. Etiam faucibus mauris id tempor egestas. Duis luctus turpis at accumsan tincidunt. Phasellus risus risus, volutpat vel tellus ac, tincidunt fringilla massa. Etiam hendrerit dolor eget ante rutrum adipiscing. Cras interdum ipsum mattis, tempus mauris vel, semper ipsum. Duis sed dolor ut enim lobortis pellentesque ultricies ac ligula. Pellentesque convallis elit nisi, id vulputate ipsum ullamcorper ut. Cras ac pulvinar purus, ac viverra est. Suspendisse potenti. Integer pellentesque neque et elementum tempus. Curabitur bibendum in ligula ut rhoncus.</p>
+			<p>Quisque pharetra velit id velit iaculis pretium. Nullam a justo sed ligula porta semper eu quis enim. Pellentesque pellentesque, metus at facilisis hendrerit, lectus velit facilisis leo, quis volutpat turpis arcu quis enim. Nulla viverra lorem elementum interdum ultricies. Suspendisse accumsan quam nec ante mollis tempus. Morbi vel accumsan diam, eget convallis tellus. Suspendisse potenti.</p>
+			<hr>
+			<h2 id="section-4">第四部分</h2>
+			<p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
+			<p>Vestibulum quis quam ut magna consequat faucibus. Pellentesque eget nisi a mi suscipit tincidunt. Ut tempus dictum risus. Pellentesque viverra sagittis quam at mattis. Suspendisse potenti. Aliquam sit amet gravida nibh, facilisis gravida odio. Phasellus auctor velit at lacus blandit, commodo iaculis justo viverra. Etiam vitae est arcu. Mauris vel congue dolor. Aliquam eget mi mi. Fusce quam tortor, commodo ac dui quis, bibendum viverra erat. Maecenas mattis lectus enim, quis tincidunt dui molestie euismod. Curabitur et diam tristique, accumsan nunc eu, hendrerit tellus.</p>
+			<p>Phasellus fermentum, neque sit amet sodales tempor, enim ante interdum eros, eget luctus ipsum eros ut ligula. Nunc ornare erat quis faucibus molestie. Proin malesuada consequat commodo. Mauris iaculis, eros ut dapibus luctus, massa enim elementum purus, sit amet tristique purus purus nec felis. Morbi vestibulum sapien eget porta pulvinar. Nam at quam diam. Proin rhoncus, felis elementum accumsan dictum, felis nisi vestibulum tellus, et ultrices risus felis in orci. Quisque vestibulum sem nisl, vel congue leo dictum nec. Cras eget est at velit sagittis ullamcorper vel et lectus. In hac habitasse platea dictumst. Etiam interdum iaculis velit, vel sollicitudin lorem feugiat sit amet. Etiam luctus, quam sed sodales aliquam, lorem libero hendrerit urna, faucibus rhoncus massa nibh at felis. Curabitur ac tempus nulla, ut semper erat. Vivamus porta ullamcorper sem, ornare egestas mauris facilisis id.</p>
+			<p>Ut ut risus nisl. Fusce porttitor eros at magna luctus, non congue nulla eleifend. Aenean porttitor feugiat dolor sit amet facilisis. Pellentesque venenatis magna et risus commodo, a commodo turpis gravida. Nam mollis massa dapibus urna aliquet, quis iaculis elit sodales. Sed eget ornare orci, eu malesuada justo. Nunc lacus augue, dictum quis dui id, lacinia congue quam. Nulla sem sem, aliquam nec dolor ac, tempus convallis nunc. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla suscipit convallis iaculis. Quisque eget commodo ligula. Praesent leo dui, facilisis quis eleifend in, aliquet vitae nunc. Suspendisse fermentum odio ac massa ultricies pellentesque. Fusce eu suscipit massa.</p>
+			<hr>
+			<h2 id="section-5">第五部分</h2>
+			<p>Nam eget purus nec est consectetur vehicula. Nullam ultrices nisl risus, in viverra libero egestas sit amet. Etiam porttitor dolor non eros pulvinar malesuada. Vestibulum sit amet est mollis nulla tempus aliquet. Praesent luctus hendrerit arcu non laoreet. Morbi consequat placerat magna, ac ornare odio sagittis sed. Donec vitae ullamcorper purus. Vivamus non metus ac justo porta volutpat.</p>
+			<p>Vivamus mattis accumsan erat, vel convallis risus pretium nec. Integer nunc nulla, viverra ut sem non, scelerisque vehicula arcu. Fusce bibendum convallis augue sit amet lobortis. Cras porta urna turpis, sodales lobortis purus adipiscing id. Maecenas ullamcorper, turpis suscipit pellentesque fringilla, massa lacus pulvinar mi, nec dignissim velit arcu eget purus. Nam at dapibus tellus, eget euismod nisl. Ut eget venenatis sapien. Vivamus vulputate varius mauris, vel varius nisl facilisis ac. Nulla aliquet justo a nibh ornare, eu congue neque rutrum.</p>
+			<p>Suspendisse a orci facilisis, dignissim tortor vitae, ultrices mi. Vestibulum a iaculis lacus. Phasellus vitae convallis ligula, nec volutpat tellus. Vivamus scelerisque mollis nisl, nec vehicula elit egestas a. Sed luctus metus id mi gravida, faucibus convallis neque pretium. Maecenas quis sapien ut leo fringilla tempor vitae sit amet leo. Donec imperdiet tempus placerat. Pellentesque pulvinar ultrices nunc sed ultrices. Morbi vel mi pretium, fermentum lacus et, viverra tellus. Phasellus sodales libero nec dui convallis, sit amet fermentum sapien auctor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed eu elementum nibh, quis varius libero.</p>
+			<p>Morbi sed fermentum ipsum. Morbi a orci vulputate tortor ornare blandit a quis orci. Donec aliquam sodales gravida. In ut ullamcorper nisi, ac pretium velit. Vestibulum vitae lectus volutpat, consequat lorem sit amet, pulvinar tellus. In tincidunt vel leo eget pulvinar. Curabitur a eros non lacus malesuada aliquam. Praesent et tempus odio. Integer a quam nunc. In hac habitasse platea dictumst. Aliquam porta nibh nulla, et mattis turpis placerat eget. Pellentesque dui diam, pellentesque vel gravida id, accumsan eu magna. Sed a semper arcu, ut dignissim leo.</p>
+			<p>Sed vitae lobortis diam, id molestie magna. Aliquam consequat ipsum quis est dictum ultrices. Aenean nibh velit, fringilla in diam id, blandit hendrerit lacus. Donec vehicula rutrum tellus eget fermentum. Pellentesque ac erat et arcu ornare tincidunt. Aliquam erat volutpat. Vivamus lobortis urna quis gravida semper. In condimentum, est a faucibus luctus, mi dolor cursus mi, id vehicula arcu risus a nibh. Pellentesque blandit sapien lacus, vel vehicula nunc feugiat sit amet.</p>
+		</div>
+		</div>
+	</div>
+</div>
+<div id="search" class="cd-main-search">
+	<form>
+		<input type="search" placeholder="搜索旅行地/酒店/景点">
+		<div class="cd-select">
+			<span>在</span>
+			<select name="select-category">
+				<option value="all-categories">所有</option>
+				<option value="category1">旅行地</option>
+				<option value="category2">店铺</option>
+				<option value="category3">景点</option>
+			</select>
+			<span class="selected-value">所有</span>
+		</div>
+	</form>
+
+	<div class="cd-search-suggestions">
+		<div class="news">
+			<h3>News</h3>
+			<ul>
+				<li>
+					<a class="image-wrapper" href="#"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h4>
+					<time datetime="2016-01-12">Feb 03, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#0">Incidunt voluptatem adipisci voluptates fugit beatae culpa eum, distinctio, assumenda est ad</a></h4>
+					<time datetime="2016-01-12">Jan 28, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"><img src="img/placeholder.png" alt="News image"></a>
+					<h4><a class="cd-nowrap" href="#0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, esse.</a></h4>
+					<time datetime="2016-01-12">Jan 12, 2016</time>
+				</li>
+			</ul>
+		</div> <!-- .news -->
+
+		<div class="quick-links">
+			<h3>Quick Links</h3>
+			<ul>
+				<li><a href="#0">Find a store</a></li>
+				<li><a href="#0">Accessories</a></li>
+				<li><a href="#0">Warranty info</a></li>
+				<li><a href="#0">Support</a></li>
+				<li><a href="#0">Contact us</a></li>
+			</ul>
+		</div> <!-- .quick-links -->
+	</div> <!-- .cd-search-suggestions -->
+
+	<a href="#0" class="close cd-text-replace">Close Form</a>
+</div> <!-- .cd-main-search -->
+<div class="cd-cover-layer"></div> <!-- cover main content when search form is open -->
+
+
+<!-- 会员登录  -->
+<div class="modal fade" id="login1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="width: 400px;margin-top: 5%;">
+		<div class="modal-content" style="background-color: #eeeeeead;">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close-login" style="display: none">&times;</button>
+			<div class="modal-body" style="margin: 15px;">
+				<div id="form_container1">
+					<input type="text" class="form-control" placeholder="手机号/用户名" id="login_number" value="admin" style="margin-bottom: 30px" />
+					<input type="password" class="form-control" placeholder="密码" id="login_password" />
+					<div id="rememberOrfindPwd"><span><input id="remember" type="checkbox" style="margin-bottom: -1.5px;"></span><span style="color:#000000;    margin-right: 80px;">记住密码</span><span style="color:#000000">忘记密码</span></div>
+					<div style="text-align: center;margin-top: 5px;margin-bottom: 28px;"><input type="button" value="登录" class="button" id="login_btn" /></div>
+				</div>
+				<div style="margin-top: 50px;text-align: center;"><p>还没有账号?<a id='toRegist'>立即注册</a></p></div>
+				<div class="social">
+					<p>用其它方式登陆</p>
+					<a href=""><img src="img/icon/qq.png" alt="qq"></a>
+					<a href=""><img src="img/icon/weixin.png" alt="weixin"></a>
+					<a href=""><img src="img/icon/weibo.png" alt="weibo"></a>
+				</div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+<div class="modal fade" id="regist1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	<div class="modal-dialog" style="width: 400px;margin-top: 5%;">
+		<div class="modal-content" style="background-color: #eeeeeead;">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close-reg" style="display: none">&times;</button>
+			<div class="modal-body" style="margin: 15px;">
+				<div id="form_container2" style="padding-top: 25px;">
+					<input type="text" class="form-control" value="admin"  placeholder="用户名" id="regist_account"style="margin-bottom: 30px" />
+					<input type="password" class="form-control" placeholder="密码" id="regist_password1" style="margin-bottom: 30px"  />
+					<input type="password" class="form-control" placeholder="确认密码" id="regist_password2" style="margin-bottom: 30px"  />
+					<input type="text" class="form-control" placeholder="手机号" id="regist_phone" style="margin-bottom: 30px"  />
+					<input type="text" class="form-control" placeholder="验证码" id="regist_vcode" style="margin-bottom: 30px"  />
+					<!--<button id="getVCode" type="button" class="btn btn-success" >获取验证码</button>-->
+					<input id="getVCode" type="button" class="btn btn-success" value="点击发送验证码" onclick="sendCode(this)" style="margin-bottom: 30px"  />
+				</div>
+				<input type="button" value="注册" class="btn btn-success" id="regist_btn" style="margin-bottom: 30px"  />
+				<div style="text-align: center;"><p>已有账号?<a id='toLogin'>立即登陆</a></p></div>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
+
+<!--<改成getscript?v=2.0不是api?v=2.0" >-->
+<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
+<script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
+<script type="text/javascript">
+    //登录到注册
+    $(function () { $('#collapseOne').collapse('hide')});
+    $("#toRegist").on('click',function(){
+        $("#close-login").trigger("click");
+        $('#regist1').modal();
+    });
+
+    //注册到登录
+    $("#toLogin").on('click',function(){
+        $("#close-reg").trigger('click');
+        $('#login1').modal();
+    });
+    var clock = '';
+    var nums = 30;
+    var btn;
+    function sendCode(thisBtn) {
+        btn = thisBtn;
+        btn.disabled = true; //将按钮置为不可点击
+        btn.value = '重新获取（'+nums+'）';
+        clock = setInterval(doLoop, 1000); //一秒执行一次
+    }
+
+    function doLoop() {
+        nums--;
+        if (nums > 0) {
+            btn.value = '重新获取（'+nums+'）';
+        } else {
+            clearInterval(clock); //清除js定时器
+            btn.disabled = false;
+            btn.value = '点击发送验证码';
+            nums = 10; //重置时间
+        }
+    }
+
+    $(document).ready(function(){
+        $("#login_QQ").click(function(){
+            alert("暂停使用！");
+        });
+        $("#login_WB").click(function(){
+            alert("暂停使用！");
+        });
+    });
+    $(function () {
+        $('#myTab2 a:last').tab('show')
+    })
+</script>
+<script type="text/javascript">
+    // 百度地图API功能
+    var map = new BMap.Map("emap");
+    var point = new BMap.Point(116.331398,39.897445);
+    // var place = {{ shops.shop_detail_address }}
+    map.centerAndZoom( point,12);
+    // 创建地址解析器实例
+    var myGeo = new BMap.Geocoder();
+    // 将地址解析结果显示在地图上,并调整地图视野
+    myGeo.getPoint("上海华东理工大学奉贤校区", function(point) {
+        if (point){
+            map.centerAndZoom(point, 16);
+            map.addOverlay(new BMap.Marker(point));
+        } else {
+            alert("您选择地址没有解析到结果!");
+        }
+    }, "北京市");
+</script>
+
+<script>
+    //显示分数
+    $(".show_number li p").each(function(index, element) {
+        var num=$(this).attr("tip");
+        var www=num*2*8;//
+        $(this).css("width",www);
+        // $(this).parent(".atar_Show").siblings("span").text(num+"分");
+    });
+</script>
+
+<script src="{% static 'js/move.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
+<script src="{% static 'js/citySelect.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/swiper.min.js' %}" type="text/javascript"></script>
+
+</body>
+</html>

@@ -26,8 +26,7 @@ $(function(){
                 $(this).css("background-color","#f1f3f6");
                 //加载城市列表
                 for(let j=0;j<arr2[$(this).index()].length;j++){
-                    $('.dropCityUl').append("<li class='dropCityLi'>"+arr2[$(this).index()][j]+"</li>");
-
+                    $('.dropCityUl').append("<a href='/service/\"+arr2[$(this).index()][j]+\"'><li class='dropCityLi'>"+arr2[$(this).index()][j]+"</li></a>");
                 }
                 //选择城市
                 $('.dropCityLi').on("click", function () {

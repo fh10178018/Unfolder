@@ -1,3 +1,10 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -108,7 +115,6 @@ class AuthUserGroups(models.Model):
         unique_together = (('user', 'group'),)
 
 
-
 class AuthUserUserPermissions(models.Model):
     user = models.ForeignKey(AuthUser, models.DO_NOTHING)
     permission = models.ForeignKey(AuthPermission, models.DO_NOTHING)
@@ -131,8 +137,10 @@ class Categories(models.Model):
 
 class Cities(models.Model):
     cityid = models.AutoField(primary_key=True)
-    city = models.CharField(max_length=255)
-    encity = models.CharField(max_length=255)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    field_province = models.CharField(db_column='\r\nprovince', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    field_region = models.CharField(db_column='\r\nregion', max_length=255, blank=True, null=True)  # Field renamed to remove unsuitable characters. Field renamed because it started with '_'.
+    en = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
@@ -181,6 +189,17 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
+
+
+class ExtraTag(models.Model):
+    tag_id = models.AutoField(primary_key=True)
+    tag_main_name = models.CharField(max_length=255)
+    tag_name = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'extra_tag'
+        unique_together = (('tag_id', 'tag_name'),)
 
 
 class IndexContents(models.Model):
@@ -262,10 +281,10 @@ class ShopGoods(models.Model):
 
 class ShopMessage(models.Model):
     shop_message_num = models.AutoField(primary_key=True)
-    shop_content_user = models.IntegerField()
-    tag_libary = models.CharField(max_length=255)
+    shop_content_user = models.CharField(max_length=255)
+    tag_libary = models.ForeignKey(ExtraTag, models.DO_NOTHING, db_column='tag_libary')
     content = models.CharField(max_length=255)
-    prade = models.IntegerField()
+    prade = models.FloatField()
     creation_time = models.DateTimeField()
     code5 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code5')
 
@@ -323,7 +342,6 @@ class Shops(models.Model):
     class Meta:
         managed = False
         db_table = 'shops'
-
 class Webviews(models.Model):
     time = models.DateField(blank=True, null=True)
     adminview = models.IntegerField(blank=True, default=0)

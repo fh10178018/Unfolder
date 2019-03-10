@@ -1013,19 +1013,19 @@ JavaScript Disabled
 /*内容样式*/
 
 .slide1 {
-  background: #000 url(../img/banners1.jpg) no-repeat ;
+  background: #000 url(../img/banner1.jpg) no-repeat ;
   background-size: auto 100%;
 }
 
 
 .slide2 {
-  background: #f3f3f3 url(../img/banners2.jpg) no-repeat center ;
+  background: #f3f3f3 url(../img/banner2.jpg) no-repeat center ;
   background-size: auto 100%;
 }
 
 
 .slide3 {
-  background: #fff url(../img/banners3.jpg) no-repeat center ;
+  background: #fff url(../img/banner3.jpg) no-repeat center ;
   background-size: auto 100%;
 }
 
@@ -1176,7 +1176,10 @@ JavaScript Disabled
   white-space: nowrap;
   margin-top: 10px;
 }
-
+.dropdown a{
+  color: black;
+  text-decoration:none;
+}
 .citylist{
   border: 1px solid #e3e3e3;
   width: 195px;
@@ -1414,6 +1417,37 @@ ol, ul {
 .citysearch{
   border-bottom: 1px solid #E5E5E5;
   padding: 30px;
+}
+.categories{
+  width: 380px;
+  padding-bottom: 18px;
+}
+.catego{
+  border-radius: 100px;
+  background: #13D1BE;
+  color: #FFF;
+  padding: 0 10px;
+  line-height: 22px;
+}
+.cat{
+  line-height: 28px;
+  margin-top: -3px;
+}
+.catss a{
+  padding: 0;
+  font-size: 12px;
+  float: left;
+  width: 80px;
+  margin-right: 5px;
+  color: #515151;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-top: 10px;
+}
+.tag-solid{
+  border-radius: 100px;
+  background: #13D1BE;
+  color: #FFF;
 }
 .inland{
   border: 2px #ffe165 solid;
@@ -1698,3 +1732,76 @@ ol, ul {
   word-break: break-all;
   word-wrap: break-word;
 }
+
+.sa ul.nav-tabs{
+  width: 250px;
+  margin-top: 20px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+
+}
+.sa ul.nav-tabs li{
+  margin: 0;
+  border-top: 1px solid #ddd;
+}
+.sa ul.nav-tabs li:first-child{
+  border-top: none;
+}
+.sa ul.nav-tabs li a{
+  margin: 0;
+  padding: 8px 16px;
+  border-radius: 0;
+}
+.sa ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover{
+  color: #fff;
+  background: #0088cc;
+  border: 1px solid #0088cc;
+}
+.sa ul.nav-tabs li:first-child a{
+  border-radius: 4px 4px 0 0;
+}
+.sa ul.nav-tabs li:last-child a{
+  border-radius: 0 0 4px 4px;
+}
+.sa ul.nav-tabs.affix{
+  box-shadow: 0 5px 14px 0 rgba(0,0,0,.19);
+  top: 80px; /* Set the top position of pinned element */
+}
+.address-info{
+  margin-top: 6px;
+}
+
+.item-bottom-info {
+  line-height: 20px;
+  margin-top: 6px;
+}
+
+ .item-bottom-info .item-price-info {
+  float: left;
+  color: #F60;
+  font-size: 15px;
+}
+
+ .xc a span{
+   background: #FB6433;
+   border-radius: 2px;
+   position: absolute;
+   line-height: 13px;
+   width: 20px;
+   margin-left: -3px;
+   margin-top: 3px;
+   text-align: center;
+   font-size: 12px;
+   color: #fff;
+ }
+
+ .shaixuan{
+   font-size: 15px;
+   line-height: 30px;
+   display: inline-block
+ }
+ .shaixuan a{
+   color: black;
+   text-decoration: none;
+   margin-right:15px;
+ }

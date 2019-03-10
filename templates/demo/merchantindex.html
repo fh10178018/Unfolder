@@ -32,31 +32,31 @@
 	</div>
 </div>
 <header class="cd-main-header animate-search">
-	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
 	<nav class="cd-main-nav-wrapper">
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">上海
+				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
 					<div class="group">
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
 						<div class="citya" style="padding-left: 10px;">
-							<a class="cities">上海</a>
-							<a class="cities">北京</a>
-							<a class="cities">广州</a>
-							<a class="cities">深圳</a>
-							<a class="cities">天津</a>
-							<a class="cities">杭州</a>
-							<a class="cities">南京</a>
-							<a class="cities">苏州</a>
-							<a class="cities">成都</a>
-							<a class="cities">武汉</a>
-							<a class="cities">重庆</a>
-							<a class="cities">西安</a>
+							<a href="/service/上海" class="cities">上海</a>
+							<a href="/service/北京" class="cities">北京</a>
+							<a href="/service/广州" class="cities">广州</a>
+							<a href="/service/深圳" class="cities">深圳</a>
+							<a href="/service/天津" class="cities">天津</a>
+							<a href="/service/杭州" class="cities">杭州</a>
+							<a href="/service/南京" class="cities">南京</a>
+							<a href="/service/苏州" class="cities">苏州</a>
+							<a href="/service/成都" class="cities">成都</a>
+							<a href="/service/武汉" class="cities">武汉</a>
+							<a href="/service/重庆" class="cities">重庆</a>
+							<a href="/service/西安" class="cities">西安</a>
 						</div>
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;margin-top: 5px">国外城市</h3>
 						<div class="citya" style="padding-left: 10px;">
@@ -65,7 +65,7 @@
 							<a class="cities">曼谷</a>
 							<a class="cities">巴黎</a>
 						</div>
-						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="#">更多城市 ></a>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities">更多城市 ></a>
 					</div>
 				</div>
 			</li>
