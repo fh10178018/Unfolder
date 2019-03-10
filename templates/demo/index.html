@@ -135,8 +135,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="whitebox">
-					<div class="boxheader"><img src="{% static 'img/icon/food.png' %}" style=" vertical-align: middle;"><span class="boxheadertext">美食</span><a>全部 ></a></div>
+				<div class="whitebox" style="padding: 0;">
+					<div class="boxheader" style="border-top-right-radius: 5px; border-top-left-radius: 5px;background-color:#fde0a3"><img src="{% static 'img/icon/food.png' %}" style=" vertical-align: middle;"><span class="boxheadertext">美食</span><a>全部 ></a></div>
 					<div class="boxmodal">
                         {% for line in shopsfood %}
                             {% if line.code1.city.city == city %}
@@ -163,7 +163,7 @@
                                     条点评</span>
 									</div>
 									<div class="area-info">
-										<span class="region-name" style="float: right;    overflow: hidden; width: 26%;text-overflow: ellipsis;">{{ line.code1.shop_detail_address }}</span>
+										<span class="region-name" style="float: right">{{ line.code1.city.field_region }}</span>
 										<span class="maincate-name">
                                             {{ line.tag_num.cat_detaill_name }}
                                         </span>
@@ -181,8 +181,8 @@
 				</div>
 			</div>
 			<div class="col-md-6">
-				<div class="whitebox">
-					<div class="boxheader"><img src="img/icon/happy.png" style=" vertical-align: middle;"><span class="boxheadertext">休闲娱乐</span><a>全部 ></a></div>
+				<div class="whitebox" style="padding: 0">
+					<div class="boxheader" style="border-top-right-radius: 5px; border-top-left-radius: 5px;background-color:#e8caff"><img src="{% static 'img/icon/happy.png' %}" style=" vertical-align: middle;"><span class="boxheadertext">休闲娱乐</span><a>全部 ></a></div>
 					<div class="boxmodal">
 						{% for line in shopssport %}
                             {% if line.code1.city.city == city %}
@@ -209,7 +209,7 @@
                                     条点评</span>
 									</div>
 									<div class="area-info">
-										<span class="region-name" style="float: right;    overflow: hidden; width: 26%;text-overflow: ellipsis;">{{ line.code1.shop_detail_address }}</span>
+										<span class="region-name" style="float: right;">{{ line.code1.city.field_region }}</span>
 										<span class="maincate-name">
                                             {{ line.tag_num.cat_detaill_name }}
                                         </span>
@@ -226,6 +226,21 @@
 					</div>
 				</div>
 			</div>
+        <div class="col-md-12" style="margin-top: 20px">
+            <div class="whitebox" style="padding: 0">
+            <div class="boxheader" style="border-top-right-radius: 5px; border-top-left-radius: 5px;background: linear-gradient(to right, rgb(250, 60, 104) 2%, rgb(254, 70, 77) 97%) rgb(250, 60, 104);    line-height: 45px;"><span class="boxheadertext" style="margin-left: 20px">电影</span><ul><li><a>正在热映</a></li><li><a>即将上映</a></li></ul></div>
+                <div id="LoopDiv">
+	<input id="S_Num" type="hidden" value="8" />
+	<div id="starsIF" class="imageflow">
+        {% for y in film %}
+		    <img src="/static/{{ y.film_pic }}" longdesc="#" width="280" height="300" alt="Picture" />
+            <div class="film-info"><p class="film-score">{% if y.film_prade == 0 %}<b>观众评  <span>{{ y.film_prade }}</span></b>{% else %}<b><span>{{ y.film_like }}</span>  想看</b>{% endif %}</p><p class="film-name">绿皮书</p><span class="buy-ticket">购票</span></div>
+        {% endfor %}
+	</div>
+</div>
+<div class="clear"></div>
+            </div>
+        </div>
 		</div>
 	</div>
 </section>
@@ -382,6 +397,7 @@
 
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
 <script src="{% static 'js/citySelect.js' %}"></script>
+<script src="{% static 'js/imageflow.js' %}"></script>
 <script src="{% static 'js/swiper.min.js' %}"></script>
 
 

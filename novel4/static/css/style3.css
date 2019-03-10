@@ -1188,9 +1188,40 @@ JavaScript Disabled
 .whitebox{
   padding: 5px;
   background-color: white;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid #e5e5e5;
 }
 .boxheader{
   margin-bottom: 10px;
+}
+.boxheader ul{
+  display: inline-block;
+}
+.boxheader ul li{
+  display: inline-block;
+  margin-left: 20px;
+}
+.boxheader ul li a{
+  position: inherit;
+  width: 100%;
+  font-size: 18px;
+  color: azure;
+  text-decoration: none;
+}
+.nav-item.active:after {
+    position: absolute;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 7px solid #fff;
+    content: " ";
+    display: block;
+    width: 2px;
+    height: 0;
+    top: 37px;
+    left: 0;
+    right: 0;
+    margin: auto;
 }
 .boxheader a{
   position: absolute;
@@ -1216,10 +1247,14 @@ JavaScript Disabled
 }
 .boxelment{
   height: 190px;
+  width: 170px;
   padding: 0 10px;
   display: inline-block;
   position: relative;
   margin-bottom: 10px;
+}
+.boxmodal{
+      padding: 5px;
 }
 .shops{
   display: block;
@@ -1805,3 +1840,72 @@ ol, ul {
    text-decoration: none;
    margin-right:15px;
  }
+
+
+
+.mKeBanner,.mKeBanner div{text-align:center;}
+.imageflow img{ -webkit-box-shadow: 2px 2px 2px 2px hsla(0,0%,0%,0.1); box-shadow: 2px 2px 2px 2px hsla(0,0%,0%,0.1); }
+.imageflow{overflow:hidden; position:relative; text-align:left; visibility:hidden; width:100%; margin:0 auto}
+.imageflow img{border:none; position:absolute; top:0px; visibility:hidden; -ms-interpolation-mode:bicubic}
+.imageflow p{margin:0 auto; text-align:center}
+.imageflow .loading{border:1px solid #ccc; height:15px; left:50%; margin-left:-106px; padding:5px; position:relative; visibility:visible; width:200px}
+.imageflow .loading_bar{background:#ccc; height:15px; visibility:visible; width:1%}
+.imageflow .caption{font-weight:bold; position:relative; text-align:center; z-index:10000}
+.imageflow .scrollbar{border-bottom:1px solid #b3b3b3; position:relative; visibility:hidden; z-index:10001; height:1px}
+.imageflow .slider{ background-repeat:no-repeat; height:14px; margin:-6px 0 0 -7px; position:absolute; width:14px; z-index:10002}
+.imageflow .images{overflow:hidden; white-space:nowrap}
+.imageflow .button{cursor:pointer; height:17px; position:relative; width:17px}
+.imageflow .previous{ float:left; margin:-7px 0 0 -30px}
+.imageflow .next{float:right; margin:-7px -30px 0 30px}
+
+ .film-info {
+   z-index: 20;
+    height: 100px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-image: linear-gradient(-180deg,rgba(0,0,0,0) 0,rgba(227, 230, 232, 0.8) 99%);
+}
+ .film-info .film-score {
+    font-size: 12px;
+    color: #fff;
+    text-align: left;
+    margin-top: 48px;
+    padding-left: 10px;
+    font-weight: 500;
+}
+
+ .film-info .film-name {
+    text-align: left;
+    color: #fff;
+    padding-left: 10px;
+    font-size: 16px;
+    white-space: nowrap;
+    width: 6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+}
+
+ .film-info .buy-ticket {
+    background: #FF4949;
+    border-radius: 100px;
+    color: #fff;
+    padding: 2px 12px 3px;
+    font-size: 14px;
+    position: relative;
+    top: -24px;
+    cursor: pointer;
+    line-height: 20px;
+    text-align: center;
+    float: right;
+    right: 10px;
+}
+
+.film-info .film-score span {
+    font-size: 16px;
+    color: #FD9827;
+    font-weight: 500;
+}

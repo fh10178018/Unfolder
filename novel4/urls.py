@@ -9,6 +9,6 @@ urlpatterns = [
     path(r'<str:city>/',views.home,name='home'),
     url(r'^shop/(\d+).html$', views.shop,name='shop'),
     url(r'^s/(\w+).html$', views.categories,name='categories'),
-    url(r'^cities$', views.citylist,name='city'),
+
     url(r'^map$',views.map,name='map'),
 ]
