@@ -110,4 +110,4 @@ def search(request):
     print (answer,select)
     return redirect('/service/s/'+answer)
 
-def 
+
