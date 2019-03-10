@@ -244,6 +244,14 @@ class Shop(models.Model):
         managed = False
         db_table = 'shop'
 
+class ShopEnvironmentPic(models.Model):
+    shop_num = models.IntegerField(primary_key=True)
+    code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
+    pic1 = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'shop_environment_pic'
 
 class ShopEnvironmentPicCopy(models.Model):
     shop_num = models.IntegerField(primary_key=True)
@@ -254,6 +262,13 @@ class ShopEnvironmentPicCopy(models.Model):
         managed = False
         db_table = 'shop_environment_pic_copy'
 
+class ShopExtraTag(models.Model):
+    tag_num = models.ForeignKey(ExtraTag, models.DO_NOTHING, db_column='tag_num')
+    code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
+
+    class Meta:
+        managed = False
+        db_table = 'shop_extra_tag'
 
 class ShopFood(models.Model):
     code = models.ForeignKey(Shop, models.DO_NOTHING, db_column='code')
@@ -304,6 +319,7 @@ class ShopOfficialPic(models.Model):
 
 
 class ShopTag(models.Model):
+    id = models.AutoField(primary_key=True)
     tag_num = models.ForeignKey(Categories, models.DO_NOTHING, db_column='tag_num')
     code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
 
@@ -342,6 +358,7 @@ class Shops(models.Model):
     class Meta:
         managed = False
         db_table = 'shops'
+
 class Webviews(models.Model):
     time = models.DateField(blank=True, null=True)
     adminview = models.IntegerField(blank=True, default=0)
