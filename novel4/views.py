@@ -18,7 +18,7 @@ from django.shortcuts import redirect
 import urllib.request
 import json
 import requests
-import ajax
+
 
 # Create your views here.
 def convert_to_dict(obj):
@@ -33,7 +33,10 @@ def locationshop(request):
     shopsfilm = ShopTag.objects.filter(tag_num=29)  # 影院
     shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
     shopmessage = ShopMessage.objects.filter()
-    return render(request, 'demo/index.html', {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city,'shopssport':shopssport})
+    film = Film.objects.filter().order_by('-film_showtime')[:6]
+    return render(request, 'demo/index.html',
+                  {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city, 'film': film,
+                   'shopssport': shopssport})
 
 def home(request,city):
     if city!= 'cities':
@@ -42,8 +45,6 @@ def home(request,city):
         shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
         shopmessage = ShopMessage.objects.filter()
         film = Film.objects.filter().order_by('-film_showtime')[:6]
-        for l in film:
-            print (l)
         return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
     else:
         cities = Cities.objects.filter()
