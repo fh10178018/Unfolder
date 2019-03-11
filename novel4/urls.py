@@ -12,6 +12,9 @@ urlpatterns = (
 
     url(r'^map$', views.map, name='map'),
     url(r'^shop/search$', views.search, name='search1'),
+    url(r'^user/login$', views.login, name='login'),
+    url(r'^user/regist$', views.regist, name='regist'),
+    url(r'^user/logout$', views.logout, name='logout'),
 
     url(r'^login/$', views.login),
     # url(r'^log_out/$', views.log_out),

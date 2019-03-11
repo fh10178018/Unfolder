@@ -19,7 +19,7 @@ from django.shortcuts import redirect
 import urllib.request
 import json
 import requests
-import ajax
+
 
 # Create your views here.
 def convert_to_dict(obj):
@@ -29,31 +29,38 @@ def convert_to_dict(obj):
     return dict
 
 def locationshop(request):
-    city = '上海'
+    if request.session.get('username') is None:
+        request.session['city'] = '上海'
+        city = '上海'
+    else:
+        city=request.session['city']
     shopsfood = ShopTag.objects.filter(tag_num__lte=28)  # 美食类（__lte小于等于，__gte大于等于）
     shopsfilm = ShopTag.objects.filter(tag_num=29)  # 影院
     shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
     shopmessage = ShopMessage.objects.filter()
-    return render(request, 'demo/index.html', {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city,'shopssport':shopssport})
+    film = Film.objects.filter().order_by('-film_showtime')[:6]
+    return render(request, 'demo/index.html',
+                  {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city, 'film': film,
+                   'shopssport': shopssport})
 
 def home(request,city):
     if city!= 'cities':
+        request.session['city'] = city
         shopsfood=ShopTag.objects.filter(tag_num__lte=28)    # 美食类（__lte小于等于，__gte大于等于）
         shopsfilm=ShopTag.objects.filter(tag_num=29)      # 影院
         shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
         shopmessage = ShopMessage.objects.filter()
         film = Film.objects.filter().order_by('-film_showtime')[:6]
-        for l in film:
-            print (l)
         return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
     else:
+        if request.session.get('username') is None:
+            request.session['city'] = '上海'
         cities = Cities.objects.filter()
         newcity={}
         xcity={}
         for item in cities:
             newcity[item.city]=newcity.get(item.city,item.en)
             xcity[item.city]=xcity.get(item.city,item.en[:1])
-        print (xcity)
         return render(request, 'demo/citylist.html', {'city': cities,'context':newcity,'xcity':xcity})
 
 def getHTMLText(url):
@@ -67,6 +74,8 @@ def getHTMLText(url):
 
 
 def shop(request,id):
+    if request.session.get('username') is None:
+        request.session['city'] = '上海'
     view=Shops.objects.get(shop_num=id)
     com=ShopMessage.objects.filter(code5=id)
     num=ShopMessage.objects.filter(code5=id).count()
@@ -122,31 +131,15 @@ def map(request):
 def search(request):
     answer = request.POST.get('search11','')
     select = request.POST.get('select-category','')
-    if not answer:
-        request.session['error'] = 1
-        print(request.path)
-        return request(request,request.path)
-    else:
-        return redirect('/service/s/'+answer+'?cat='+select)
+    print (answer,select)
+    return redirect('/service/s/'+answer)
 
-def my_view(request):
-  username = request.POST['login_number']
-  password = request.POST['login_password']
-  print (username,password)
-  # user = authenticate(username=username, password=password)
-  # if user:
-  #   login(request, user)
-  #   # Redirect to a success page.
-  #   ...
-  # else:
-  #   # Return an 'invalid login' error message.
-  #   ...
 
-def logout_view(request):
-  logout(request)
-  # Redirect to a success page.
+def logout(request):
+    return redirect('/service/')
 
-def ajax_submit(request):
-    username = request.POST.get('username','')
-    print(username)  # 客户端发来的数据
-    return render(request, 'demo/merchantindex.html')
+def registe(request):
+    return redirect('/service/')
+
+def login(request):
+    return redirect('/service/')

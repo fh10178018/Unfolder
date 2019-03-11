@@ -38,7 +38,7 @@
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">{{ city }}
+				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
@@ -229,16 +229,15 @@
         <div class="col-md-12" style="margin-top: 20px">
             <div class="whitebox" style="padding: 0">
             <div class="boxheader" style="border-top-right-radius: 5px; border-top-left-radius: 5px;background: linear-gradient(to right, rgb(250, 60, 104) 2%, rgb(254, 70, 77) 97%) rgb(250, 60, 104);    line-height: 45px;"><span class="boxheadertext" style="margin-left: 20px">电影</span><ul><li><a>正在热映</a></li><li><a>即将上映</a></li></ul></div>
-                <div id="LoopDiv">
-	<input id="S_Num" type="hidden" value="8" />
-	<div id="starsIF" class="imageflow">
+            <div class="lunbo">
+
+   <ul class="vmcarousel-centered-infitine vmc-centered">
         {% for y in film %}
-		    <img src="/static/{{ y.film_pic }}" longdesc="#" width="280" height="300" alt="Picture" />
-            <div class="film-info"><p class="film-score">{% if y.film_prade == 0 %}<b>观众评  <span>{{ y.film_prade }}</span></b>{% else %}<b><span>{{ y.film_like }}</span>  想看</b>{% endif %}</p><p class="film-name">绿皮书</p><span class="buy-ticket">购票</span></div>
+		<li><img alt="" src="/static/{{ y.film_pic }}" /><div class="film-info"><p class="film-score">{% if y.film_prade != 0 %}<b>观众评  <span>{{ y.film_prade }}</span></b>{% else %}<b><span>{{ y.film_like }}</span>  想看</b>{% endif %}</p><p class="film-name">{{ y.film_name }}</p><span class="buy-ticket"><a>购票</a></span></div></li>
         {% endfor %}
-	</div>
-</div>
-<div class="clear"></div>
+   </ul>
+
+            </div>
             </div>
         </div>
 		</div>
@@ -397,9 +396,21 @@
 
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
 <script src="{% static 'js/citySelect.js' %}"></script>
-<script src="{% static 'js/imageflow.js' %}"></script>
-<script src="{% static 'js/swiper.min.js' %}"></script>
+<script src="{% static 'js/jquery.vm-carousel.js' %}"></script>
 
+<script src="{% static 'js/swiper.min.js' %}"></script>
+<script type="text/javascript">
+	jQuery(function($){
+
+		  $('.vmcarousel-centered-infitine').vmcarousel({
+			 centered: true,
+			 start_item: 1,
+			 autoplay: false,
+			 infinite: true
+		  });
+
+	   });
+</script>
 
 </body>
 </html>
