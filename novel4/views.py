@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage, InvalidPage
 from django.http import HttpResponse,HttpResponseRedirect
+from django.contrib.auth import authenticate, login,logout
 from novel4.models import Shops
 from novel4.models import ShopMessage
 from novel4.models import ShopGoods
@@ -98,8 +99,22 @@ def shop(request,id):
 
 
 def categories(request,sousuo):
-    print (sousuo)
-    return render(request,'demo/categories.html')
+    cat = request.GET['cat']
+    print (cat)
+    error_msg = ''
+    if not sousuo:
+        error_msg = '请输入关键词'
+        return render(request,'demo/categories.html',{'error':error_msg})
+    print (sousuo,cat)
+    if cat == "all-categories":
+        instruction1 = Shops.objects.filter( Q(shop_name__icontains=sousuo)|Q(shop_detail_address__contains=sousuo) )
+    elif cat == "category1":
+        instruction1 = Shops.objects.filter(shop_detail_address__contains=sousuo)
+    elif cat == "category2":
+        instruction1 = Shops.objects.filter(shop_name__icontains=sousuo)
+    for line in instruction1:
+        print(line.shop_name)
+    return render(request,'demo/categories.html',{'sgst':instruction1})
 
 def map(request):
     return render(request,'demo/map.html')
@@ -107,7 +122,31 @@ def map(request):
 def search(request):
     answer = request.POST.get('search11','')
     select = request.POST.get('select-category','')
-    print (answer,select)
-    return redirect('/service/s/'+answer)
+    if not answer:
+        request.session['error'] = 1
+        print(request.path)
+        return request(request,request.path)
+    else:
+        return redirect('/service/s/'+answer+'?cat='+select)
 
+def my_view(request):
+  username = request.POST['login_number']
+  password = request.POST['login_password']
+  print (username,password)
+  # user = authenticate(username=username, password=password)
+  # if user:
+  #   login(request, user)
+  #   # Redirect to a success page.
+  #   ...
+  # else:
+  #   # Return an 'invalid login' error message.
+  #   ...
 
+def logout_view(request):
+  logout(request)
+  # Redirect to a success page.
+
+def ajax_submit(request):
+    username = request.POST.get('username','')
+    print(username)  # 客户端发来的数据
+    return render(request, 'demo/merchantindex.html')
