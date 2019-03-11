@@ -28,7 +28,11 @@ def convert_to_dict(obj):
     return dict
 
 def locationshop(request):
-    city = '上海'
+    if request.session.get('username') is None:
+        request.session['city'] = '上海'
+        city = '上海'
+    else:
+        city=request.session['city']
     shopsfood = ShopTag.objects.filter(tag_num__lte=28)  # 美食类（__lte小于等于，__gte大于等于）
     shopsfilm = ShopTag.objects.filter(tag_num=29)  # 影院
     shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
@@ -40,6 +44,7 @@ def locationshop(request):
 
 def home(request,city):
     if city!= 'cities':
+        request.session['city'] = city
         shopsfood=ShopTag.objects.filter(tag_num__lte=28)    # 美食类（__lte小于等于，__gte大于等于）
         shopsfilm=ShopTag.objects.filter(tag_num=29)      # 影院
         shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
@@ -47,13 +52,14 @@ def home(request,city):
         film = Film.objects.filter().order_by('-film_showtime')[:6]
         return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
     else:
+        if request.session.get('username') is None:
+            request.session['city'] = '上海'
         cities = Cities.objects.filter()
         newcity={}
         xcity={}
         for item in cities:
             newcity[item.city]=newcity.get(item.city,item.en)
             xcity[item.city]=xcity.get(item.city,item.en[:1])
-        print (xcity)
         return render(request, 'demo/citylist.html', {'city': cities,'context':newcity,'xcity':xcity})
 
 def getHTMLText(url):
@@ -67,6 +73,8 @@ def getHTMLText(url):
 
 
 def shop(request,id):
+    if request.session.get('username') is None:
+        request.session['city'] = '上海'
     view=Shops.objects.get(shop_num=id)
     com=ShopMessage.objects.filter(code5=id)
     num=ShopMessage.objects.filter(code5=id).count()
@@ -99,6 +107,9 @@ def shop(request,id):
 
 
 def categories(request,sousuo):
+    if request.session.get('username') is None:
+        request.session['city'] = '上海'
+        city='上海'
     print (sousuo)
     return render(request,'demo/categories.html')
 
@@ -112,3 +123,11 @@ def search(request):
     return redirect('/service/s/'+answer)
 
 
+def logout(request):
+    return redirect('/service/')
+
+def registe(request):
+    return redirect('/service/')
+
+def login(request):
+    return redirect('/service/')

@@ -1841,28 +1841,9 @@ ol, ul {
    margin-right:15px;
  }
 
-
-
-.mKeBanner,.mKeBanner div{text-align:center;}
-.imageflow img{ -webkit-box-shadow: 2px 2px 2px 2px hsla(0,0%,0%,0.1); box-shadow: 2px 2px 2px 2px hsla(0,0%,0%,0.1); }
-.imageflow{overflow:hidden; position:relative; text-align:left; visibility:hidden; width:100%; margin:0 auto}
-.imageflow img{border:none; position:absolute; top:0px; visibility:hidden; -ms-interpolation-mode:bicubic}
-.imageflow p{margin:0 auto; text-align:center}
-.imageflow .loading{border:1px solid #ccc; height:15px; left:50%; margin-left:-106px; padding:5px; position:relative; visibility:visible; width:200px}
-.imageflow .loading_bar{background:#ccc; height:15px; visibility:visible; width:1%}
-.imageflow .caption{font-weight:bold; position:relative; text-align:center; z-index:10000}
-.imageflow .scrollbar{border-bottom:1px solid #b3b3b3; position:relative; visibility:hidden; z-index:10001; height:1px}
-.imageflow .slider{ background-repeat:no-repeat; height:14px; margin:-6px 0 0 -7px; position:absolute; width:14px; z-index:10002}
-.imageflow .images{overflow:hidden; white-space:nowrap}
-.imageflow .button{cursor:pointer; height:17px; position:relative; width:17px}
-.imageflow .previous{ float:left; margin:-7px 0 0 -30px}
-.imageflow .next{float:right; margin:-7px -30px 0 30px}
-
  .film-info {
-   z-index: 20;
-    height: 100px;
     width: 100%;
-    position: absolute;
+   max-width: 200px;
     bottom: 0;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
@@ -1872,7 +1853,7 @@ ol, ul {
     font-size: 12px;
     color: #fff;
     text-align: left;
-    margin-top: 48px;
+    margin-top: -48px;
     padding-left: 10px;
     font-weight: 500;
 }
@@ -1909,3 +1890,48 @@ ol, ul {
     color: #FD9827;
     font-weight: 500;
 }
+
+/* ========================================================================= *\
+    vmcarousel plugin
+\* ========================================================================= */
+
+.vmc-container{position: relative;}
+.vmc-viewport{overflow: hidden;}
+.vmc-centered img{
+      box-shadow: 2px 2px 2px 2px hsla(0,0%,0%,0.1);
+}
+
+.vmcarousel{list-style-type: none; padding: 0; margin: 0; width: 1000%;}
+.vmcarousel:after{content: ''; display: table; clear: both;}
+.vmcarousel > li{float: left;}
+.vmcarousel > li img{ display: block; margin: 0 auto; max-width: 100%;}
+
+.vmc-container.hide-controls .vmc-arrow-left, .vmc-container.hide-controls .vmc-arrow-right{display: none;}
+
+.vmc-arrow-left, .vmc-arrow-right{
+    position: absolute; top: 50%; left: -15px; width: 50px; height: 50px; margin-top: -25px; overflow: hidden;
+    opacity: 0; border-radius: 50%; transition: opacity 0.3s ease;
+    text-align: center;
+}
+.vmc-arrow-right{left: auto; right: -15px;}
+.vmc-container:hover .vmc-arrow-left, .vmc-container:hover .vmc-arrow-right{opacity: 1;}
+
+.vmc-arrow-left:after, .vmc-arrow-right:after{
+    content: ''; display: inline-block;
+    font-family: 'Glyphicons Halflings'; font-style: normal; font-weight: 400; line-height: 1; -webkit-font-smoothing: antialiased;
+	 font-size: 50px; line-height: 50px; color: white;
+    -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    text-shadow: 2px 2px #000;
+}
+.vmc-arrow-left:hover:after, .vmc-arrow-right:hover:after{color: white;}
+.vmc-arrow-left:after{content: "\e079";}
+.vmc-arrow-right:after{content: "\e080";}
+
+.vmc-container img[src$=".svg"]{width: 100% !important; height: auto !important; max-height: 100%;}
+.vmcarousel > li {
+   max-width: 200px;
+  margin: 0 auto;
+  margin-left:10px ;
+  margin-right:10px ;
+}
+.notransition{-webkit-transition: none !important; -moz-transition: none !important; -o-transition: none !important; -ms-transition: none !important; transition: none !important;}

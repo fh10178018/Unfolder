@@ -39,7 +39,7 @@
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="/service/" id="dropdownMenu1" data-toggle="dropdown">{{ city }}
+				<a  href="/service/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
@@ -177,7 +177,7 @@
 				</div>
 				<hr style="margin-top: 10px">
 				<div class="media">
-					<div class="media-left xc" style="width: 3500px;">
+					<div class="media-left xc" style="width: 230px;">
 						<a href="#"><span>1</span><img src="./img/1.jpg" class="media-object" style="height: 125px;width: 220px;    border-radius: 4px;" >
 						</a>
 					</div>
@@ -398,8 +398,6 @@
         // $(this).parent(".atar_Show").siblings("span").text(num+"分");
     });
 </script>
-
-<script src="{% static 'js/move.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
 <script src="{% static 'js/citySelect.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/swiper.min.js' %}" type="text/javascript"></script>
