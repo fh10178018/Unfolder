@@ -112,8 +112,9 @@
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="homes">
-						<form class="form-wrap">
-							<input type="text" class="form-control inp" name="name" placeholder="目的地/心情">
+						<form class="form-wrap" action="{% url 'map' %}" method="POST">
+                            {% csrf_token %}
+							<input type="search" class="form-control inp" name="search11" placeholder="目的地/心情">
 							<a href="#" class="primary-btn text-uppercase" style=" margin-top: 155px;">开始搜索</a>
 						</form>
 					</div>

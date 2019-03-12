@@ -492,7 +492,7 @@
 					<input type="text" class="form-control" placeholder="手机号/用户名" id="login_number" value="admin" style="margin-bottom: 30px" />
 					<input type="password" class="form-control" placeholder="密码" id="login_password" />
 					<div id="rememberOrfindPwd"><span><input id="remember" type="checkbox" style="margin-bottom: -1.5px;"></span><span style="color:#000000;    margin-right: 80px;">记住密码</span><span style="color:#000000">忘记密码</span></div>
-					<div style="text-align: center;margin-top: 5px;margin-bottom: 28px;"><input type="button" value="登录" class="button" id="login_btn" /></div>
+					<div style="text-align: center;margin-top: 5px;margin-bottom: 28px;"><input type="button" value="登录" class="button" id="login_btn" onclick="AjaxSubmit();" /></div>
 				</div>
 				<div style="margin-top: 50px;text-align: center;"><p>还没有账号?<a id='toRegist'>立即注册</a></p></div>
 				<div class="social">
@@ -580,24 +580,27 @@
         $('#myTab2 a:last').tab('show')
     })
 
+
+   }
 </script>
 <script type="text/javascript">
     // 百度地图API功能
     var map = new BMap.Map("emap");
-    var point = new BMap.Point(116.331398,39.897445);
+    var point = new BMap.Point({{ map1 }},{{ map2 }});
     // var place = {{ shops.shop_detail_address }}
-    map.centerAndZoom( point,12);
+    map.centerAndZoom( point ,16)
     // 创建地址解析器实例
     var myGeo = new BMap.Geocoder();
     // 将地址解析结果显示在地图上,并调整地图视野
-    myGeo.getPoint("上海华东理工大学奉贤校区", function(point) {
-        if (point){
-            map.centerAndZoom(point, 16);
-            map.addOverlay(new BMap.Marker(point));
-        } else {
-            alert("您选择地址没有解析到结果!");
-        }
-    }, "北京市");
+    map.addOverlay(new BMap.Marker(point));
+    {#myGeo.getPoint("上海市华东理工大学奉贤校区", function(point) {#}
+    {#    if (point){#}
+    {#        map.centerAndZoom(point, 16);#}
+    {#        #}
+    {#    } else {#}
+    {#        alert("您选择地址没有解析到结果!");#}
+    {#    }#}
+    //}, "北京市");
 </script>
 
 <script type="text/javascript">

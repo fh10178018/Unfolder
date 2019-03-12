@@ -121,9 +121,22 @@ def categories(request,sousuo):
         instruction1 = Shops.objects.filter(shop_detail_address__contains=sousuo)
     elif cat == "category2":
         instruction1 = Shops.objects.filter(shop_name__icontains=sousuo)
+    sdd = []
     for line in instruction1:
-        print(line.shop_name)
-    return render(request,'demo/categories.html',{'sgst':instruction1})
+        sd = []
+        print(line.shop_detail_address)
+        url1 = "http://api.map.baidu.com/geocoder/v2/?address="
+        url2 = "&output=json&ak=ZLR0ypp2MklnlZ0WHZedVQw4KUpjDwoi"
+        place = line.shop_detail_address
+        url = url1 + place + url2
+        a = getHTMLText(url)
+        sd.append(json.loads(a)['result']['location']['lng'])
+        sd.append(json.loads(a)['result']['location']['lat'])
+        sd.append(line.shop_detail_address)
+        sdd.append(sd)
+        print (sdd,sd)
+
+    return render(request,'demo/categories.html',{'sgst':instruction1,'sdd':sdd})
 
 def map(request):
     return render(request,'demo/map.html')
@@ -132,13 +145,13 @@ def search(request):
     answer = request.POST.get('search11','')
     select = request.POST.get('select-category','')
     print (answer,select)
-    return redirect('/service/s/'+answer)
+    return redirect('/service/s/' + answer + '?cat=' + select)
 
 
 def logout(request):
     return redirect('/service/')
 
-def registe(request):
+def regist(request):
     return redirect('/service/')
 
 def login(request):

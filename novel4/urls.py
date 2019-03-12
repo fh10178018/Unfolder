@@ -20,6 +20,6 @@ urlpatterns = (
     # url(r'^log_out/$', views.log_out),
 
     # path(r'^$', views.site.urls),
-    path(r'^shop/search$', views.ajax_submit),
+    #path(r'^shop/search$', views.ajax_submit),
 
 )
