@@ -41,7 +41,10 @@ INSTALLED_APPS = [
     'novel2.apps.NovelConfig',
     'novel3.apps.NovelConfig',
     'novel4.apps.NovelConfig',
+    'django_bootstrap_breadcrumbs',
 ]
+
+BREADCRUMBS_TEMPLATE = "django_bootstrap_breadcrumbs/bootstrap4.html"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,7 +110,6 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

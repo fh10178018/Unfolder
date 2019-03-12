@@ -138,7 +138,7 @@ def categories(request,sousuo):
 
     return render(request,'demo/categories.html',{'sgst':instruction1,'sdd':sdd})
 
-def map(request):
+def map(request,sousuo):
     return render(request,'demo/map.html')
 
 def search(request):
@@ -155,4 +155,7 @@ def regist(request):
     return redirect('/service/')
 
 def login(request):
+    num=request.POST.get('number','')
+    password=request.POST.get('password','')
+
     return redirect('/service/')
