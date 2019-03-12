@@ -113,7 +113,7 @@ def categories(request,sousuo):
     print (sousuo)
     return render(request,'demo/categories.html')
 
-def map(request):
+def map(request,sousuo):
     return render(request,'demo/map.html')
 
 def search(request):
@@ -126,8 +126,11 @@ def search(request):
 def logout(request):
     return redirect('/service/')
 
-def registe(request):
+def regist(request):
     return redirect('/service/')
 
 def login(request):
+    num=request.POST.get('number','')
+    password=request.POST.get('password','')
+
     return redirect('/service/')

@@ -1209,20 +1209,7 @@ JavaScript Disabled
   color: azure;
   text-decoration: none;
 }
-.nav-item.active:after {
-    position: absolute;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-bottom: 7px solid #fff;
-    content: " ";
-    display: block;
-    width: 2px;
-    height: 0;
-    top: 37px;
-    left: 0;
-    right: 0;
-    margin: auto;
-}
+
 .boxheader a{
   position: absolute;
   right: 40px;
@@ -1935,3 +1922,215 @@ ol, ul {
   margin-right:10px ;
 }
 .notransition{-webkit-transition: none !important; -moz-transition: none !important; -o-transition: none !important; -ms-transition: none !important; transition: none !important;}
+
+
+
+
+
+
+
+
+
+
+
+#page {
+  top: 50%;
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}
+.panel {
+  display: none;
+  width: 300px;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  box-shadow: inset 0 0 5px 5px #222;
+}
+
+
+#timeline {
+  width: 100%;
+   height: 400px;
+  overflow: hidden;
+  margin: 50px auto;
+  position: relative;
+}
+
+.hrLine{
+  margin-top: 72px;
+}
+
+#dates {
+  width: 760px;
+  height: 90px;
+  overflow: hidden;
+}
+
+#dates li {
+  list-style: none;
+  float: left;
+  width: 100px;
+  height: 50px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#dates > li > .onepx{
+  width: 1px;
+  height: 20px;
+  margin: 0 auto;
+  background: #eee;
+}
+
+#dates a {
+  line-height: 50px;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#dates .selected {
+  font-size: 38px;
+  line-height: 30px;
+  color: #4f96f5;
+  display: block;
+  margin-bottom: 20px;
+}
+
+#issues {
+  /* width: 800px; */
+  height: 300px;
+  overflow: hidden;
+  text-align: center
+}
+
+#issues li {
+  width: 100%;
+  height: 300px;
+  list-style: none;
+  float: left;
+  position: relative;
+}
+
+
+.timeline{
+  position: relative;
+
+}
+
+.timeline > button {
+  position: absolute;
+  border: 0;
+  outline: none;
+  top: 10px;
+  z-index: 9999;
+}
+
+.timeline > button > i{
+  display: block;
+  height: 40px;
+  width: 40px;
+}
+
+.timeline > button  > i > img{
+  float: left;
+  width: 100%;
+}
+
+.prev{
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+.dates{
+  position: absolute;
+  top: 0;
+  z-index: 999;
+}
+
+.wrap{
+  overflow: hidden;
+}
+
+.issues > li > div{
+  width: 50%;
+  display: block;
+  height: 300px;
+  position: relative;
+}
+
+.issues > li .right > h5{
+  background: url(../img/icon_pointoftime.png) no-repeat;
+  background-size: contain;
+  text-align: left;
+  padding-left: 60px;
+  font-size: 14px;
+  position: absolute;
+  left: -7px;
+  z-index: 9;
+}
+
+.issues > li .left > h5{
+  background: url(../img/icon_pointoftime.png) 89.5px 0 no-repeat;
+  background-size: contain;
+  text-align: left;
+  padding-right: 60px;
+  font-size: 14px;
+  position: absolute;
+  right: -7px;
+  z-index: 9;
+}
+
+.issues > li .right .textArea{
+  display: block;
+  margin: 50px;
+  padding: 20px;
+  background: #4F96F5;
+  color: #fff;
+  border-top-left-radius:0;
+  border-top-right-radius:12px;
+  border-bottom-right-radius:12px;
+  border-bottom-left-radius:12px;
+}
+
+.issues > li .left .textArea{
+  display: block;
+  margin: 50px;
+  padding: 20px;
+  background: #4F96F5;
+  color: #fff;
+  border-top-left-radius:12px;
+  border-top-right-radius:0;
+  border-bottom-right-radius:12px;
+  border-bottom-left-radius:12px;
+}
+
+.issues > li .left .yearLine{
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  top: 0;
+  right: 0;
+  margin:8px 0;
+}
+
+.issues > li .right .yearLine{
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  margin:8px 0;
+}
+
+.left{
+  float: left;
+  border-right: 1px #eee solid;
+}
+
+.right{
+  float: right;
+}
