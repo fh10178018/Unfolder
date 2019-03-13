@@ -32,7 +32,7 @@
 	</div>
 </div>
 <header class="cd-main-header animate-search">
-	<div class="cd-logo"><a href="#"><img src="img/logo.png" alt="Logo"></a></div>
+	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
 	<nav class="cd-main-nav-wrapper">
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
@@ -86,12 +86,31 @@
 <div class="container">
 <div class="row">
 	<div class="whitebox" style="margin-top: 20px;">
+        <div class="hero hero--map gps-bg">
+
+	<div class="gps-bg__guts">
+		<div class="gps-bg__bg"></div>
+		<div class="gps-bg__route"></div>
+		<div class="gps-bg__marker"></div>
+	</div>
+            <div class="gps-bg__fade"></div>
+            <ul id="myTab" class="hero__title">
+                <li class="active">
+                    <a href="#s1" data-toggle="tab">
+                        路线一
+                    </a>
+                </li>
+                <li><a href="#s2" data-toggle="tab">路线2</a></li>
+                <li><a href="#s3" data-toggle="tab">路线3</a></li>
+            </ul>
+
+</div>
 	<div id="timeline" class="timeline">
 		<button id="prev" class="prev">
-			<i class=""><img src="images/icon_time_arrow_left.png" alt=""></i>
+			<i class=""><img src="{% static 'img/icon_time_arrow_left.png' %}" alt=""></i>
 		</button>
 		<button id="next" class="next">
-			<i class=""><img src="images/icon_time_arrow_right.png" alt=""></i>
+			<i class=""><img src="{% static 'img/icon_time_arrow_right.png' %}" alt=""></i>
 		</button>
 		<ul id="dates" class="dates">
 			<li>
@@ -376,7 +395,6 @@
 </script>
 
 <script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
-<script src="{% static 'js/apple.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/jquery.panelslider.js' %}" type="text/javascript"></script>
 <script>
     $('#left-panel-link').panelslider();
@@ -392,7 +410,7 @@
         $().timelinr({
             autoPlay: false,
             autoPlayDirection: "forward",
-            startAt: 7,
+            startAt: 1,
             mousewheel:  'true'
         });
     });
