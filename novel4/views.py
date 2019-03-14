@@ -4,8 +4,8 @@ from django.http import HttpResponse,HttpResponseRedirect
 from novel4.models import Shops
 from novel4.models import ShopMessage
 from novel4.models import ShopGoods
-from novel4.models import ShopEnvironmentPicCopy
 from novel4.models import ShopEnvironmentPic
+from novel4.models import ShopOfficialCopy
 from novel4.models import Categories
 from novel4.models import Cities
 from novel4.models import ShopUser
@@ -16,6 +16,7 @@ from novel4.models import FilmGoods
 from django.db.models import Q
 from django.shortcuts import redirect
 import urllib.request
+import string
 import json
 import requests
 
@@ -80,7 +81,7 @@ def shop(request,id):
     num=ShopMessage.objects.filter(code5=id).count()
     menu=ShopGoods.objects.filter(code2=id)
     pic11=ShopEnvironmentPic.objects.filter(code3=id)
-    pic2=ShopEnvironmentPicCopy.objects.filter(code3=id)
+    pic2=ShopOfficialCopy.objects.filter(code3=id)
     shop={'shops':view,'mes':com,'cnt':num,'menu':menu,'pic11':pic11,'pic2':pic2}
     url1 = "http://api.map.baidu.com/geocoder/v2/?address="
     url2 = "&output=json&ak=ZLR0ypp2MklnlZ0WHZedVQw4KUpjDwoi"
@@ -114,7 +115,19 @@ def categories(request,sousuo):
     return render(request,'demo/categories.html')
 
 def map(request,sousuo):
-    return render(request,'demo/map.html')
+    lng = float(request.GET.get('lng'))
+    lat = float(request.GET.get('lat'))
+    lat = float(request.GET.get('lat'))
+    shop=Shops.objects.filter()
+    for line in shop:
+        if line.shop_lng and line.shop_lat:
+            if lng+0.01>=line.shop_lng and lng-0.01<=line.shop_lng:
+                if lat+0.01>=line.shop_lat and lat-0.01<=line.shop_lat:
+                    print (line.shop_name)
+    print (lng)
+    print (lat)
+
+    return render(request,'demo/map.html',{})
 
 def search(request):
     answer = request.POST.get('search11','')
@@ -122,6 +135,12 @@ def search(request):
     print (answer,select)
     return redirect('/service/s/'+answer)
 
+def search1(request):
+    postion = request.POST.get('postion','')
+    answer = request.POST.get('mapselect','')
+    lng = postion.split(',')[0]
+    lat = postion.split(',')[1]
+    return redirect('/service/map/'+answer+'?lng='+lng+'&lat='+lat)
 
 def logout(request):
     return redirect('/service/')
