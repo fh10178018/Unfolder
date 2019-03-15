@@ -33,13 +33,13 @@
 	</div>
 </div>
 <header class="cd-main-header animate-search">
-	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
 	<nav class="cd-main-nav-wrapper">
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="/service/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
+				<a  href="/service/{{  request.session.city }}/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
@@ -66,7 +66,7 @@
 							<a class="cities">曼谷</a>
 							<a class="cities">巴黎</a>
 						</div>
-						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities">更多城市 ></a>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities/">更多城市 ></a>
 					</div>
 				</div>
 			</li>
@@ -164,7 +164,7 @@
 				</li>
                 {% for lines in sgst %}
                     {% if forloop.counter == 1 %}
-				<li class="active"><a href="#section-{{ lines.shop_num }}">{{ lines.shop_name }}</a></li>
+				<li class="active"><a href="#section{{ lines.shop_num }}">{{ lines.shop_name }}</a></li>
                     {% elif forloop.counter <= 5 %}
 				<li><a href="#section-{{ lines.shop_num }}">{{ lines.shop_name }}</a></li>
                      {% endif %}
@@ -184,9 +184,9 @@
 				<hr style="margin-top: 10px">
                 {% for lines in sgst %}
                     {% if forloop.counter <= 5 %}
-				<div class="media"  id="section-{{ lines.shop_num }}">
+				<div class="media"  id="section{{ lines.shop_num }}">
 					<div class="media-left xc" style="width: 230px;">
-						<a href="#"><span>{{ forloop.counter }}</span><img src="/static/{{ lines.pic }}" class="media-object" style="height: 125px;width: 220px;    border-radius: 4px;" >
+						<a href="/service/shop/{{ lines.shop_num }}"><span>{{ forloop.counter }}</span><img src="/static/{{ lines.pic }}" class="media-object" style="height: 125px;width: 220px;    border-radius: 4px;" >
 						</a>
 					</div>
 					<div class="media-body" style="">
@@ -205,8 +205,10 @@
 	</div>
 </div>
 <div id="search" class="cd-main-search">
-	<form>
-		<input type="search" placeholder="搜索旅行地/酒店/景点">
+	<form action="{% url 'search1' %}" method="POST" >
+        {% csrf_token %}
+		<input type="search" placeholder="搜索旅行地/酒店/景点" class="form-vertical"  name="search1" >
+
 		<div class="cd-select">
 			<span>在</span>
 			<select name="select-category">
@@ -217,6 +219,7 @@
 			</select>
 			<span class="selected-value">所有</span>
 		</div>
+         <input  class="form-vertical" style="z-index: 100000;margin-top: 500px ;display: none" type="submit" value="提交">
 	</form>
 
 	<div class="cd-search-suggestions">
