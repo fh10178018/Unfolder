@@ -182,7 +182,7 @@ def adminuserdel(request):
 
 def shopdel(request):
     num=request.GET.get('id')
-    Shop.objects.filter(num=num).delete()
+    Shops.objects.filter(num=num).delete()
     return redirect("/admin/merchantlist/")
 
 # 主页面内容删除
