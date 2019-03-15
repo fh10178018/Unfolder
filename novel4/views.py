@@ -100,11 +100,6 @@ def shop(request,id):
         tage=line.tag_num
         break
     cmd = ShopTag.objects.filter(tag_num=tageid)
-    # cat.sort(cmp=None, key=lambda x: x.code1.shop_grade, reverse=False)
-    # for element in cat:
-    #     print
-    #     (element.code1.shop_num, ":", element.code1.shop_name)
-
     return render(request,'demo/merchantindex.html',{'shop':shop,'map1':lng,'map2':lat,'tag':list1,'cmd':cmd,'mmm':tage})
 
 
