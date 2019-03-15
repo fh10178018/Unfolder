@@ -2,7 +2,7 @@ from django.conf.urls import url
 from novel2 import views
 
 urlpatterns = [
-    url(r'^$',views.login1,name='login'),
+    url(r'^$',views.login1,name='adminlogin'),
     url(r'^home/',views.home,name='home'),
     url(r'^adminprofile/',views.adminprofile,name='adminprofile'),
     url(r'^adminzone/',views.adminzone,name='adminzone'),
