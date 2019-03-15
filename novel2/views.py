@@ -107,7 +107,8 @@ def userlist(request):
 
 def merchantlist(request):
     if request.session.get('username') is not None:
-        shop=Shops.objects.all()
+        adminusercount=Shops.objects.filter().count()
+        shop=Shops.objects.filter()
         shoppage = Paginator(shop, 10)
         if request.method == 'GET':
         # 获取url后的page参数，首页不现实，默认为1
