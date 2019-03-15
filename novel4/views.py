@@ -137,13 +137,14 @@ def categories(request,sousuo):
 def map(request,sousuo):
     lng = float(request.GET.get('lng'))
     lat = float(request.GET.get('lat'))
-    lat = float(request.GET.get('lat'))
     shop=Shops.objects.filter()
+    list=[]
     for line in shop:
         if line.shop_lng and line.shop_lat:
             if lng+0.01>=line.shop_lng and lng-0.01<=line.shop_lng:
                 if lat+0.01>=line.shop_lat and lat-0.01<=line.shop_lat:
-                    print (line.shop_name)
+                    list.append(line)
+    print (list[0:4])
     print (lng)
     print (lat)
 
