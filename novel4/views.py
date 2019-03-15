@@ -147,7 +147,7 @@ def map(request,sousuo):
     print (lng)
     print (lat)
 
-    return render(request,'demo/map.html',{})
+    return render(request,'demo/map.html',{'shop':list[0:4],'lng':lng,'lat':lat})
 
 def search(request):
     answer = request.POST.get('search11','')
