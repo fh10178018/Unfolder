@@ -13,6 +13,21 @@
 <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/style3.css' %}">
 <link rel="stylesheet" href="{% static 'css/login3.css' %}">
+    <style>
+            #panel {
+        position: fixed;
+        background-color: white;
+        max-height: 90%;
+        overflow-y: auto;
+        top: 10px;
+        right: 10px;
+        width: 280px;
+    }
+    #panel .amap-lib-driving {
+	    border-radius: 4px;
+        overflow: hidden;
+    }
+    </style>
 
 </head>
 <body>
@@ -32,31 +47,31 @@
 	</div>
 </div>
 <header class="cd-main-header animate-search">
-	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
 	<nav class="cd-main-nav-wrapper">
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">上海
+				<a  href="/service/{{  request.session.city }}/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
 					<div class="group">
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
 						<div class="citya" style="padding-left: 10px;">
-							<a class="cities">上海</a>
-							<a class="cities">北京</a>
-							<a class="cities">广州</a>
-							<a class="cities">深圳</a>
-							<a class="cities">天津</a>
-							<a class="cities">杭州</a>
-							<a class="cities">南京</a>
-							<a class="cities">苏州</a>
-							<a class="cities">成都</a>
-							<a class="cities">武汉</a>
-							<a class="cities">重庆</a>
-							<a class="cities">西安</a>
+							<a href="/service/上海" class="cities">上海</a>
+							<a href="/service/北京" class="cities">北京</a>
+							<a href="/service/广州" class="cities">广州</a>
+							<a href="/service/深圳" class="cities">深圳</a>
+							<a href="/service/天津" class="cities">天津</a>
+							<a href="/service/杭州" class="cities">杭州</a>
+							<a href="/service/南京" class="cities">南京</a>
+							<a href="/service/苏州" class="cities">苏州</a>
+							<a href="/service/成都" class="cities">成都</a>
+							<a href="/service/武汉" class="cities">武汉</a>
+							<a href="/service/重庆" class="cities">重庆</a>
+							<a href="/service/西安" class="cities">西安</a>
 						</div>
 						<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;margin-top: 5px">国外城市</h3>
 						<div class="citya" style="padding-left: 10px;">
@@ -65,7 +80,7 @@
 							<a class="cities">曼谷</a>
 							<a class="cities">巴黎</a>
 						</div>
-						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="#">更多城市 ></a>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities/">更多城市 ></a>
 					</div>
 				</div>
 			</li>
@@ -221,14 +236,19 @@
 </div>
 
 <div id="page">
-	<a id="left-panel-link" href="#left-panel"><img src="img/icon/mapicon.jpg"></a>
+	<a id="left-panel-link" href="#left-panel"><img src="{% static 'img/icon/mapicon.jpg' %}"></a>
 </div>
 <div id="left-panel" class="panel">
-	<div id="allmap" style="width: 100%;    height: 100%;"></div>
+
 </div>
-<div id="search" class="cd-main-search">
-	<form>
-		<input type="search" placeholder="搜索旅行地/酒店/景点">
+	<div id="allmap" style="width: 500px;    height: 500px;"></div>
+    <div id="panel"></div>
+
+<div id="searchs" class="cd-main-search">
+	<form action="{% url 'search1' %}" method="POST" >
+        {% csrf_token %}
+		<input type="search" placeholder="搜索旅行地/酒店/景点" class="form-vertical"  name="search11" >
+
 		<div class="cd-select">
 			<span>在</span>
 			<select name="select-category">
@@ -239,6 +259,7 @@
 			</select>
 			<span class="selected-value">所有</span>
 		</div>
+         <input  class="form-vertical" style="z-index: 100000;margin-top: 500px ;display: none" type="submit" value="提交">
 	</form>
 
 	<div class="cd-search-suggestions">
@@ -324,12 +345,38 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
-
 <!--<div id='Login_start' style="position: absolute;" >-->
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
 <script src="{% static 'js/modernizr.js' %}"></script>
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9&plugin=AMap.Driving"></script>
+<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script type="text/javascript">
+
+        var map = new AMap.Map("allmap", {
+            resizeEnable: true,
+            center: [116.397428, 39.90923],//地图中心点
+            zoom: 13 //地图显示的缩放级别
+        });
+        //构造路线导航类
+        var driving = new AMap.Driving({
+            map: map,
+            panel: "panel"
+        });
+        // 根据起终点经纬度规划驾车导航路线
+        driving.search(new AMap.LngLat(116.379028, 39.865042), new AMap.LngLat(116.427281, 39.903719),{
+        waypoints:[new AMap.LngLat(116.379028, 39.885042)]
+        }, function(status, result) {
+            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
+            if (status === 'complete') {
+                log.success('绘制驾车路线完成')
+            } else {
+                log.error('获取驾车数据失败：' + result)
+            }
+        });
+
+</script>
 <script type="text/javascript">
     //登录到注册
     $("#toRegist").on('click',function(){
@@ -373,34 +420,11 @@
         });
     });
 </script>
-<script type="text/javascript">
-    // 百度地图API功能
-    $("#left-panel-link").click(function(){
-        var map = new BMap.Map("allmap");
-        var point = new BMap.Point(116.331398,39.897445);
-        map.centerAndZoom(point,12);
+<script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
 
-        var geolocation = new BMap.Geolocation();
-        geolocation.getCurrentPosition(function(r){
-            if(this.getStatus() == BMAP_STATUS_SUCCESS){
-                var mk = new BMap.Marker(r.point);
-                map.addOverlay(mk);
-                map.panTo(r.point);
-            }
-            else {
-                alert('failed'+this.getStatus());
-            }
-        },{enableHighAccuracy: true})
-    });
-</script>
-
-<script src="{% static 'js/main.js' %}"></script> <!-- Resource jQuery -->
 <script src="{% static 'js/jquery.panelslider.js' %}" type="text/javascript"></script>
 <script>
     $('#left-panel-link').panelslider();
-    $('#close-panel-bt').click(function() {
-        $.panelslider.close();
-    });
 </script>
 <script src="{% static 'js/swiper.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/jquery.mousewheel.js' %}" type="text/javascript"></script>
