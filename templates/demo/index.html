@@ -38,7 +38,7 @@
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="/service/{{ request.session.city }}/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
+				<a  href="/service/{{  request.session.city }}/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
@@ -65,7 +65,7 @@
 							<a class="cities">曼谷</a>
 							<a class="cities">巴黎</a>
 						</div>
-						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="#">更多城市 ></a>
+						<a style="font-size: 12px;color: #999; overflow: hidden;position: static;margin-top: 10px;float: right" href="/service/cities/">更多城市 ></a>
 					</div>
 				</div>
 			</li>
@@ -112,10 +112,17 @@
 				</ul>
 				<div id="myTabContent" class="tab-content">
 					<div class="tab-pane fade active in" id="homes">
-						<form class="form-wrap" action="{% url 'map' %}" method="POST">
+						<form class="form-wrap" action="{% url 'search2' %}" method="post">
                             {% csrf_token %}
-							<input type="search" class="form-control inp" name="search11" placeholder="目的地/心情">
-							<a href="#" class="primary-btn text-uppercase" style=" margin-top: 155px;">开始搜索</a>
+                            <div id="maps" style="width: 200px;height: 200px;display: inline-block;    border-radius: 5px;margin-right: 40px;"></div>
+                            <div class="info" style="display:none;">
+                                <h4 id='status'></h4>
+                                <input type="text" id='result1' name="postion"  value="">
+                            </div>
+                            <div style="display: inline-block;max-width: 190px; position: relative;vertical-align:top;">
+							<input type="text" class="form-control inp" name="mapselect" placeholder="目的地/心情">
+							<input type="submit" value="开始搜索" class="primary-btn text-uppercase" style=" margin-top: 90px;">
+                            </div>
 						</form>
 					</div>
 					<div class="tab-pane fade" id="ios" >
@@ -144,11 +151,11 @@
                                 {% if forloop.counter <= 6 %}
 						<div class="boxelment">
 							<div class="shops">
-								<a href="#">
-									<img src="{{ line.pic }}">
+								<a href="/service/shop/{{ line.code1.shop_num }}.html">
+									<img src="/statci/{{ line.code1.pic }}">
 								</a>
 								<div class="shops-tag">
-									<a href="#"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
+									<a href="/service/shop/{{ line.code1.shop_num }}.html"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
 									<div class="star-info">
 										<span class="star star-50"></span>
                                     <span class="comment">
@@ -190,11 +197,11 @@
                                 {% if forloop.counter <= 6 %}
 						<div class="boxelment">
 							<div class="shops">
-								<a href="#">
-									<img src="{{ line.pic }}">
+								<a href="/service/shop/{{ line.code1.shop_num }}.html">
+									<img src="/statci/{{ line.code1.pic }}">
 								</a>
 								<div class="shops-tag">
-									<a href="#"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
+									<a href="/service/shop/{{ line.code1.shop_num }}.html"><h3 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ line.code1.shop_name }}</h3></a>
 									<div class="star-info">
 										<span class="star star-50"></span>
                                     <span class="comment">
@@ -361,6 +368,7 @@
         $('#regist1').modal();
     });
 
+
     //注册到登录
     $("#toLogin").on('click',function(){
         $("#close-reg").trigger('click');
@@ -397,7 +405,62 @@
         });
     });
 </script>
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=5a555b4b78f89d19d5ace294e24201d5"></script>
+<script type="text/javascript">
+    $(function(){
+        var map = new AMap.Map('maps', {
+            resizeEnable: true,
+            zoom: 15
+    });
+        var options = {
+            'showButton': true,//是否显示定位按钮
+            'buttonPosition': 'LB',//定位按钮的位置
+            /* LT LB RT RB */
+            'buttonOffset': new AMap.Pixel(10, 20),//定位按钮距离对应角落的距离
+            'showMarker': true,//是否显示定位点
+            'markerOptions':{//自定义定位点样式，同Marker的Options
+                'offset': new AMap.Pixel(-18, -36),
+                'content':'<img src="https://a.amap.com/jsapi_demos/static/resource/img/user.png" style="width:36px;height:36px"/>'
+            },
+            'showCircle': true,//是否显示定位精度圈
+            'circleOptions': {//定位精度圈的样式
+                'strokeColor': '#0093FF',
+                'noSelect': true,
+                'strokeOpacity': 0.5,
+                'strokeWeight': 1,
+                'fillColor': '#02B0FF',
+                'fillOpacity': 0.25
+            }
+        }
+        AMap.plugin(["AMap.Geolocation"], function() {
+            var geolocation = new AMap.Geolocation(options);
+            map.addControl(geolocation);
+            geolocation.getCurrentPosition(function(status,result){
+                if(status=='complete'){
+                    onComplete(result)
+                }else{
+                    onError(result)
+                }
+            });
+        });
+        //解析定位结果
+    function onComplete(data) {
+        document.getElementById('status').innerHTML='定位成功';
+        var str = [];
+        str.push( data.position);
+        if(data.accuracy){
+             str.push('精度：' + data.accuracy + ' 米');
+        }//如为IP精确定位结果则没有精度信息
+        str.push('是否经过偏移：' + (data.isConverted ? '是' : '否'));
+        document.getElementById('result1').value = str;
+        console.log(str)
+    }
+    //解析定位错误信息
+    function onError(data) {
+        alert("定位失败！")
+    }
+    })
+</script>
 
 
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
