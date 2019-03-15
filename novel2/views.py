@@ -5,8 +5,7 @@ from novel2.models import AdminUser
 from novel2.models import IndexContents
 from novel2.models import AdminUserContent
 from novel2.models import Webviews
-from novel2.models import Shop
-from novel2.models import ShopFood
+from novel2.models import Shops
 from novel2.models import AdminUserContentComments
 from django.shortcuts import redirect
 from django.core import serializers
@@ -57,92 +56,95 @@ def home(request):
         view=Webviews.objects.filter().order_by('-time')[:9]
         district1 = {'x': 678, 'y': 867, 'z': 887, 'q': 123, 'l': 200}
         district2 = {'a': 678, 'b': 867, 'c': 887, 'd': 123, 'e': 1200, 'f': 345, 'g': 443}
-        return render(request, 'my_admin/map.html',{'views':view,'district1':district1,'district2':district2})
+        return render(request, 'my_admin/index.html',{'views':view,'district1':district1,'district2':district2})
     else:
         return redirect("/admin/")
 
 def adminprofile(request):
-    userlcontents = AdminUserContent.objects.all()[:10]
-    userlcomments = AdminUserContentComments.objects.filter()
-    user=AdminUser.objects.all()
-    a=AdminUserContent.objects.filter(num1=10178018)
-    context = {
+    if request.session.get('username')is not None:
+        webviews(2)
+        userlcontents = AdminUserContent.objects.all()[:10]
+        userlcomments = AdminUserContentComments.objects.filter()
+        user=AdminUser.objects.all()
+        a=AdminUserContent.objects.filter(num1=10178018)
+        context = {
         'userlcontents':userlcontents,
         'userlcomments':userlcomments,
-        'user':user,
-    }
-    return render(request,'my_admin/adminprofile.html',context=context)
+        'user':user,}
+        return render(request,'my_admin/adminprofile.html',context=context)
+    else:
+        return redirect("/admin/")
 
 def adminzone(request):
-    return render(request,'my_admin/adminzone.html')
+    if request.session.get('username') is not None:
+        return render(request,'my_admin/adminzone.html')
+    else:
+        return redirect("/admin/")
 
 def adminuserlist(request):
-    adminusercount = AdminUser.objects.filter().count()
-    adminuser = AdminUser.objects.filter()
-    #django自带的页数切割
-    adminuserpage = Paginator(adminuser, 8)
-    if request.method == 'GET':
-        # 获取url后的page参数，首页不现实，默认为1
-        page =request.GET.get('page')
-        try:
-            books = adminuserpage.page(page)
-        except PageNotAnInteger:
-            # 如果请求不是第一页，返回第一页
-            books = adminuserpage.page(1)
-        except InvalidPage:
-            return HttpResponse('找不到页面内容')
-        except EmptyPage:
-            books = adminuserpage.page(adminusercount)
-    return render(request,"my_admin/adminuser_list.html",{'adminuser':books})
+    if request.session.get('username') is not None:
+        adminusercount = AdminUser.objects.filter().count()
+        adminuser = AdminUser.objects.filter()
+        #django自带的页数切割
+        adminuserpage = Paginator(adminuser, 8)
+        if request.method == 'GET':
+            # 获取url后的page参数，首页不现实，默认为1
+           page =request.GET.get('page')
+           # 如果请求不是第一页，返回第一页b
+           try:books = adminuserpage.page(page)
+           except PageNotAnInteger:books = adminuserpage.page(1)
+           except InvalidPage:return HttpResponse('找不到页面内容')
+           except EmptyPage:books = adminuserpage.page(adminusercount)
+        return render(request,"my_admin/adminuser_list.html",{'adminuser':books})
+    else:
+        return redirect("/admin/")
 
 def userlist(request):
-    return render(request,'my_admin/user_list.html')
+    if request.session.get('username') is not None:
+        return render(request,'my_admin/user_list.html')
+    else:
+        return redirect("/admin/")
 
 def merchantlist(request):
-    shopfood=ShopFood.objects.all()[:10]
-    shop=Shop.objects.all()
-    shoppage = Paginator(shop, 10)
-    if request.method == 'GET':
+    if request.session.get('username') is not None:
+        shop=Shops.objects.all()
+        shoppage = Paginator(shop, 10)
+        if request.method == 'GET':
         # 获取url后的page参数，首页不现实，默认为1
-        page =request.GET.get('page')
-        try:
-            books = shoppage.page(page)
-        except PageNotAnInteger:
-            # 如果请求不是第一页，返回第一页
-            books = shoppage.page(1)
-        except InvalidPage:
-            return HttpResponse('找不到页面内容')
-        except EmptyPage:
-            books = shoppage.page(adminusercount)
-    return render(request,"my_admin/shopuser_list.html",{'shop':books})
-    # context = {
-    #     'shopfood':shopfood,
-    #     'shop':shop,
-    # }
-    # return render(request,'my_admin/shopuser_list.html',context=context)
+            page =request.GET.get('page')
+            try:books = shoppage.page(page)
+            except PageNotAnInteger:books = shoppage.page(1)
+            except InvalidPage:return HttpResponse('找不到页面内容')
+            except EmptyPage:books = shoppage.page(adminusercount)
+        return render(request,"my_admin/shopuser_list.html",{'shop':books})
+    else:
+        return redirect("/admin/")
 
 def indexedit(request):
-    if request.method == 'GET':
-        Contents =IndexContents.objects.filter()
-        return render(request,'my_admin/indexedit.html',{'context':Contents})  #以js语言传值
+    if request.session.get('username') is not None:
+        if request.method == 'GET':
+            Contents =IndexContents.objects.filter()
+            return render(request,'my_admin/indexedit.html',{'context':Contents})  #以js语言传值
+        else:
+            headline=request.POST.get("headline")
+            name=datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.jpg' #用时间命名上传文件的名称，防止重复
+            subline = request.POST.get("subtitle")
+            content = request.POST.get("content")
+            editornum=request.session.get('usernum')
+            obj = request.FILES.get('file')
+            if obj:  # 处理附件上传到方法
+                file_path = os.path.join('novel','static', 'newimgs',name)  # 图片保存路径,
+                f = open(file_path, 'wb')  # 以二进制写的模式打开
+                for chunk in obj.chunks():  # obj.chunks()按块返回文件，通过在for循环中进行迭代，可以将大文件按块写入到服务器中
+                    f.write(chunk)
+                f.close()
+            try:
+                IndexContents(headline=headline,createtime=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),demo=0,editor=editornum,viewnum=0,likenum=0, subtitile=subline, content=content,firstimg="/static/newimgs/" + name).save()
+                return HttpResponse('success')
+            except:
+                 return HttpResponse('error')
     else:
-        headline=request.POST.get("headline")
-        name=datetime.datetime.now().strftime('%Y%m%d%H%M%S')+'.jpg' #用时间命名上传文件的名称，防止重复
-        subline = request.POST.get("subtitle")
-        content = request.POST.get("content")
-        editornum=request.session.get('usernum')
-        obj = request.FILES.get('file')
-        if obj:  # 处理附件上传到方法
-            file_path = os.path.join('novel','static', 'newimgs',name)  # 图片保存路径,
-            f = open(file_path, 'wb')  # 以二进制写的模式打开
-            for chunk in obj.chunks():  # obj.chunks()按块返回文件，通过在for循环中进行迭代，可以将大文件按块写入到服务器中
-                f.write(chunk)
-            f.close()
-        try:
-            IndexContents(headline=headline,createtime=datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),demo=0,editor=editornum,viewnum=0,likenum=0, subtitile=subline, content=content,firstimg="/static/newimgs/" + name).save()
-            return HttpResponse('success')
-        except:
-            return HttpResponse('error')
+        return redirect("/admin/")
 
 
 def adminuserform(request):
