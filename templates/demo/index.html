@@ -32,13 +32,13 @@
 	</div>
 </div>
 <header class="cd-main-header animate-search">
-	<div class="cd-logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
 	<nav class="cd-main-nav-wrapper">
 		<a href="#search" class="cd-search-trigger cd-text-replace">Search</a>
 		<ul class="cd-main-nav navbar-left">
 			<li class="dropdown" style="left: 150px">
-				<a  href="#" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
+				<a  href="/service/{{ request.session.city }}/" id="dropdownMenu1" data-toggle="dropdown">{{  request.session.city }}
 					<span class="caret"></span>
 				</a>
 				<div  class="dropdown-menu citylist" role="menu" aria-labelledby="dropdownMenu1">
@@ -246,8 +246,10 @@
 </section>
 
 <div id="search" class="cd-main-search">
-	<form>
-		<input type="search" placeholder="搜索旅行地/酒店/景点">
+	<form action="{% url 'search1' %}" method="POST" >
+        {% csrf_token %}
+		<input type="search" placeholder="搜索旅行地/酒店/景点" class="form-vertical"  name="search11" >
+
 		<div class="cd-select">
 			<span>在</span>
 			<select name="select-category">
@@ -258,6 +260,7 @@
 			</select>
 			<span class="selected-value">所有</span>
 		</div>
+         <input  class="form-vertical" style="z-index: 100000;margin-top: 500px ;display: none" type="submit" value="提交">
 	</form>
 
 	<div class="cd-search-suggestions">
