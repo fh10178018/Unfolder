@@ -149,13 +149,13 @@ def map(request,sousuo):
 
     return render(request,'demo/map.html',{'shop':list[0:4],'lng':lng,'lat':lat})
 
-def search(request):
+def search1(request):
     answer = request.POST.get('search11','')
     select = request.POST.get('select-category','')
     print (answer,select)
     return redirect('/service/s/' + answer + '?cat=' + select)
 
-def search1(request):
+def search2(request):
     postion = request.POST.get('postion','')
     answer = request.POST.get('mapselect','')
     lng = postion.split(',')[0]
