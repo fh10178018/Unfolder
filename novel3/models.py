@@ -202,6 +202,37 @@ class ExtraTag(models.Model):
         unique_together = (('tag_id', 'tag_name'),)
 
 
+class Film(models.Model):
+    film_id = models.IntegerField(primary_key=True)
+    film_name = models.CharField(max_length=255)
+    film_pic = models.CharField(max_length=255, blank=True, null=True)
+    film_enname = models.CharField(max_length=255, blank=True, null=True)
+    film_grade = models.CharField(max_length=255, blank=True, null=True)
+    film_state = models.CharField(max_length=255, blank=True, null=True)
+    film_time = models.IntegerField(blank=True, null=True)
+    film_showtime = models.DateTimeField(blank=True, null=True)
+    film_like = models.IntegerField(blank=True, null=True)
+    film_cats = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'film'
+
+
+class FilmGoods(models.Model):
+    goods_id = models.AutoField(primary_key=True)
+    code6 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code6')
+    film_code = models.ForeignKey(Film, models.DO_NOTHING, db_column='film_code')
+    film_language = models.CharField(max_length=255, blank=True, null=True)
+    film_time = models.DateTimeField(blank=True, null=True)
+    film_prade = models.IntegerField(blank=True, null=True)
+    film_num_office = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'film_goods'
+
+
 class IndexContents(models.Model):
     num = models.AutoField(primary_key=True)
     headline = models.CharField(max_length=18)
@@ -229,21 +260,6 @@ class MessagePic(models.Model):
         db_table = 'message_pic'
 
 
-class Shop(models.Model):
-    num = models.PositiveIntegerField(primary_key=True)
-    shop_name = models.CharField(max_length=255)
-    area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
-    address = models.CharField(max_length=255)
-    tel = models.CharField(max_length=255)
-    openningtime = models.CharField(max_length=255)
-    point = models.CharField(max_length=255)
-    permoney = models.CharField(max_length=255)
-    pic = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'shop'
-
 class ShopEnvironmentPic(models.Model):
     shop_num = models.IntegerField(primary_key=True)
     code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
@@ -253,14 +269,6 @@ class ShopEnvironmentPic(models.Model):
         managed = False
         db_table = 'shop_environment_pic'
 
-class ShopEnvironmentPicCopy(models.Model):
-    shop_num = models.IntegerField(primary_key=True)
-    code3 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code3', blank=True, null=True)
-    pic1 = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'shop_environment_pic_copy'
 
 class ShopExtraTag(models.Model):
     tag_num = models.ForeignKey(ExtraTag, models.DO_NOTHING, db_column='tag_num')
@@ -269,15 +277,6 @@ class ShopExtraTag(models.Model):
     class Meta:
         managed = False
         db_table = 'shop_extra_tag'
-
-class ShopFood(models.Model):
-    code = models.ForeignKey(Shop, models.DO_NOTHING, db_column='code')
-    food_code = models.IntegerField(primary_key=True)
-    food_name = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'shop_food'
 
 
 class ShopGoods(models.Model):
@@ -308,14 +307,14 @@ class ShopMessage(models.Model):
         db_table = 'shop_message'
 
 
-class ShopOfficialPic(models.Model):
+class ShopOfficialCopy(models.Model):
     shop_num = models.IntegerField(primary_key=True)
     code3 = models.ForeignKey('ShopUser', models.DO_NOTHING, db_column='code3', blank=True, null=True)
     pic1 = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'shop_official_pic'
+        db_table = 'shop_official_copy'
 
 
 class ShopTag(models.Model):
@@ -346,7 +345,8 @@ class Shops(models.Model):
     shop_num = models.IntegerField(primary_key=True)
     code = models.ForeignKey(ShopUser, models.DO_NOTHING, db_column='code')
     shop_name = models.CharField(max_length=40)
-    area = models.ForeignKey(Area, models.DO_NOTHING, db_column='area')
+    shop_lng = models.FloatField(blank=True, null=True)
+    shop_lat = models.FloatField(blank=True, null=True)
     shop_detail_address = models.CharField(max_length=255)
     shop_tel = models.CharField(max_length=40)
     shop_opening_hours = models.CharField(max_length=255, blank=True, null=True)
@@ -371,32 +371,5 @@ class Webviews(models.Model):
         managed = False
         db_table = 'webviews'
 
-class Film(models.Model):
-    film_id = models.IntegerField(primary_key=True)
-    film_name = models.CharField(max_length=255)
-    film_pic = models.CharField(max_length=255, blank=True, null=True)
-    film_enname = models.CharField(max_length=255, blank=True, null=True)
-    film_grade = models.CharField(max_length=255, blank=True, null=True)
-    film_state = models.CharField(max_length=255, blank=True, null=True)
-    film_time = models.IntegerField(blank=True, null=True)
-    film_showtime = models.DateTimeField(blank=True, null=True)
-    film_like = models.IntegerField(blank=True, null=True)
-    film_cats = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'film'
 
 
-class FilmGoods(models.Model):
-    goods_id = models.AutoField(primary_key=True)
-    code6 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code6')
-    film_code = models.ForeignKey(Film, models.DO_NOTHING, db_column='film_code')
-    film_language = models.CharField(max_length=255, blank=True, null=True)
-    film_time = models.DateTimeField(blank=True, null=True)
-    film_prade = models.IntegerField(blank=True, null=True)
-    film_num_office = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'film_goods'
