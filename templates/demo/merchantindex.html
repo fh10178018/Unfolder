@@ -399,7 +399,7 @@
 			</div>
 			<div class="col-sm-3 " style="padding: 0">
 				<div class="whitebox" style="height: 135.25px;padding: 10px; margin-bottom: 20px">
-					<div id="emap" style="width: 100%;height: 100%"></div>
+					<div id="maps" style="width: 100%;height: 100%"></div>
 				</div>
 				<div class="whitebox" style="margin-bottom: 20px; height: 270px;padding: 10px;">
 					<h4 style="font-size: 16px;padding-bottom: 10px; font-weight: 700;">店铺标签</h4>
@@ -418,7 +418,7 @@
 {#                            {{ line.code1.shop_name }}#}
                             {%  if forloop.counter > 1 and forloop.counter <= 7 %}
 						<div class="item">
-							<a href="#" class="img-shop"><img src="{{ line.code1.pic }}" alt="焱一期一会"></a>
+							<a href="#" class="img-shop"><img src="/static/{{ line.code1.pic }}" alt="焱一期一会"></a>
 							<p class="tit"><a href="#"  title="焱一期一会"  style="max-width: 159px; white-space: nowrap; overflow-wrap: normal; text-overflow: ellipsis; overflow: hidden;">{{ line.code1.shop_name }}</a>
 								<a href=""  class="icon tag-tuan-s" ></a></p>
 							<ul class="show_number" style="margin-top: 10px;"><li><div class="atar_Show"><p tip="{{ line.code1.shop_grade }}"></p></div></li></ul>
@@ -539,7 +539,7 @@
 </div>
 
 <!--<改成getscript?v=2.0不是api?v=2.0" >-->
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9"></script>
 <script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
@@ -596,23 +596,23 @@
    }
 </script>
 <script type="text/javascript">
-    // 百度地图API功能
-    var map = new BMap.Map("emap");
-    var point = new BMap.Point({{ map1 }},{{ map2 }});
-    // var place = {{ shops.shop_detail_address }}
-    map.centerAndZoom( point ,16)
-    // 创建地址解析器实例
-    var myGeo = new BMap.Geocoder();
-    // 将地址解析结果显示在地图上,并调整地图视野
-    map.addOverlay(new BMap.Marker(point));
-    {#myGeo.getPoint("上海市华东理工大学奉贤校区", function(point) {#}
-    {#    if (point){#}
-    {#        map.centerAndZoom(point, 16);#}
-    {#        #}
-    {#    } else {#}
-    {#        alert("您选择地址没有解析到结果!");#}
-    {#    }#}
-    //}, "北京市");
+        var marker, map = new AMap.Map("maps", {
+        resizeEnable: true,
+        center: [{{ shop.shops.shop_lng }},{{ shop.shops.shop_lat }}],
+        zoom: 15
+    });
+            // 实例化点标记
+        marker = new AMap.Marker({
+            icon: staraIcon,
+            position: [{{ shop.shops.shop_lng }},{{ shop.shops.shop_lat }}],
+            offset: new AMap.Pixel(-13, -30),
+        });
+        var staraIcon = new AMap.Icon({
+             image: "//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-red.png",
+            size: new AMap.Size(12.5, 17),
+            imageSize: new AMap.Size(65.5, 20)
+        })
+        marker.setMap(map);
 </script>
 
 <script type="text/javascript">
