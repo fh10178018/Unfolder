@@ -101,25 +101,7 @@
 <div class="container">
 <div class="row">
 	<div class="whitebox" style="margin-top: 20px;">
-        <div class="hero hero--map gps-bg">
-
-	<div class="gps-bg__guts">
-		<div class="gps-bg__bg"></div>
-		<div class="gps-bg__route"></div>
-		<div class="gps-bg__marker"></div>
-	</div>
-            <div class="gps-bg__fade"></div>
-            <ul id="myTab" class="hero__title">
-                <li class="active">
-                    <a href="#s1" data-toggle="tab">
-                        路线一
-                    </a>
-                </li>
-                <li><a href="#s2" data-toggle="tab">路线2</a></li>
-                <li><a href="#s3" data-toggle="tab">路线3</a></li>
-            </ul>
-
-</div>
+        <div style="height: 300px"><div id="allmap" style="width: 100%;height: 100%"></div></div>
 	<div id="timeline" class="timeline">
 		<button id="prev" class="prev">
 			<i class=""><img src="{% static 'img/icon_time_arrow_left.png' %}" alt=""></i>
@@ -127,70 +109,60 @@
 		<button id="next" class="next">
 			<i class=""><img src="{% static 'img/icon_time_arrow_right.png' %}" alt=""></i>
 		</button>
-		<ul id="dates" class="dates">
-			<li>
-				<a href="#2011" name="2011">2011</a>
+		<ul id="dates" class="dates"><li>
+            <a href="#2012" name="2011">XX</a>
+            <hr class="onepx" /></li>
+            <li><a href="#2013" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2012">2012</a>
+            <li><a href="#2014" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2013">2013</a>
+            <li><a href="#2015" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2014">2014</a>
+            <li><a href="#2016" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2015">2015</a>
+            <li><a href="#2017" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2016">2016</a>
+            <li><a href="#2018" name="2011">XX</a>
 				<hr class="onepx" />
 			</li>
-			<li>
-				<a href="#2017">2017</a>
-				<hr class="onepx" />
-			</li>
-			<li>
-				<a href="#2018">2018</a>
-				<hr class="onepx" />
-			</li>
-		</ul>
+
+        </ul>
+
 		<hr class="hrLine" />
 		<div class="wrap">
 			<ul class="issues" id="issues">
 				<li id="2011">
 					<div class="left"></div>
 					<div class="right">
-						<h5>2011年</h5>
+						<h5>XX</h5>
 						<hr class="yearLine" />
-						<span class="textArea">这是一段测试文本test文本。</span>
+						<span class="textArea">地图未加载成功</span>
 					</div>
 				</li>
 				<li id="2012">
 					<div class="left">
-						<h5>2012年</h5>
+						<h5>XXX</h5>
 						<hr class="yearLine" />
-						<span class="textArea">这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。</span>
+						<span class="textArea">地图未加载成功</span>
 					</div>
 					<div class="right"></div>
 				</li>
 				<li id="2013">
 					<div class="left"></div>
 					<div class="right">
-						<h5>2013年</h5>
+						<h5>XXX</h5>
 						<hr class="yearLine" />
 						<span class="textArea">这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。</span>
 					</div>
 				</li>
 				<li id="2014">
 					<div class="left">
-						<h5>2014年</h5>
+						<h5>XXX</h5>
 						<hr class="yearLine" />
 						<span class="textArea">这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本;这是一段测试文本test文本。</span>
 					</div>
@@ -239,10 +211,8 @@
 	<a id="left-panel-link" href="#left-panel"><img src="{% static 'img/icon/mapicon.jpg' %}"></a>
 </div>
 <div id="left-panel" class="panel">
-
 </div>
-	<div id="allmap" style="width: 500px;    height: 500px;"></div>
-    <div id="panel"></div>
+
 
 <div id="searchs" class="cd-main-search">
 	<form action="{% url 'search1' %}" method="POST" >
@@ -345,38 +315,132 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
+<div id="sad" style="width: 200px;height: 200px"><h1>sadas</h1></div>
 <!--<div id='Login_start' style="position: absolute;" >-->
 <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
-<script src="{% static 'js/bootstrap.min.js' %}"></script>
-<script src="{% static 'js/modernizr.js' %}"></script>
-<script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
-<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9&plugin=AMap.Driving"></script>
-<script type="text/javascript" src="https://cache.amap.com/lbs/static/addToolbar.js"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9&plugin=AMap.PolyEditor"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9&plugin=AMap.Walking"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
 <script type="text/javascript">
 
-        var map = new AMap.Map("allmap", {
-            resizeEnable: true,
-            center: [116.397428, 39.90923],//地图中心点
-            zoom: 13 //地图显示的缩放级别
-        });
-        //构造路线导航类
-        var driving = new AMap.Driving({
-            map: map,
-            panel: "panel"
-        });
-        // 根据起终点经纬度规划驾车导航路线
-        driving.search(new AMap.LngLat(116.379028, 39.865042), new AMap.LngLat(116.427281, 39.903719),{
-        waypoints:[new AMap.LngLat(116.379028, 39.885042)]
-        }, function(status, result) {
-            // result 即是对应的驾车导航信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_DrivingResult
-            if (status === 'complete') {
-                log.success('绘制驾车路线完成')
-            } else {
-                log.error('获取驾车数据失败：' + result)
+    var map = new AMap.Map("allmap", {
+        center: [121.50651, 30.83158],
+        zoom: 16
+    });
+
+    // 当前示例的目标是展示如何根据规划结果绘制路线，因此walkOption为空对象
+    var walkingOption = {
+        hideMarkers:true,
+    }
+    var maps=[];
+    // 步行导航
+    var walking = new AMap.Walking(walkingOption)
+    var walking2 = new AMap.Walking(walkingOption)
+    //根据起终点坐标规划步行路线
+    walking.search([121.50651, 30.83158], [121.50491, 30.83152], function(status, result) {
+        // result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
+        if (status === 'complete') {
+            if (result.routes && result.routes.length) {
+                drawRoute(result.routes[0]);
+                log.success('绘制步行路线完成');
+                for (var i = 0, l = result.routes[0].steps.length; i < l; i++) { maps.push(result.routes[0].steps[i]);}
             }
-        });
+        } else {
+            log.error('步行路线数据查询失败' + result)
+        }
+    });
+    walking2.search([121.50491, 30.83152], [121.50121, 30.83218], function(status, result) {
+        // result即是对应的步行路线数据信息，相关数据结构文档请参考  https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkingResult
+        if (status === 'complete') {
+            if (result.routes && result.routes.length) {
+                drawRoute2(result.routes[0]);
+                log.success('绘制步行路线完成');
+                for (var i = 0, l = result.routes[0].steps.length; i < l; i++) { maps.push(result.routes[0].steps[i]);}
+                text()
+            }
+        } else {
+            log.error('步行路线数据查询失败' + result)
+        }
+    });
+    function drawRoute (route) {
+        var path = parseRouteToPath(route)
+        var startMarker = new AMap.Marker({
+            position: path[0],
+            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/start.png',
+            map: map
+        })
+        var endMarker = new AMap.Marker({
+            position: path[path.length - 1],
+            imageSize: new AMap.Size(20, 20),
+            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b1.png',
+            map: map
+        })
+        var routeLine = new AMap.Polyline({
+            path: path,
+            isOutline: true,
+            outlineColor: '#ffeeee',
+            borderWeight: 2,
+            strokeWeight: 5,
+            strokeColor: '#83ffc4',
+            lineJoin: 'round'
+        })
+        routeLine.setMap(map)
+        // 调整视野达到最佳显示区域
+    }
+    function drawRoute2 (route) {
+        var path = parseRouteToPath(route)
+
+        var endMarker = new AMap.Marker({
+            position: path[path.length - 1],
+            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/end.png',
+            map: map
+        })
+        var routeLine = new AMap.Polyline({
+            path: path,
+            isOutline: true,
+            outlineColor: '#ffeeee',
+            borderWeight: 2,
+            strokeWeight: 5,
+            strokeColor: '#83ffc4',
+            lineJoin: 'round'
+        })
+        routeLine.setMap(map)
+        // 调整视野达到最佳显示区域
+
+    }
+
+    // 解析WalkRoute对象，构造成AMap.Polyline的path参数需要的格式
+    // WalkRoute对象的结构文档 https://lbs.amap.com/api/javascript-api/reference/route-search#m_WalkRoute
+    function parseRouteToPath(route) {
+        var path = []
+
+        for (var i = 0, l = route.steps.length; i < l; i++) {
+            var step = route.steps[i]
+
+            for (var j = 0, n = step.path.length; j < n; j++) {
+              path.push(step.path[j])
+            }
+        }
+        return path}
+    function text() {
+        var x="<li><a href='#m0'class='selected'>起点</a><hr class=\"onepx\"/></li>";
+        var y="<li id='m0'><div class=\"left\"><h5></h5><hr class=\"yearLine\"/><span class=\"textArea\">今天天气怎么样，我们替你拟合了一条XXX。</span></div><div class=\"right\"><h5> &nbsp</h5></div></li>";
+        for (var c = 0; c <maps.length; c++) {
+            if(maps[c].road==''){x=x+"<li><a href='#m"+(c+1)+"'>"+"小径"+"</a><hr class=\"onepx\" /></li>"}
+            else {x=x+"<li><a href='#m"+(c+1)+"'>"+maps[c].road+"</a><hr class=\"onepx\" /></li>"}
+        }
+        for (var j = 0; j <maps.length; j++) {
+            if (j%2 == 0){y=y+"<li id='m"+(j+1)+"'><div class=\"left\"></div><div class=\"right\"><h5>"+maps[j].instruction+"</h5><hr class=\"yearLine\"/><span class=\"textArea\">这是一段测试文本test文本。</span></div></li>"}
+            else{y=y+"<li id='m"+(j+1)+"'><div class=\"left\"><h5>"+maps[j].instruction+"</h5><hr class=\"yearLine\"/><span class=\"textArea\">这是一段测试文本test文本。</span></div><div class=\"right\"><h5> &nbsp</h5></div></li>"}
+        }
+        $("#dates").html(x);
+        $("#issues").html(y)
+    }
 
 </script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/modernizr.js' %}"></script>
+
 <script type="text/javascript">
     //登录到注册
     $("#toRegist").on('click',function(){
@@ -435,9 +499,13 @@
             autoPlay: false,
             autoPlayDirection: "forward",
             startAt: 1,
-            mousewheel:  'true'
+            mousewheel:  'false'
         });
     });
 </script>
+        <script type="text/javascript">
+
+        </script>
 </body>
+
 </html>

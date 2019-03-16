@@ -2073,7 +2073,6 @@ ol, ul {
 }
 
 .issues > li .left > h5{
-  background: url(../img/icon_pointoftime.png) 89.5px 0 no-repeat;
   background-size: contain;
   text-align: left;
   padding-right: 60px;

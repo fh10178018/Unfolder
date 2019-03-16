@@ -107,7 +107,8 @@ def userlist(request):
 
 def merchantlist(request):
     if request.session.get('username') is not None:
-        shop=Shops.objects.all()
+        adminusercount=Shops.objects.filter().count()
+        shop=Shops.objects.filter()
         shoppage = Paginator(shop, 10)
         if request.method == 'GET':
         # 获取url后的page参数，首页不现实，默认为1
@@ -181,7 +182,7 @@ def adminuserdel(request):
 
 def shopdel(request):
     num=request.GET.get('id')
-    Shop.objects.filter(num=num).delete()
+    Shops.objects.filter(num=num).delete()
     return redirect("/admin/merchantlist/")
 
 # 主页面内容删除
