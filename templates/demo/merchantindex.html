@@ -552,7 +552,6 @@
         $("#close-login").trigger("click");
         $('#regist1').modal();
     });
-
     //注册到登录
     $("#toLogin").on('click',function(){
         $("#close-reg").trigger('click');
@@ -567,7 +566,6 @@
         btn.value = '重新获取（'+nums+'）';
         clock = setInterval(doLoop, 1000); //一秒执行一次
     }
-
     function doLoop() {
         nums--;
         if (nums > 0) {
@@ -579,7 +577,6 @@
             nums = 10; //重置时间
         }
     }
-
     $(document).ready(function(){
         $("#login_QQ").click(function(){
             alert("暂停使用！");
@@ -591,8 +588,6 @@
     $(function () {
         $('#myTab2 a:last').tab('show')
     })
-
-
    }
 </script>
 <script type="text/javascript">
