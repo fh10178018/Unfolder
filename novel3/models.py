@@ -50,15 +50,6 @@ class AdminUserContentComments(models.Model):
         db_table = 'admin_user_content_comments'
 
 
-class Area(models.Model):
-    area_num = models.IntegerField(primary_key=True)
-    area_name = models.CharField(max_length=255)
-
-    class Meta:
-        managed = False
-        db_table = 'area'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
 
@@ -233,6 +224,36 @@ class FilmGoods(models.Model):
         db_table = 'film_goods'
 
 
+class FilmPic(models.Model):
+    pic_id = models.IntegerField(primary_key=True)
+    film = models.ForeignKey(Film, models.DO_NOTHING)
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'film_pic'
+
+
+class FilmRelationship(models.Model):
+    id = models.IntegerField(primary_key=True)
+    person = models.ForeignKey('FlimPerson', models.DO_NOTHING)
+    film = models.ForeignKey(Film, models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'film_relationship'
+
+
+class FlimPerson(models.Model):
+    person_id = models.IntegerField(primary_key=True)
+    name = models.CharField(max_length=255)
+    pic = models.CharField(max_length=255)
+
+    class Meta:
+        managed = False
+        db_table = 'flim_person'
+
+
 class IndexContents(models.Model):
     num = models.AutoField(primary_key=True)
     headline = models.CharField(max_length=18)
@@ -258,6 +279,16 @@ class MessagePic(models.Model):
     class Meta:
         managed = False
         db_table = 'message_pic'
+
+
+class Rode(models.Model):
+    rode_num = models.AutoField(primary_key=True)
+    rode_name = models.CharField(max_length=255)
+    rode_story = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'rode'
 
 
 class ShopEnvironmentPic(models.Model):
@@ -318,7 +349,6 @@ class ShopOfficialCopy(models.Model):
 
 
 class ShopTag(models.Model):
-    id = models.AutoField(primary_key=True)
     tag_num = models.ForeignKey(Categories, models.DO_NOTHING, db_column='tag_num')
     code1 = models.ForeignKey('Shops', models.DO_NOTHING, db_column='code1')
 
@@ -348,16 +378,29 @@ class Shops(models.Model):
     shop_lng = models.FloatField(blank=True, null=True)
     shop_lat = models.FloatField(blank=True, null=True)
     shop_detail_address = models.CharField(max_length=255)
-    shop_tel = models.CharField(max_length=40)
+    shop_tel = models.CharField(max_length=40, blank=True, null=True)
     shop_opening_hours = models.CharField(max_length=255, blank=True, null=True)
     shop_grade = models.FloatField()
     shop_average_price = models.FloatField(blank=True, null=True)
     city = models.ForeignKey(Cities, models.DO_NOTHING, db_column='city')
     pic = models.CharField(max_length=255, blank=True, null=True)
+    intro = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'shops'
+
+
+class User(models.Model):
+    name = models.CharField(max_length=255, blank=True, null=True)
+    password = models.CharField(max_length=255, blank=True, null=True)
+    weixin = models.CharField(max_length=255, blank=True, null=True)
+    sex = models.CharField(max_length=255, blank=True, null=True)
+    birthday = models.DateField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'user'
 
 class Webviews(models.Model):
     time = models.DateField(blank=True, null=True)
