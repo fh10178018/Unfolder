@@ -13,6 +13,7 @@ from novel4.models import ShopUser
 from novel4.models import ShopTag
 from novel4.models import ShopMessage
 from novel4.models import Film
+from novel4.models import User
 from novel4.models import FilmGoods
 from django.db.models import Max,Avg,F,Q,Min,Count,Sum
 from django.shortcuts import redirect
@@ -52,39 +53,59 @@ def convert_to_dict(obj):
     return dict
 
 def locationshop(request):
-    if request.session.get('username') is None:
-        request.session['city'] = '上海'
-        city = '上海'
-    else:
-        city=request.session['city']
-    shopsfood = ShopTag.objects.filter(tag_num__lte=28)  # 美食类（__lte小于等于，__gte大于等于）
-    shopsfilm = ShopTag.objects.filter(tag_num=29)  # 影院
-    shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
-    shopmessage = ShopMessage.objects.filter()
-    film = Film.objects.filter().order_by('-film_showtime')[:6]
-    return render(request, 'demo/index.html',
-                  {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city, 'film': film,
-                   'shopssport': shopssport})
-
-def home(request,city):
-    if city!= 'cities':
-        request.session['city'] = city
-        shopsfood=ShopTag.objects.filter(tag_num__lte=28)    # 美食类（__lte小于等于，__gte大于等于）
-        shopsfilm=ShopTag.objects.filter(tag_num=29)      # 影院
+    if request.method == 'GET':
+        if request.session.get('username') is None:
+            request.session['city'] = '上海'
+            city = '上海'
+        else:
+            city=request.session['city']
+        shopsfood = ShopTag.objects.filter(tag_num__lte=28)  # 美食类（__lte小于等于，__gte大于等于）
+        shopsfilm = ShopTag.objects.filter(tag_num=29)  # 影院
         shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
         shopmessage = ShopMessage.objects.filter()
         film = Film.objects.filter().order_by('-film_showtime')[:6]
-        return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
+        return render(request, 'demo/index.html',
+                      {'shopsfood': shopsfood, 'shopmessage': shopmessage, 'city': city, 'film': film,
+                       'shopssport': shopssport})
     else:
-        if request.session.get('username') is None:
-            request.session['city'] = '上海'
-        cities = Cities.objects.filter()
-        newcity={}
-        xcity={}
-        for item in cities:
-            newcity[item.city]=newcity.get(item.city,item.en)
-            xcity[item.city]=xcity.get(item.city,item.en[:1])
-        return render(request, 'demo/citylist.html', {'city': cities,'context':newcity,'xcity':xcity})
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        try:
+            userlist = User.objects.get(username=username, password=password)
+            t = 0
+        except:
+            t = 1
+        print (userlist)
+        if t == 1:
+            return HttpResponse('error')
+        else:
+            return HttpResponse('success')
+
+
+def home(request,city):
+    if request.method == 'GET':
+        if city!= 'cities':
+            request.session['city'] = city
+            shopsfood=ShopTag.objects.filter(tag_num__lte=28)    # 美食类（__lte小于等于，__gte大于等于）
+            shopsfilm=ShopTag.objects.filter(tag_num=29)      # 影院
+            shopssport = ShopTag.objects.exclude(Q(tag_num__lt=30) | Q(tag_num__gt=48))  # 休闲娱乐(Q（）|Q（）相当于or)
+            shopmessage = ShopMessage.objects.filter()
+            film = Film.objects.filter().order_by('-film_showtime')[:6]
+            return render(request,'demo/index.html',{'shopsfood':shopsfood,'shopmessage':shopmessage,'city':city,'film':film,'shopssport':shopssport})
+        else:
+            if request.session.get('username') is None:
+                request.session['city'] = '上海'
+            cities = Cities.objects.filter()
+            newcity={}
+            xcity={}
+            for item in cities:
+                newcity[item.city]=newcity.get(item.city,item.en)
+                xcity[item.city]=xcity.get(item.city,item.en[:1])
+            return render(request, 'demo/citylist.html', {'city': cities,'context':newcity,'xcity':xcity})
+    else:
+        username = request.POST.get('username', '')
+        password = request.POST.get('password', '')
+        print (username,password)
 
 def getHTMLText(url):
     try:
@@ -127,34 +148,25 @@ def shop(request,id):
 
 def categories(request,sousuo):
     cat = request.GET['cat']
-    print (cat)
     error_msg = ''
     if not sousuo:
         error_msg = '请输入关键词'
         return render(request,'demo/categories.html',{'error':error_msg})
-    print (sousuo,cat)
     if cat == "all-categories":
         instruction1 = Shops.objects.filter( Q(shop_name__icontains=sousuo)|Q(shop_detail_address__contains=sousuo) )
     elif cat == "category1":
         instruction1 = Shops.objects.filter(shop_detail_address__contains=sousuo)
     elif cat == "category2":
         instruction1 = Shops.objects.filter(shop_name__icontains=sousuo)
-    sdd = []
+    sddd=[]
     for line in instruction1:
-        sd = []
-        print(line.shop_detail_address)
-        url1 = "http://api.map.baidu.com/geocoder/v2/?address="
-        url2 = "&output=json&ak=ZLR0ypp2MklnlZ0WHZedVQw4KUpjDwoi"
-        place = line.shop_detail_address
-        url = url1 + place + url2
-        a = getHTMLText(url)
-        sd.append(json.loads(a)['result']['location']['lng'])
-        sd.append(json.loads(a)['result']['location']['lat'])
-        sd.append(line.shop_detail_address)
-        sdd.append(sd)
-        print (sdd,sd)
+        s=[]
+        s.append(line.shop_lng)
+        s.append(line.shop_lat)
+        sddd.append(s)
+        print (sddd)
 
-    return render(request,'demo/categories.html',{'sgst':instruction1,'sdd':sdd})
+    return render(request,'demo/categories.html',{'sgst':instruction1,'sddd':sddd})
 
 def maps(request,sousuo):
     lng = float(request.GET.get('lng'))

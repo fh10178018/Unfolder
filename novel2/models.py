@@ -392,11 +392,13 @@ class Shops(models.Model):
 
 
 class User(models.Model):
-    name = models.CharField(max_length=255, blank=True, null=True)
-    password = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255)
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
     weixin = models.CharField(max_length=255, blank=True, null=True)
     sex = models.CharField(max_length=255, blank=True, null=True)
     birthday = models.DateField(blank=True, null=True)
+    pic = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
