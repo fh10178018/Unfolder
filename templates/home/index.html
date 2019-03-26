@@ -6,7 +6,6 @@
 	<!-- Mobile Specific Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Favicon-->
-	<link rel="shortcut icon" href="img/fav.png">
 	<!-- Author Meta -->
 	<meta name="author" content="codepixer">
 	<!-- Meta Description -->
@@ -22,6 +21,7 @@
 	<!--
 			CSS
 			============================================= -->
+    <link rel="shortcut icon" href="{% static '/img/login.ico' %}" />
 	<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
 	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
 	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
@@ -52,7 +52,7 @@
 						<!--<li class="note" style="margin-left:80px;color: black">商务端丨</li>-->
 						<!--<li><a href="#login">登陆</a></li>-->
 						<!--<li><a href="#register">注册</a></li>-->
-						<li><a href="merchantlogin"> <span class="glyphicon glyphicon-user"></span> 商家端</a></li>
+						<li><a href="/merchant/login"> <span class="glyphicon glyphicon-user"></span> 商家端</a></li>
 
 					</ul>
 				</nav>
@@ -258,8 +258,7 @@
 				<div class="col-lg-6">
 					<div class="section-title text-center">
 						<h2>商务合作</h2>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-							magna aliqua.
+						<p>
 						</p>
 					</div>
 				</div>
@@ -278,13 +277,13 @@
 						</div>
 						<div class="end-sec">
 							<ul>
-								<li>2.5 GB Free Photos</li>
-								<li>Secure Online Transfer Indeed</li>
-								<li>Unlimited Styles for interface</li>
-								<li>Reliable Customer Service</li>
-								<li>Manual Backup Provided</li>
+								<li>一站式服务</li>
+								<li>"一带一路"的线下销售</li>
+								<li>线下商铺的免费官网</li>
+								<li>更为精准的定位</li>
+								<li>一商家可多个店铺</li>
 							</ul>
-							<button class="primary-btn price-btn mt-20">注册</button>
+							<button class="primary-btn price-btn mt-20"><a>注册</a></button>
 						</div>
 					</div>
 				</div>
@@ -471,89 +470,39 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Top Products</h4>
+					<h4>用户帮助</h4>
 					<ul>
-						<li><a href="#">Managed Website</a></li>
-						<li><a href="#">Manage Reputation</a></li>
-						<li><a href="#">Power Tools</a></li>
-						<li><a href="#">Marketing Service</a></li>
+						<li><a href="#">常见问题</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Quick Links</h4>
+					<h4>基于主要API</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="https://lbs.amap.com/">高得地图API</a></li>
+						<li><a href="https://echarts.baidu.com/">Echarts</a></li>
+						<li><a href="https://ueditor.baidu.com/">Ueditor</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Features</h4>
+					<h4>商家合作</h4>
 					<ul>
-						<li><a href="#">Jobs</a></li>
-						<li><a href="#">Brand Assets</a></li>
-						<li><a href="#">Investor Relations</a></li>
-						<li><a href="#">Terms of Service</a></li>
+						<li><a href="#">美食商家入住</a></li>
+						<li><a href="#">境内景点商家入住</a></li>
+						<li><a href="#">综合商家入住</a></li>
 					</ul>
 				</div>
 				<div class="col-lg-2 col-md-6 single-footer-widget">
-					<h4>Resources</h4>
+					<h4>联系我们</h4>
 					<ul>
-						<li><a href="#">Guides</a></li>
-						<li><a href="#">Research</a></li>
-						<li><a href="#">Experts</a></li>
-						<li><a href="#">Agencies</a></li>
+						<li><a href="mailto:1206758827@qq.com">廉政邮箱</a></li>
 					</ul>
 				</div>
 
 				<div class="col-lg-4 col-md-6 single-footer-widget">
-					<h4>Newsletter</h4>
-					<p>You can trust us. we only send promo offers,</p>
-					<div class="form-wrap" id="mc_embed_signup">
-						<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-						 method="get" class="form-inline">
-							<input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
-							 required="" type="email">
-							<button class="click-btn btn btn-default"><span class="lnr lnr-arrow-right"></span></button>
-							<div style="position: absolute; left: -5000px;">
-								<input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-							</div>
-
-							<div class="info"></div>
-						</form>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom row align-items-center">
-				<p class="footer-text m-0 col-lg-6 col-md-12">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> Colorlib  All rights reserved | More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-</p>
-				<div class="col-lg-6 col-md-6 social-link">
-					<div class="download-button d-flex flex-row justify-content-end">
-						<div class="buttons gray flex-row d-flex">
-							<i class="fa fa-apple" aria-hidden="true"></i>
-							<div class="desc">
-								<a href="#">
-									<p>
-										<span>Available</span> <br>
-										on App Store
-									</p>
-								</a>
-							</div>
-						</div>
-						<div class="buttons gray flex-row d-flex">
-							<i class="fa fa-android" aria-hidden="true"></i>
-							<div class="desc">
-								<a href="#">
-									<p>
-										<span>Available</span> <br>
-										on Play Store
-									</p>
-								</a>
-							</div>
-						</div>
-					</div>
+					<h4>公司信息</h4>
+                    <ul>
+						<li><a href="/">关于我们</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
