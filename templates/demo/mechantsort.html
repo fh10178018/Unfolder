@@ -7,17 +7,129 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unfolder用户DEMO</title>
         <link rel="shortcut icon" href="{% static '/img/login.ico' %}" />
+<link href='https://fonts.useso.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-<link rel="stylesheet" href="{% static 'css/htmleaf-demo.css' %}">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+<link rel="stylesheet" href="{% static 'css/htmleaf-demo.css' %}">
 <link rel="stylesheet" href="{% static 'css/swiper.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/style3.css' %}">
 <link rel="stylesheet" href="{% static 'css/login3.css' %}">
-<link rel="stylesheet" href="{% static 'css/citySelect.css' %}">
-<link rel="stylesheet" href="{% static 'css/zzsc.css' %}">
+	<style>
+		 #boxes div {
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+		}
 
+
+		#boxes {
+			counter-reset: number;
+			text-align: center;
+		}
+
+
+		#boxes div {
+			display: inline-block;
+			width: 10vw;
+			height: 10vw;
+			min-width: 5em;
+			min-height: 5em;
+			-webkit-transition: .5s all ease;
+			transition: .5s all ease;
+			background: var(--color, #aaa);
+			border: 0 solid transparent;
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+			border-radius: 50%;
+			margin: .5em;
+			opacity: .7;
+			--dx: calc(var(--size) - var(--x));
+			--dy: calc(var(--size) - var(--y));
+		}
+		#boxes h2{
+			margin-top: 50px;
+			font-weight: 600;
+		}
+
+		body:not([style]) #boxes div:first-child {
+			--x: 84;
+			--y: 75;
+			--size: 128;
+		}
+
+		body:not([style]) #boxes div:first-child,
+		#boxes div:hover {
+			opacity: 1;
+			cursor: pointer;
+			border: calc(2px + .85vw) solid rgba(255, 255, 255, .5);
+			-webkit-transition:
+					.5s background-color ease,
+					.2s border ease;
+			transition:
+					.5s background-color ease,
+					.2s border ease;
+
+			border-radius:
+					calc(var(--x) / var(--size) * 100%)
+					calc(var(--dx) / var(--size) * 100%)
+					calc(var(--dx) / var(--size) * 100%)
+					calc(var(--x) / var(--size) * 100%) /
+    calc(var(--y) / var(--size) * 100%)
+					calc(var(--y) / var(--size) * 100%)
+					calc(var(--dy) / var(--size) * 100%)
+					calc(var(--dy) / var(--size) * 100%)
+		}
+
+		body:not([style]) #boxes div:first-child:after,
+		#boxes div:after {
+			color: rgba(255, 255, 255, 0);
+			font-size: calc(1vw + 1.2em);
+			font-weight: 200;
+			-webkit-transition: all .2s ease;
+			transition: all .2s ease;
+			-webkit-transition-delay: .1s;
+			transition-delay: .1s;
+			-webkit-transform: translate3d(0, -.5em, 0);
+			transform: translate3d(0, -.5em, 0);
+		}
+
+		body:not([style]) #boxes div:first-child:after,
+		#boxes div:hover:after {
+			color: rgba(255, 255, 255, .7);
+			-webkit-transform: translate3d(0, 0, 0);
+			transform: translate3d(0, 0, 0);
+		}
+		.merchanthead{
+			text-align: center;
+			font-size: xx-large;
+			color: #666;
+			margin-top: 100px;
+			margin-bottom: 100px;
+		}
+		 .boxeshead{
+			 text-align: center;
+		 }
+		 .boxeshead div{
+			 display: inline-block;
+			 width: 135px;
+		 }
+		 #boxes div p{
+			 font-size: 12px;
+			 margin-top: 15px;
+		 }
+		#boxes div img{
+			width: 65%;
+			margin-top: 15%;
+		}
+	</style>
 </head>
-<body data-spy="scroll"  data-target="#myScrollspy">
+<body >
 <header class="cd-main-header animate-search">
 	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
@@ -69,133 +181,31 @@
 
 	<a href="#" class="cd-nav-trigger cd-text-replace">菜单<span></span></a>
 </header>
-<main class="cd-main-content">
-</main>
-<section id="sort" style="margin-top: 20px;">
+<section style="position: relative">
+	<div class="merchanthead"><h1>请选择你的合作行业(商家端暂未开发)</h1></div>
 	<div class="container">
 		<div class="row">
-			<ul class="breadcrumb">
-				<li><a href="#">上海美食</a></li>
-				<li><a href="#">湘菜</a></li>
-				<li><a href="#">奉贤区</a></li>
-				<li><a href="#">外滩</a></li>
-				<li class="active">店铺名（）</li>
-			</ul>
-			<div class="col-md-12">
-			<div class=" whitebox" style="padding: 20px;margin-bottom: 20px; font-size: 15px;">
-				<div class="categories">
-					<span style="display:inline-block;width: 80px;color: #999;">频道：</span>
-					<div class="catego" style="display: inline-block">
-						<a href="//www.dianping.com/zhengzhou" class="tag-solid">全部</a>
-					</div>
-					<div class="dropdown" style="margin-left: 20px">
-						<a href="#" id="s1" data-toggle="dropdown" aria-expanded="true" class="cat">上海
-							<span class="caret"></span></a>
-						<div class="dropdown-menu categories" role="menu" aria-labelledby="s1">
-							<div class="group">
-								<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
-								<div class="catss" style="padding-left: 10px;">
-									<a class="cities">上海</a>
-									<a class="cities">北京</a>
-									<a class="cities">广州</a>
-									<a class="cities">深圳</a>
-									<a class="cities">天津</a>
-									<a class="cities">杭州</a>
-									<a class="cities">南京</a>
-									<a class="cities">苏州</a>
-									<a class="cities">成都</a>
-									<a class="cities">武汉</a>
-									<a class="cities">重庆</a>
-									<a class="cities">西安</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="dropdown" style="margin-left: 20px">
-						<a href="#" id="s2" data-toggle="dropdown" aria-expanded="true" class="cat">上海
-							<span class="caret"></span></a>
-						<div class="dropdown-menu citylist" role="menu" aria-labelledby="s2">
-							<div class="group">
-								<h3 style="font-size: 12px;color: #999; width: 68px;overflow: hidden;padding: 10px 10px 0;position: static;">国内城市</h3>
-								<div class="citya" style="padding-left: 10px;">
-									<a class="cities">上海</a>
-									<a class="cities">北京</a>
-									<a class="cities">广州</a>
-									<a class="cities">深圳</a>
-									<a class="cities">天津</a>
-									<a class="cities">杭州</a>
-									<a class="cities">南京</a>
-									<a class="cities">苏州</a>
-									<a class="cities">成都</a>
-									<a class="cities">武汉</a>
-									<a class="cities">重庆</a>
-									<a class="cities">西安</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					</div>
+			<div class="rol-xs-12">
+	<div id="boxes">
+		<div style="--color: #f44336"><a href="/merchant/login"><img src="{% static  'img/meishi.png'%}"></a><h2>美食</h2><p>海量流量、精准营销、深度分析，助力您的餐厅销量口碑双丰收</p></div>
+		<div style="--color: #e91e63"><a href="/merchant/login"><img src="{% static 'img/jingdian.png' %}"></a><h2>境内旅游</h2><p>海量流量、精准营销、深度分析，助您票量大卖，名利双收</p></div>
+        <div style="--color: #9c27b0"><a href="/merchant/login"><img src="{% static 'img/dianying.png' %}"></a><h2>影院</h2><p>海量流量、精准营销、深度分析，助您票房大卖，名利双收</p></div>
+        <div style="--color: #2196f3"><a href="/merchant/login"><img src="{% static 'img/dianying.png' %}"></a><h2>综和商家</h2><p>休闲娱乐、丽人、亲子、教育、KTV、家装等商家</p></div>
+	</div>
+			</div>
+			<div class="rol-xs-12">
+				<div class="boxeshead">
+
+
 				</div>
 			</div>
-			</div>
-
 		</div>
 	</div>
 </section>
-<div class="container">
-	<div class="row">
-		<div class="col-md-3 sa visible-lg" id="myScrollspy">
-			<ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="125">
-				<li class="whitebox" style="height: 250px;padding: 10px; margin-bottom: 20px">
-					<div id="emap" style="width: 100%;height: 100%"></div>
-				</li>
-                {% for lines in sgst %}
-                    {% if forloop.counter == 1 %}
-				<li class="active"><a href="#section{{ lines.shop_num }}">{{ lines.shop_name }}</a></li>
-                    {% elif forloop.counter <= 5 %}
-				<li><a href="#section-{{ lines.shop_num }}">{{ lines.shop_name }}</a></li>
-                     {% endif %}
-                {% endfor %}
-{#				<li><a href="#section-3">第三部分</a></li>#}
-{#				<li><a href="#section-4">第四部分</a></li>#}
-{#				<li><a href="#section-5">第五部分</a></li>#}
-			</ul>
-		</div>
-		<div class="col-md-9">
 
-			<div class="whitebox" style="padding: 20px;font-size: 12px;color: #666;">
-				<div class="tag-group">
-				<div class="shaixuan"><a>智能排序</a><a>智能排序</a><a>智能排序</a>
-					<a>智能排序</a></div>
-				</div>
-				<hr style="margin-top: 10px">
-                {% for lines in sgst %}
-                    {% if forloop.counter <= 5 %}
-				<div class="media"  id="section{{ lines.shop_num }}">
-					<div class="media-left xc" style="width: 230px;">
-						<a href="/service/shop/{{ lines.shop_num }}"><span>{{ forloop.counter }}</span><img src="/static/{{ lines.pic }}" class="media-object" style="height: 125px;width: 220px;    border-radius: 4px;" >
-						</a>
-					</div>
-					<div class="media-body" style="">
-						<a href="#" style="color: black;text-decoration: none;font-weight: 500;font-size: 16px;">{{ lines.shop_name }}</a>
-						<div style="line-height: 30px;"><div class="atar_Show" style="margin-top: 10px;"><p tip="{{ lines.shop_grade }}" style="width: 40px;"></p></div>
-							<span style="margin-right: 10px;margin-left: 10px;">{{ lines.shop_grade }}<!-- -->分</span><span class="highlight" style="margin-right: 10px;color: #F90;">28<!-- -->人评论</span>
-						</div>
-						<div class="address-info clearfix"><span class="cate-info ellipsis"><span title="其他酒店">其他酒店</span><span title="迪士尼">|<!-- -->迪士尼</span></span><span title="浦东新区川沙新镇唐黄路180号" class="address ellipsis">{{ lines.shop_detail_address }}</span></div>
-						<div class="item-bottom-info clearfix"><div class="item-price-info"><span class="price-symbol">¥</span><span class="price">{{ lines.shop_average_price }}</span><span class="price-type">起</span></div></div>
-					</div>
-				</div><hr>
-                    {% endif %}
-                {% endfor %}
-		</div>
-		</div>
-	</div>
-</div>
 <div id="search" class="cd-main-search">
-	<form action="{% url 'search1' %}" method="POST" >
-        {% csrf_token %}
-		<input type="search" placeholder="搜索旅行地/酒店/景点" class="form-vertical"  name="search11" >
-
+	<form>
+		<input type="search" placeholder="搜索旅行地/酒店/景点">
 		<div class="cd-select">
 			<span>在</span>
 			<select name="select-category">
@@ -206,7 +216,6 @@
 			</select>
 			<span class="selected-value">所有</span>
 		</div>
-         <input  class="form-vertical" style="z-index: 100000;margin-top: 500px ;display: none" type="submit" value="提交">
 	</form>
 
 	<div class="cd-search-suggestions">
@@ -334,16 +343,17 @@
 			</div>
 		</div>
 	</footer>
-<!--<改成getscript?v=2.0不是api?v=2.0" >-->
-<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9"></script>
-<script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
-<script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
+<!--<div id='Login_start' style="position: absolute;" >-->
 <script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/modernizr.js' %}"></script>
+
+<script src="{% static 'js/modernizr.js' %}"></script> <!-- Modernizr -->
+<script src="{% static 'js/vector.js' %}"></script> <!-- Modernizr -->
 <script type="text/javascript">
     //登录到注册
-    $(function () { $('#collapseOne').collapse('hide')});
+    $(function(){
+        $("#entry_name").focus();
+    });
     $("#toRegist").on('click',function(){
         $("#close-login").trigger("click");
         $('#regist1').modal();
@@ -384,48 +394,31 @@
             alert("暂停使用！");
         });
     });
-    $(function () {
-        $('#myTab2 a:last').tab('show')
-    })
 </script>
-<script type="text/javascript">
-     var map = new AMap.Map("emap", {
-        resizeEnable: true,
-        center: {{ sddd }}[0],
-        zoom: 16
-    });
-        var markers = [];
-        var positions2 = [[116.405467, 39.907761], [116.415467, 39.907761], [116.415467, 39.917761], [116.425467,
-        39.907761], [116.385467, 39.907761]];
-        var positions = {{ sddd }};
-        console.log(positions2);
-
-        for (var i = 0, marker; i < 5; i++) {
-            marker = new AMap.Marker({
-            map: map,
-            offset: new AMap.Pixel(-13, -30),
-            icon: new AMap.Icon({image:'//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-' + (i + 1) + '.png',
-            imageSize: new AMap.Size(25, 40)
-        }),
-            position: positions[i]
-        });
-        markers.push(marker);
-        }
-        map.setFitView();
-</script>
-
 <script>
-    //显示分数
-    $(".show_number li p").each(function(index, element) {
-        var num=$(this).attr("tip");
-        var www=num*2*8;//
-        $(this).css("width",www);
-        // $(this).parent(".atar_Show").siblings("span").text(num+"分");
+       var boxes = document.querySelectorAll('#boxes > div');
+    [].forEach.call(boxes, box => {
+        box.addEventListener('mousemove', e => {
+            document.body.style.setProperty(
+                '--bg-color',
+                box.style.getPropertyValue('--color')
+            );
+
+            var size = parseInt(getComputedStyle(box).width);
+
+            // scaling
+            var x = size * .3 * .7 + .7 * e.offsetX;
+            var y = size * .3 * .7 + .7 * e.offsetY;
+
+            box.style.setProperty('--x', x);
+            box.style.setProperty('--y', y);
+            box.style.setProperty('--size', size);
+        });
     });
 </script>
+
 <script src="{% static 'js/main3.js' %}"></script> <!-- Resource jQuery -->
-<script src="{% static 'js/citySelect.js' %}" type="text/javascript"></script>
-<script src="{% static 'js/swiper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/citySelect.js' %}"></script>
 
 </body>
 </html>

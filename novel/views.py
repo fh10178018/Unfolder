@@ -18,6 +18,15 @@ def dairy(request,id):
     editor = AdminUser.objects.get(num=content.editor)
     return render(request,"home/dairy.html",{'context':content,'contexts':contents,'editor':editor})
 
+
+def error_404(request):
+    return render(request, "error/404.html")
+
+def error_400(request):
+    return render(request, "error/400.html")
+
+def error_401(request):
+    return render(request, "error/401.html")
 # 用来记录登陆各网页的次数
 def webviews(x):
     data=datetime.datetime.now().strftime('%Y-%m-%d')

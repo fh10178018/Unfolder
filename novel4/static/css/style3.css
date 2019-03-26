@@ -1013,19 +1013,19 @@ JavaScript Disabled
 /*内容样式*/
 
 .slide1 {
-  background: #000 url(../img/banner1.jpg) no-repeat ;
+  background: #000 url(../img/banne.jpg) no-repeat ;
   background-size: auto 100%;
 }
 
 
 .slide2 {
-  background: #f3f3f3 url(../img/banner2.jpg) no-repeat center ;
+  background: #f3f3f3 url(../img/banne1.jpg) no-repeat center ;
   background-size: auto 100%;
 }
 
 
 .slide3 {
-  background: #fff url(../img/banner3.jpg) no-repeat center ;
+  background: #fff url(../img/banne2.jpg) no-repeat center ;
   background-size: auto 100%;
 }
 
@@ -1279,9 +1279,12 @@ JavaScript Disabled
 .shops-tag a{
   color: black;
 }
-
+.shops a{
+  text-align: center;
+}
 .shops a img{
   max-width: 150px;
+  max-height:100px;
 }
 
 .cs li a{
@@ -2260,4 +2263,20 @@ ol, ul {
   left: 50%;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
+}
+
+
+.footer-area{
+  background: #f8f8f8;
+    margin-top: 40px;
+    width: 1190px;
+    margin: 0 auto;
+    color: #333;
+    font-size: 12px;
+    line-height: 2;
+    box-sizing: border-box;
+    text-align: left;
+}
+.footer-area a{
+  color: black;
 }

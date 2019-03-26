@@ -6,6 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ shop.shops.shop_name }}</title>
+        <link rel="shortcut icon" href="{% static '/img/login.ico' %}" />
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <link rel="stylesheet" href="{% static 'css/htmleaf-demo.css' %}">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}">
@@ -16,21 +17,6 @@
 <link rel="stylesheet" href="{% static 'css/zzsc.css' %}">
 </head>
 <body>
-<div class="top-bar">
-	<div class="container">
-		<ul class="top-contacts">
-			<li class="top-unhover"><p><span class="fa fa-phone-square" aria-hidden="true"></span> +1 515 151515</p>
-			</li><li class="top-hover"><p><span class="fa fa-envelope" aria-hidden="true"></span> <a href="mailto:support@company.com">support@company.com</a></p>
-		</li></ul>
-		<ul class="top-links">
-			<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-			<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-			<li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-			<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-		</ul>
-		<div class="clearfix"></div>
-	</div>
-</div>
 <header class="cd-main-header animate-search">
 	<div class="cd-logo"><a href="/service/"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
 
@@ -71,9 +57,10 @@
 			</li>
 		</ul>
 		<ul class="cd-main-nav">
-			<li><a href= "#">店铺</a></li>
-			<li><a href="#">目的地</a></li>
-			<li><a href="#">Blog</a></li>
+			<li><a href= "#">美食</a></li>
+			<li><a href="#">电影</a></li>
+			<li><a href="#">公益</a></li>
+			<li><a href="/service/merchant/regist/">商家入驻</a></li>
 			<li style="background-color: #5c5d6a"><a data-toggle="modal" href="#login1" data-target="#login1" style="color: white">登陆</a></li>
 			<li  style="background-color: #5c5d6a"><a data-toggle="modal" href="#regist1" data-target="#regist1" style="color: white">注册</a></li>
 		</ul> <!-- .cd-main-nav -->
@@ -537,7 +524,47 @@
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal -->
 </div>
+<footer class="footer-area section-gap">
+		<div class="container" style="    padding: 40px 45px;    border-top: 1px solid #E5E5E5;    border-bottom: 1px solid #E5E5E5;">
+			<div class="row">
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>用户帮助</h4>
+					<ul>
+						<li><a href="#">常见问题</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>基于主要API</h4>
+					<ul>
+						<li><a href="https://lbs.amap.com/">高得地图API</a></li>
+						<li><a href="https://echarts.baidu.com/">Echarts</a></li>
+						<li><a href="https://ueditor.baidu.com/">Ueditor</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>商家合作</h4>
+					<ul>
+						<li><a href="#">美食商家入住</a></li>
+						<li><a href="#">境内景点商家入住</a></li>
+						<li><a href="#">综合商家入住</a></li>
+					</ul>
+				</div>
+				<div class="col-lg-2 col-md-6 single-footer-widget">
+					<h4>联系我们</h4>
+					<ul>
+						<li><a href="mailto:1206758827@qq.com">廉政邮箱</a></li>
+					</ul>
+				</div>
 
+				<div class="col-lg-4 col-md-6 single-footer-widget">
+					<h4>公司信息</h4>
+                    <ul>
+						<li><a href="/">关于我们</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</footer>
 <!--<改成getscript?v=2.0不是api?v=2.0" >-->
 <script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9"></script>
 <script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
