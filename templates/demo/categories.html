@@ -191,7 +191,7 @@
 					</div>
 					<div class="media-body" style="">
 						<a href="#" style="color: black;text-decoration: none;font-weight: 500;font-size: 16px;">{{ lines.shop_name }}</a>
-						<div style="line-height: 30px;"><div class="atar_Show" style="margin-top: 10px;"><p tip="2.5" style="width: 40px;"></p></div>
+						<div style="line-height: 30px;"><div class="atar_Show" style="margin-top: 10px;"><p tip="{{ lines.shop_grade }}" style="width: 40px;"></p></div>
 							<span style="margin-right: 10px;margin-left: 10px;">{{ lines.shop_grade }}<!-- -->分</span><span class="highlight" style="margin-right: 10px;color: #F90;">28<!-- -->人评论</span>
 						</div>
 						<div class="address-info clearfix"><span class="cate-info ellipsis"><span title="其他酒店">其他酒店</span><span title="迪士尼">|<!-- -->迪士尼</span></span><span title="浦东新区川沙新镇唐黄路180号" class="address ellipsis">{{ lines.shop_detail_address }}</span></div>
@@ -308,7 +308,7 @@
 </div>
 
 <!--<改成getscript?v=2.0不是api?v=2.0" >-->
-<script type="text/javascript" src="http://api.map.baidu.com/getscript?v=2.0&ak=vALHZvhM8KtTsYY4kXdQvAq5V1v8CndT"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.13&key=d137b3f7a39c6a29971ee376f76a80a9"></script>
 <script type="text/javascript" src="{% static 'js/startScore.js' %}"></script>
 <script type="text/javascript" src="{% static 'js/tagcloud.js' %}"></script>
 <script src="{% static 'js/jquery-3.3.1.min.js' %}" type="text/javascript"></script>
@@ -362,20 +362,29 @@
     })
 </script>
 <script type="text/javascript">
-     var markers = [];
-        var positions = [[116.405467, 39.907761], [116.415467, 39.907761], [116.415467, 39.917761], [116.425467,
-            39.907761], [116.385467, 39.907761]];
+     var map = new AMap.Map("emap", {
+        resizeEnable: true,
+        center: {{ sddd }}[0],
+        zoom: 16
+    });
+        var markers = [];
+        var positions2 = [[116.405467, 39.907761], [116.415467, 39.907761], [116.415467, 39.917761], [116.425467,
+        39.907761], [116.385467, 39.907761]];
+        var positions = {{ sddd }};
+        console.log(positions2);
 
-        for (var i = 0, marker; i < positions.length; i++) {
-
+        for (var i = 0, marker; i < 5; i++) {
             marker = new AMap.Marker({
-                map: map,
-                icon: '//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-' + (i + 1) + '.png',
-                position: positions[i]
-            });
-
-            markers.push(marker);
+            map: map,
+            offset: new AMap.Pixel(-13, -30),
+            icon: new AMap.Icon({image:'//a.amap.com/jsapi_demos/static/demo-center/icons/poi-marker-' + (i + 1) + '.png',
+            imageSize: new AMap.Size(25, 40)
+        }),
+            position: positions[i]
+        });
+        markers.push(marker);
         }
+        map.setFitView();
 </script>
 
 <script>
